@@ -23,8 +23,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(232, 244, 244, 10),
-      // resizeToAvoidBottomInset: false,
+      backgroundColor: CustomColors.backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -35,7 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
-                      flex: 15,
+                      flex: 10,
                       child: Container(
                         width: 150,
                         child: const Image(
@@ -75,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     size: 20,
                                     Icons.person_outline,
                                   ),
-                                  hintText: 'full Name',
+                                  hintText: 'Full Name',
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       style: BorderStyle.solid,
@@ -91,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               TextField(
                                 decoration: InputDecoration(
                                   suffixIcon: Icon(size: 20, Icons.email),
-                                  hintText: 'email',
+                                  hintText: 'Email',
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       style: BorderStyle.solid,
@@ -113,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         color: Color.fromRGBO(28, 33, 37, 1),
                                       ),
                                     ),
-                                    hintText: 'password',
+                                    hintText: 'Password',
                                     suffixIcon: IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -142,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         color: Color.fromRGBO(28, 33, 37, 1),
                                       ),
                                     ),
-                                    hintText: 'confirm password',
+                                    hintText: 'Confirm Password',
                                     suffixIcon: IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -200,7 +199,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     fixedSize: const Size(350, 10),
                                     backgroundColor:
                                         Color.fromRGBO(28, 33, 37, 1)),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/login');
+                                },
                                 child: Text(
                                   'Sign-in',
                                   style: TextStyle(
