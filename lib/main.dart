@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sira/constants/colors.dart';
 import 'package:sira/view/screens/posted_jobs_page.dart';
 
 void main() {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => const PostedJobs(),
@@ -18,7 +20,22 @@ class MyApp extends StatelessWidget {
       },
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        iconTheme: IconThemeData(color: CustomColors.blackTextColor),
+        drawerTheme: DrawerThemeData(
+          backgroundColor: CustomColors.backgroundColor,
+        ),
+        scaffoldBackgroundColor: CustomColors.backgroundColor,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: CustomColors.transparentColor,
+          elevation: 0,
+          foregroundColor: CustomColors.blackTextColor,
+          toolbarHeight: 70,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: CustomColors.buttonBlueColor,
+        ),
+        primaryColor: CustomColors.goldenColor,
+        fontFamily: 'OpenSans',
       ),
     );
   }
