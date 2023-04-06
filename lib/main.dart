@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: CustomColors.buttonBlueColor,
         ),
-        primaryColor: CustomColors.goldenColor,
+        primaryColor: CustomColors.buttonBlueColor,
         fontFamily: 'OpenSans',
       ),
     );
