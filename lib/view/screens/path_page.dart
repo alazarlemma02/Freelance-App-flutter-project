@@ -50,7 +50,7 @@ class _Path_pageState extends State<Path_page> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.fromLTRB(30, 0, 35, 50),
                 child: Container(
                   child: Column(
                     children: [
@@ -65,7 +65,7 @@ class _Path_pageState extends State<Path_page> {
                                     children: [
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 90),
+                                            const EdgeInsets.only(left: 80),
                                         child: Radio(
                                             value: "Freelancer",
                                             groupValue: pathGroup,
@@ -85,15 +85,23 @@ class _Path_pageState extends State<Path_page> {
                                     ],
                                   ),
                                 ),
-                                Text(
-                                  'A Freelancer',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                                Text(
-                                  'Looking for a job',
-                                  style: TextStyle(fontSize: 15),
+                                Padding(
+                                    padding: const EdgeInsets.only(top:10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'A Freelancer',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
+                                      ),
+                                      Text(
+                                        'Looking for a job',
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -109,7 +117,7 @@ class _Path_pageState extends State<Path_page> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 75),
+                                              const EdgeInsets.only(left: 80),
                                           child: Radio(
                                               value: "Employer",
                                               groupValue: pathGroup,
@@ -129,15 +137,24 @@ class _Path_pageState extends State<Path_page> {
                                       ],
                                     ),
                                   ),
-                                  Text(
-                                    'An Employer',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                                  Text(
-                                    'Looking to hire',
-                                    style: TextStyle(fontSize: 15),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:10.0),
+
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'An Employer',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                        Text(
+                                          'Looking to hire',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -149,18 +166,16 @@ class _Path_pageState extends State<Path_page> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: Container(
-                  width: 310,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context,  '/category_page');
-                    },
-                    child: Text(
-                      'Continue',
-                      style: TextStyle(fontSize: 15.7),
-                    ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(30, 30, 40, 100),
+                width: 400,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/category_page');
+                  },
+                  child: Text(
+                    'Continue',
+                    style: TextStyle(fontSize: 15.7),
                   ),
                 ),
               ),
