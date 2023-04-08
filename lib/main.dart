@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/add_job_page.dart';
+import 'package:sira/view/screens/avilable_jobs_page.dart';
+import 'package:sira/view/screens/ongoing_jobs_page.dart';
 import 'package:sira/view/screens/posted_jobs_page.dart';
 
 void main() {
@@ -14,9 +17,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
+      // initialRoute: '/AvailableJobs',
       routes: {
         '/': (context) => const PostedJobs(),
-        // '/AddJob':(context) =>
+        '/AvailableJobs': (context) => const AvailableJobs(),
+        '/OngoingJobs': (context) => const OngoingJobs(),
+        '/AddJob': (context) => const AddJob()
       },
       title: 'Flutter Demo',
       theme: ThemeData(
