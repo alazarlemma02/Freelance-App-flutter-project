@@ -17,7 +17,7 @@ class _CategoryDropDownState extends State<EducationLevelDropDown> {
     'college degree',
     'masters degree',
   ];
-  String? selectedItem = 'college degree';
+  String? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +26,7 @@ class _CategoryDropDownState extends State<EducationLevelDropDown> {
         dropdownColor: CustomColors.backgroundColor,
         menuMaxHeight: MediaQuery.of(context).size.height * 0.5,
         isExpanded: true,
-        hint: Text("choose-category".tr().toString()),
+        hint: Text("education-level".tr().toString()),
         value: selectedItem,
         iconSize: 45,
         elevation: 16,

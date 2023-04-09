@@ -19,7 +19,7 @@ class _SkillDropDownState extends State<SkillDropDown> {
     'Skill-4',
     'Skill-5',
   ];
-  String? selectedItem = 'Skill-1';
+  String? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +28,7 @@ class _SkillDropDownState extends State<SkillDropDown> {
         dropdownColor: CustomColors.backgroundColor,
         menuMaxHeight: MediaQuery.of(context).size.height * 0.5,
         isExpanded: true,
-        hint: Text("choose-category".tr().toString()),
+        hint: Text("choose-skill".tr().toString()),
         value: selectedItem,
         iconSize: 45,
         elevation: 16,

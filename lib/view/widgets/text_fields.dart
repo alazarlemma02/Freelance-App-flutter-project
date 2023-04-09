@@ -29,6 +29,8 @@ class _TextFieldPageState extends State<TextFieldPage> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      minLines: 1,
+      maxLines: 6,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).size.height * widget.field_height),

@@ -14,6 +14,9 @@
     "choose-category":"Choose Category",
     "phone-number":"Phone Number",
     "web-page":"Web Page",
-    "about-yourself":"A little bit about yourself:"
+    "about-yourself":"A little bit about yourself:",
+    "choose-skill":"Choose Skill",
+    "experience-level":"Experience Level",
+    "education-level":"Education Level"
 
 }

@@ -13,7 +13,7 @@ class ExperienceLevelDropDown extends StatefulWidget {
 
 class _CategoryDropDownState extends State<ExperienceLevelDropDown> {
   List category = ['Beginner', 'Intermidiate', 'Expert'];
-  String? selectedItem = 'Beginner';
+  String? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +22,7 @@ class _CategoryDropDownState extends State<ExperienceLevelDropDown> {
         dropdownColor: CustomColors.backgroundColor,
         menuMaxHeight: MediaQuery.of(context).size.height * 0.5,
         isExpanded: true,
-        hint: Text("choose-category".tr().toString()),
+        hint: Text("experience-level".tr().toString()),
         value: selectedItem,
         iconSize: 45,
         elevation: 16,

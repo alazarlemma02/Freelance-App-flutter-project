@@ -19,7 +19,7 @@ class _CategoryDropDownState extends State<CategoryDropDown> {
     'category-4',
     'category-5',
   ];
-  String? selectedItem = 'category-1';
+  String? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Container(
