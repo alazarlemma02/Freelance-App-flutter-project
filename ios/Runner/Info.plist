@@ -47,5 +47,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>am</string>
+	</array>
+	<array>
+    	<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>

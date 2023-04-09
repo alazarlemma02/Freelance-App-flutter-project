@@ -1,7 +1,24 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/edit_profile_page.dart';
+import 'package:sira/view/screens/login_page.dart';
+import 'package:sira/view/screens/signup_page.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(EasyLocalization(
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('am', 'ETH'),
+      ],
+      path: 'assets/translations',
+      saveLocale: true,
+      fallbackLocale: Locale('en', 'US'),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,21 +27,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        iconTheme: IconThemeData(color: CustomColors.blackTextColor),
+        drawerTheme:
+            DrawerThemeData(backgroundColor: CustomColors.backgroundColor),
+        scaffoldBackgroundColor: CustomColors.backgroundColor,
+        appBarTheme: const AppBarTheme(
+            backgroundColor: CustomColors.transparentColor,
+            elevation: 0,
+            foregroundColor: CustomColors.blackTextColor,
+            toolbarHeight: 70),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: CustomColors.buttonBlueColor),
+        primaryColor: CustomColors.buttonBlueColor,
+        fontFamily: 'OpenSans',
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      home: const EditProfilePage(),
+      // initialRoute: '/login',
+      // routes: {
+      //   '/login': (context) => const LoginPage(),
+      //   '/signup': (context) => const SignUpPage(),
+      // },
     );
   }
 }

@@ -10,6 +10,10 @@
     "C-password":"Confirm Password",
     "new-user":"Create an account",
     "full-name":"Full Name",
-    "or":"or"
+    "or":"or",
+    "choose-category":"Choose Category",
+    "phone-number":"Phone Number",
+    "web-page":"Web Page",
+    "about-yourself":"A little bit about yourself:"
 
 }

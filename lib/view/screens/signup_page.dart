@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sira/view/widgets/sira_logo.dart';
 
 import '../../constants/colors.dart';
 
@@ -26,24 +28,16 @@ class _SignUpPageState extends State<SignUpPage> {
       backgroundColor: CustomColors.backgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 15.0),
           child: SingleChildScrollView(
             child: SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Expanded(flex: 10, child: SiraLogo()),
                     Expanded(
-                      flex: 10,
-                      child: Container(
-                        width: 150,
-                        child: const Image(
-                          image: AssetImage('assets/images/Logo(1X).png'),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 80,
+                      flex: 60,
                       child: Padding(
                         padding:
                             const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
@@ -52,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Welcome',
+                                'welcome'.tr().toString(),
                                 textAlign: TextAlign.end,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -61,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               ),
                               Text(
-                                'Please fill in the required fields to sign-up.',
+                                'S-note'.tr().toString(),
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   fontSize: 12,
@@ -74,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     size: 20,
                                     Icons.person_outline,
                                   ),
-                                  hintText: 'Full Name',
+                                  hintText: 'full-name'.tr().toString(),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       style: BorderStyle.solid,
@@ -90,7 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               TextField(
                                 decoration: InputDecoration(
                                   suffixIcon: Icon(size: 20, Icons.email),
-                                  hintText: 'Email',
+                                  hintText: 'email'.tr().toString(),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       style: BorderStyle.solid,
@@ -112,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         color: Color.fromRGBO(28, 33, 37, 1),
                                       ),
                                     ),
-                                    hintText: 'Password',
+                                    hintText: 'password'.tr().toString(),
                                     suffixIcon: IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -141,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         color: Color.fromRGBO(28, 33, 37, 1),
                                       ),
                                     ),
-                                    hintText: 'Confirm Password',
+                                    hintText: 'C-password'.tr().toString(),
                                     suffixIcon: IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -168,31 +162,38 @@ class _SignUpPageState extends State<SignUpPage> {
                                         Color.fromRGBO(72, 165, 193, 1)),
                                 onPressed: () {},
                                 child: Text(
-                                  'Sign-up',
+                                  'sign-up'.tr().toString(),
                                   style: TextStyle(
                                       color: Color.fromRGBO(232, 244, 244, 1)),
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 5),
-                                child: Row(children: [
-                                  Container(
-                                    width: 150,
-                                    height: 1,
-                                    color: Color.fromRGBO(28, 33, 37, 1),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 20.0, right: 20.0),
-                                    child: Text('or'),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(right: 3),
-                                    width: 130,
-                                    height: 1,
-                                    color: Color.fromRGBO(28, 33, 37, 1),
-                                  ),
-                                ]),
+                                // padding: EdgeInsets.only(left: 15),
+                                child: Center(
+                                  child: Row(children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      height: 1,
+                                      color: Color.fromRGBO(28, 33, 37, 1),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20.0, right: 20.0),
+                                      child: Text(
+                                        'or'.tr().toString(),
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(right: 3),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      height: 1,
+                                      color: Color.fromRGBO(28, 33, 37, 1),
+                                    ),
+                                  ]),
+                                ),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -203,13 +204,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                   Navigator.pushNamed(context, '/login');
                                 },
                                 child: Text(
-                                  'Sign-in',
+                                  'sign-in'.tr().toString(),
                                   style: TextStyle(
                                       color: Color.fromRGBO(232, 244, 244, 1)),
                                 ),
                               ),
                             ]),
                       ),
+                    ),
+                    Expanded(
+                      flex: 20,
+                      child: Container(),
                     ),
                   ]),
             ),
