@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -33,7 +34,7 @@ class _UploadAttachmentState extends State<UploadAttachment> {
               ),
             ),
             Text(
-              'Upload Attachment',
+              'upload-document'.tr().toString(),
               style:
                   TextStyle(color: CustomColors.blackTextColor, fontSize: 10),
             )

@@ -17,6 +17,11 @@
     "about-yourself":"A little bit about yourself:",
     "choose-skill":"Choose Skill",
     "experience-level":"Experience Level",
-    "education-level":"Education Level"
+    "education-level":"Education Level",
+    "edit-profile":"Edit Profile",
+    "profile-tag":"Profile tag line",
+    "social-media":"Social media link",
+    "upload-document":"Upload attachment"
+
 
 }

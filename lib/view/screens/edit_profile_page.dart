@@ -21,6 +21,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
+    // context.locale = const Locale('am', 'ETH');
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
@@ -29,7 +30,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           color: CustomColors.blackTextColor,
         ),
         title: Text(
-          'Edit Profile',
+          'edit-profile'.tr().toString(),
           style: TextStyle(color: CustomColors.blackTextColor),
         ),
         actions: [
@@ -126,7 +127,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: Column(
                         children: [
                           const TextFieldPage(
-                              hint_text: 'Profile tag line',
+                              hint_text: 'profile-tag',
                               field_icon: Icons.tag,
                               field_height: 0.04),
                           const CategoryDropDown(),
@@ -138,7 +139,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           const ExperienceLevelDropDown(),
                           const EducationLevelDropDown(),
                           const TextFieldPage(
-                              hint_text: 'social media link',
+                              hint_text: 'social-media',
                               field_icon: Icons.link,
                               field_height: 0.04),
                           const TextFieldPage(
