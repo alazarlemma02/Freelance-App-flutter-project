@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/main.dart';
+import 'package:sira/view/widgets/category_dropdown.dart';
 import 'package:sira/view/widgets/text_fields.dart';
 import 'package:sira/view/widgets/upload_attachment.dart';
 
@@ -122,32 +123,33 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             hint_text: 'full-name',
                             field_icon: Icons.person_outline,
                             field_height: 0.04),
-                        TextField(
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical:
-                                    MediaQuery.of(context).size.height * 0.04),
-                            suffixIcon: IconButton(
-                              onPressed: () {},
-                              iconSize: 40,
-                              icon: Icon(Icons.arrow_drop_down),
-                            ),
-                            hintText: 'choose-category'.tr()..toString(),
-                            labelStyle: const TextStyle(
-                              color: CustomColors.blackTextColor,
-                            ),
-                            enabledBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                style: BorderStyle.solid,
-                                color: CustomColors.blackTextColor,
-                              ),
-                            ),
-                          ),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: CustomColors.fadedTextColor,
-                          ),
-                        ),
+                        // TextField(
+                        //   decoration: InputDecoration(
+                        //     contentPadding: EdgeInsets.symmetric(
+                        //         vertical:
+                        //             MediaQuery.of(context).size.height * 0.04),
+                        //     suffixIcon: IconButton(
+                        //       onPressed: () {},
+                        //       iconSize: 40,
+                        //       icon: Icon(Icons.arrow_drop_down),
+                        //     ),
+                        //     hintText: 'choose-category'.tr()..toString(),
+                        //     labelStyle: const TextStyle(
+                        //       color: CustomColors.blackTextColor,
+                        //     ),
+                        //     enabledBorder: const UnderlineInputBorder(
+                        //       borderSide: BorderSide(
+                        //         style: BorderStyle.solid,
+                        //         color: CustomColors.blackTextColor,
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   style: const TextStyle(
+                        //     fontSize: 12,
+                        //     color: CustomColors.fadedTextColor,
+                        //   ),
+                        // ),
+                        const CategoryDropDown(),
                         const TextFieldPage(
                             hint_text: 'phone-number',
                             field_icon: Icons.call,
