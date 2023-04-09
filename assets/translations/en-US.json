@@ -1,0 +1,15 @@
+{
+    "sign-in":"Sign-in" ,
+    "sign-up":"Sign-up",
+    "welcome-back":"Welcome back",
+    "welcome":"Welcome",
+    "L-note":"Please fill in the required fields to sign-in.",
+    "S-note":"Please fill in the required fields to sign-up.",
+    "email":"Email",
+    "password":"Password",
+    "C-password":"Confirm Password",
+    "new-user":"Create an account",
+    "full-name":"Full Name",
+    "or":"or"
+
+}
