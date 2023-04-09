@@ -40,7 +40,7 @@ class _UploadAttachmentState extends State<UploadAttachment> {
           ],
         ),
       ),
-      flex: 20,
+      flex: 10,
     );
   }
 }
