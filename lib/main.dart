@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sira/view/screens/category_page.dart';
-import 'package:sira/view/screens/path_page.dart';
+import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/add_job_page.dart';
+import 'package:sira/view/screens/avilable_jobs_page.dart';
+import 'package:sira/view/screens/ongoing_jobs_page.dart';
+import 'package:sira/view/screens/posted_jobs_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,30 +12,37 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Custom fonts ',
-      theme: ThemeData(fontFamily: 'OpenSans'
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-
-          ),
-      
       initialRoute: '/',
+      // initialRoute: '/AvailableJobs',
       routes: {
-        '/': (context) => Path_page(),
-        '/category_page': (context) => Category_page()
+        '/': (context) => const PostedJobs(),
+        '/AvailableJobs': (context) => const AvailableJobs(),
+        '/OngoingJobs': (context) => const OngoingJobs(),
+        '/AddJob': (context) => const AddJob()
       },
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        iconTheme: IconThemeData(color: CustomColors.blackTextColor),
+        drawerTheme: DrawerThemeData(
+          backgroundColor: CustomColors.backgroundColor,
+        ),
+        scaffoldBackgroundColor: CustomColors.backgroundColor,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: CustomColors.transparentColor,
+          elevation: 0,
+          foregroundColor: CustomColors.blackTextColor,
+          toolbarHeight: 70,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: CustomColors.buttonBlueColor,
+        ),
+        primaryColor: CustomColors.buttonBlueColor,
+        fontFamily: 'OpenSans',
+      ),
     );
   }
 }
