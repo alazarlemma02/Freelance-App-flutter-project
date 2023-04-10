@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:sira/constants/colors.dart';
+import 'package:sira/main.dart';
+import 'package:sira/view/widgets/attachments.dart';
+import 'package:sira/view/widgets/contact_detail.dart';
+import 'package:sira/view/widgets/user_profile.dart';
+import 'package:sira/view/widgets/user_type_skill.dart';
 
 class Applicantprofile extends StatefulWidget {
   const Applicantprofile({super.key});
@@ -18,88 +22,129 @@ class _ApplicantprofileState extends State<Applicantprofile> {
       appBar: AppBar(
         backgroundColor: CustomColors.transparentColor,
         elevation: 0,
-        leading: Icon(Icons.arrow_back,color: CustomColors.blackTextColor,),
-        title: Text('Abebe',style: TextStyle(color:CustomColors.blackTextColor)),
-      
-        actions: [
-          IconButton(onPressed: () {
-          }, icon: Icon(Icons.person_outlined,color:CustomColors.blackTextColor ,),
-          ),
-           IconButton(onPressed: () {
-          }, icon: Icon(Icons.notifications_outlined,color:CustomColors.blackTextColor),
-          )
-        ],
-      ),
-        body: Container(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(20.0,MediaQuery.of(context).size.height * 0.1,20.0,20.0),
-            child: Stack(
-              children: [Container(
-                decoration: BoxDecoration(
-                   color:CustomColors.cardColor,
-        
-        borderRadius: BorderRadius.circular(16.0),
+        leading: Icon(
+          Icons.arrow_back,
+          color: CustomColors.blackTextColor,
         ),
-                width: MediaQuery.of(context).size.width ,
-                height: MediaQuery.of(context).size.height * 0.4,
-                
-               
-                child: Column(children: [
-                  Expanded(
-                    flex: 15,
-                    child: Container(
-                      child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(.0,10.0,8.0,0.0,),
-                        child: Container(child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                        ]),),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        color: CustomColors.fadedTextColor,
-                        width: 80,
-                        height: 30,
-                        child: TextButton(
-                        
-                        child: Text('Design',textAlign: TextAlign.center,style: TextStyle(fontSize: 12, color: CustomColors.blackTextColor),),
-                        onPressed: () {
-                        
-                      },),),
-                    ]),),
-                  ),
-                  Expanded(flex:85,child: Container(
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                    ),),
-                ]),
-            
-              ),
-                  Align(
-              alignment: Alignment.topLeft,
-            child: CircleAvatar(
-              
-              radius:MediaQuery.of(context).size.height * 0.1,
-              backgroundColor:CustomColors.backgroundColor,
-              child: Center(
-          child: Icon(Icons.person,color:CustomColors.blackTextColor,size:MediaQuery.of(context).size.height * 0.1 , ),
-              ),
-            )
+        title: Text('Abebe Kebede',
+            style: TextStyle(color: CustomColors.blackTextColor)),
+        actions: [
+          IconButton(
+            padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.05),
+            onPressed: () {},
+            icon: Icon(Icons.notifications_outlined,
+                color: CustomColors.blackTextColor),
           ),
-        
-              ],
+          IconButton(
+            padding: EdgeInsets.only(
+                right: MediaQuery.of(context).size.width * 0.08),
+            onPressed: () {},
+            icon: Icon(
+              Icons.person_outlined,
+              color: CustomColors.blackTextColor,
             ),
           ),
+        ],
+      ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        color: CustomColors.backgroundColor,
+        child: Column(
+          children: [
+            Stack(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.1,
+                      ),
+
+                      ///here we create space for the circle avatar to get ut of the box
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.45,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          color: CustomColors.cardColor,
+                        ),
+                        width: MediaQuery.of(context).size.height * 0.4,
+                        child: Column(
+                          children: [
+                            const UserTypeAndSkill(),
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              width: MediaQuery.of(context).size.height * 0.4,
+                              child: Text(
+                                "Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. ",
+                                style: TextStyle(
+                                    color: CustomColors.blackTextColor),
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.15,
+                              width: MediaQuery.of(context).size.height * 0.4,
+                              child: AttachmentFile(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const UserProfilePicture(),
+
+                    ///Image Avatar
+                  ],
+                ),
+              ),
+            ]),
+            Container(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Contact Details',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(
+                              MediaQuery.of(context).size.width * 0.25,
+                              MediaQuery.of(context).size.height * 0.009),
+                          backgroundColor: CustomColors.buttonBlueColor),
+                      onPressed: () {},
+                      child: Center(
+                        child: Text(
+                          'Call now',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ),
+                    ),
+                  ]),
+              margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.085,
+                  right: MediaQuery.of(context).size.width * 0.085),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.05,
+              decoration: BoxDecoration(),
+            ),
+            const ContactDetail(),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          
-        },
-        child: Center(child: Icon(Icons.call,color:CustomColors.backgroundColor,)),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Center(
+            child: Icon(
+          Icons.done,
+          color: CustomColors.backgroundColor,
+        )),
         backgroundColor: CustomColors.buttonBlueColor,
-        ),
+      ),
     );
-  
   }
 }
