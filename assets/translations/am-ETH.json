@@ -1,0 +1,28 @@
+{
+    "sign-in":"ይግቡ",
+    "sign-up":"መዝግብ",
+    "welcome-back":"ሰላም,",
+    "welcome":"እንኳን ደህና መጡ,",
+    "L-note":"እባክዎ ለመግባት የሚያስፈልጉትን መስኮች ይሙሉ",
+    "S-note":"እባክዎ ለመመዝገብ የሚያስፈልጉትን መስኮች ይሙሉ",
+    "email":"ኢሜል",
+    "password":"የይለፍ ቃል",
+    "C-password":"የይለፍ ቃልዎን ያረጋግጡ",
+    "new-user":"አዲስ አካውንት ይክፈቱ",
+    "or":"ወይም",
+    "full-name":"ሙሉ ስም",
+    "choose-category":"ስራ መደብ ምረጥ",
+    "phone-number":"ስልክ ቁጥር",
+    "web-page":"ድህረ ገጽ",
+    "about-yourself":"ስለ እርስዎ ሚገልጽ ነገር በትንሹ ይጻፉ",
+    "choose-skill":"ችሎታ ይምረጡ",
+    "experience-level":"የችሎታ ደረጃ",
+    "education-level":"የትምህርት ደረጃ",
+    "edit-profile":"መረጃዎን ያስተካክሉ",
+    "profile-tag":"የእርስዎ መገለጫ",
+    "social-media":"ማህበራዊ ሚዲያ ገፅ",
+    "upload-document":"ፋይል ያስገቡ"
+    
+    
+
+}
