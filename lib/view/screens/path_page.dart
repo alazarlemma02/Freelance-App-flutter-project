@@ -3,14 +3,14 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'package:flutter/material.dart';
 
-class Path_page extends StatefulWidget {
-  Path_page({super.key});
+class PathPage extends StatefulWidget {
+  const PathPage({super.key});
 
   @override
-  State<Path_page> createState() => _Path_pageState();
+  State<PathPage> createState() => _PathPageState();
 }
 
-class _Path_pageState extends State<Path_page> {
+class _PathPageState extends State<PathPage> {
   String? pathGroup;
   @override
   Widget build(BuildContext context) {
@@ -86,9 +86,10 @@ class _Path_pageState extends State<Path_page> {
                                   ),
                                 ),
                                 Padding(
-                                    padding: const EdgeInsets.only(top:10.0),
+                                  padding: const EdgeInsets.only(top: 10.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'A Freelancer',
@@ -138,10 +139,10 @@ class _Path_pageState extends State<Path_page> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top:10.0),
-
+                                    padding: const EdgeInsets.only(top: 10.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'An Employer',

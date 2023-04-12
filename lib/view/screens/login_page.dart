@@ -25,163 +25,185 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 15.0),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Center(
           child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 10,
-                      child: SiraLogo(),
-                    ),
-                    Expanded(
-                      flex: 60,
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 100.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'welcome-back'.tr().toString(),
-                                textAlign: TextAlign.end,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30,
-                                  // color: CustomColors.blackTextColor,
-                                ),
-                              ),
-                              Text(
-                                'L-note'.tr().toString(),
-                                textAlign: TextAlign.start,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: CustomColors.fadedTextColor,
-                                ),
-                              ),
-                              TextField(
-                                decoration: InputDecoration(
-                                  suffixIcon: Icon(size: 20, Icons.email),
-                                  hintText: 'email'.tr()..toString(),
-                                  labelStyle: const TextStyle(
-                                    color: CustomColors.blackTextColor,
-                                  ),
-                                  enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      style: BorderStyle.solid,
-                                      color: CustomColors.blackTextColor,
-                                    ),
-                                  ),
-                                ),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: CustomColors.fadedTextColor,
-                                ),
-                              ),
-                              TextFormField(
-                                obscureText: !_passwordVisible,
-                                decoration: InputDecoration(
-                                    enabledBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        style: BorderStyle.solid,
-                                        color: CustomColors.blackTextColor,
-                                      ),
-                                    ),
-                                    hintText: 'password'.tr().toString(),
-                                    labelStyle: const TextStyle(
-                                        color: CustomColors.blackTextColor),
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _passwordVisible = !_passwordVisible;
-                                        });
-                                      },
-                                      icon: Icon(
-                                        _passwordVisible
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: Color.fromRGBO(28, 33, 37, 100),
-                                        size: 20,
-                                      ),
-                                    )),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: CustomColors.fadedTextColor,
-                                ),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(350, 10),
-                                    backgroundColor:
-                                        Color.fromRGBO(72, 165, 193, 1)),
-                                onPressed: () {},
-                                child: Text(
-                                  'sign-in'.tr().toString(),
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(232, 244, 244, 1)),
-                                ),
-                              ),
-                              Container(
-                                // padding: EdgeInsets.only(left: 10, right: 40),
-                                child: Center(
-                                  child: Row(children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.3,
-                                      height: 1,
-                                      color: Color.fromRGBO(28, 33, 37, 1),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 20.0, right: 20.0),
-                                      child: Text(
-                                        'or'.tr().toString(),
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                    ),
-                                    Container(
-                                      // padding: EdgeInsets.only(right: 3),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.3,
-                                      height: 1,
-                                      color: Color.fromRGBO(28, 33, 37, 1),
-                                    ),
-                                  ]),
-                                ),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    fixedSize: const Size(350, 10),
-                                    backgroundColor:
-                                        Color.fromRGBO(28, 33, 37, 1)),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/signup');
-                                },
-                                child: Text(
-                                  'new-user'.tr().toString(),
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(232, 244, 244, 1)),
-                                ),
-                              ),
-                            ]),
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: const SiraLogo(),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                        child: Text(
+                          'welcome-back'.tr().toString(),
+                          textAlign: TextAlign.end,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 20,
-                      child: Container(),
-                    ),
-                  ]),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                        child: Text(
+                          'L-note'.tr().toString(),
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: CustomColors.fadedTextColor,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(
+                              size: 20,
+                              Icons.email,
+                              color: CustomColors.fadedTextColor,
+                            ),
+                            hintText: 'email'.tr()..toString(),
+                            labelStyle: const TextStyle(
+                              color: CustomColors.fadedTextColor,
+                            ),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: CustomColors.blackTextColor,
+                              ),
+                            ),
+                          ),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: TextFormField(
+                          obscureText: !_passwordVisible,
+                          decoration: InputDecoration(
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  style: BorderStyle.solid,
+                                  color: CustomColors.blackTextColor,
+                                ),
+                              ),
+                              hintText: 'password'.tr().toString(),
+                              labelStyle: const TextStyle(
+                                  color: CustomColors.blackTextColor),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _passwordVisible = !_passwordVisible;
+                                  });
+                                },
+                                icon: Icon(
+                                  _passwordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: CustomColors.fadedTextColor,
+                                  size: 20,
+                                ),
+                              )),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: const Size(350, 10),
+                            backgroundColor: CustomColors.buttonBlueColor),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/AvailableJobs');
+                        },
+                        child: Text(
+                          'sign-in'.tr().toString(),
+                          style: const TextStyle(
+                            color: CustomColors.backgroundColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: Center(
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.35,
+                                  height: 1,
+                                  color: CustomColors.fadedTextColor,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0, right: 20.0),
+                                  child: Text(
+                                    'or'.tr().toString(),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: CustomColors.fadedTextColor,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.35,
+                                  height: 1,
+                                  color: CustomColors.fadedTextColor,
+                                ),
+                              ]),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(350, 10),
+                          backgroundColor: CustomColors.blackTextColor,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/SignUpPage');
+                        },
+                        child: Text(
+                          'new-user'.tr().toString(),
+                          style: const TextStyle(
+                            color: CustomColors.backgroundColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
-    ;
   }
 }

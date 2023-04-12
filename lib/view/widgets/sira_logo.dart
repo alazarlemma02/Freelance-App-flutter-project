@@ -15,20 +15,12 @@ class _SiraLogoState extends State<SiraLogo> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.20,
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.5,
-          child: const Image(
-            image: AssetImage('assets/images/Logo(1X).png'),
-          ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.20,
-          child: SelectLanguage(),
+        Image(
+          width: 234 / 2,
+          height: 87 / 2,
+          image: AssetImage('assets/images/Logo(1X).png'),
         ),
       ],
     );
