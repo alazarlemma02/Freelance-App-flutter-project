@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/login_page.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
 
 class AvailableJobs extends StatefulWidget {
@@ -13,7 +15,27 @@ class _AvailableJobsState extends State<AvailableJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: SafeArea(
+          child: Column(children: [
+            IconButton(
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                },
+                icon: Icon(
+                  textDirection: TextDirection.ltr,
+                  Icons.logout,
+                  color: CustomColors.buttonBlueColor,
+                ))
+          ]),
+        ),
+      ),
       appBar: AppBar(
         actions: [
           IconButton(

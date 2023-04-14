@@ -14,10 +14,16 @@ import 'package:sira/view/screens/ongoing_jobs_page.dart';
 import 'package:sira/view/screens/path_page.dart';
 import 'package:sira/view/screens/posted_jobs_page.dart';
 import 'package:sira/view/screens/signup_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:sira/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(EasyLocalization(
     supportedLocales: [
       Locale('en', 'US'),
