@@ -29,7 +29,7 @@ class FireAuth {
         );
 
         result = 'true';
-        await _firestore.collection('users').doc(user.user!.uid).set(
+        await _firestore.collection('users').doc(email).set(
               newUser.toJson(),
             );
       }

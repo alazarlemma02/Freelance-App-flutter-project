@@ -1,4 +1,5 @@
 // TODO Implement this library.
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,28 +13,53 @@ class UserTypeAndSkill extends StatefulWidget {
 }
 
 class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
+  String? fullName;
+  String? category;
+  String? skill;
+  Future<void> getNameOfUser() async {
+    DocumentSnapshot profileName = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('nahom@gmail.com')
+        .get();
+    DocumentSnapshot fullProfile = await FirebaseFirestore.instance
+        .collection('User Full Profile')
+        .doc('0911111111')
+        .get();
+
+    fullName = profileName['fullName'];
+    category = fullProfile['category'];
+    skill = fullProfile['skill-level'];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getNameOfUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
-      width: MediaQuery.of(context).size.height * 0.4,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      // width: MediaQuery.of(context).size.width * 0.3,
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Container(
-          width: MediaQuery.of(context).size.height * 0.18,
+          width: MediaQuery.of(context).size.width * 0.25,
         ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.15,
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width * 0.4,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'Abebe Kebede',
+                  fullName.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(
                   child: Center(
                     child: Text(
-                      'Designer',
+                      category.toString(),
                       style: TextStyle(
                           fontSize: 12, color: CustomColors.blackTextColor),
                     ),
@@ -60,7 +86,7 @@ class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
                 Container(
                   child: Center(
                     child: Text(
-                      'Designer',
+                      skill.toString(),
                       style: TextStyle(
                           fontSize: 12, color: CustomColors.blackTextColor),
                     ),

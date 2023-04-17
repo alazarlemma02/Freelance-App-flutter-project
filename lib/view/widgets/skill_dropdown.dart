@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/edit_profile_page.dart';
 
 class SkillDropDown extends StatefulWidget {
   const SkillDropDown({super.key});
@@ -12,12 +13,14 @@ class SkillDropDown extends StatefulWidget {
 }
 
 class _SkillDropDownState extends State<SkillDropDown> {
+  EditProfilePage editProfilePage = new EditProfilePage();
   List category = [
     'Skill-1',
     'Skill-2',
     'Skill-3',
     'Skill-4',
     'Skill-5',
+    'Other'
   ];
   String? selectedItem;
   @override
@@ -50,6 +53,7 @@ class _SkillDropDownState extends State<SkillDropDown> {
           setState(() {
             selectedItem = cat;
           });
+          print(selectedItem);
         },
       ),
     );

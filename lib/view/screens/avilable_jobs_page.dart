@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/view/screens/login_page.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
+import 'package:sira/view/widgets/logout_page.dart';
 
 class AvailableJobs extends StatefulWidget {
   const AvailableJobs({super.key});
@@ -16,25 +17,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: SafeArea(
-          child: Column(children: [
-            IconButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ),
-                  );
-                },
-                icon: Icon(
-                  textDirection: TextDirection.ltr,
-                  Icons.logout,
-                  color: CustomColors.buttonBlueColor,
-                ))
-          ]),
-        ),
+        child: const Logout(),
       ),
       appBar: AppBar(
         actions: [

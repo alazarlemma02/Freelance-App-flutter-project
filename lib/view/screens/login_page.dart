@@ -230,6 +230,20 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+                        Center(
+                          child: TextButton(
+                            child: Text(
+                              'Forgot password?',
+                              style: TextStyle(
+                                color: CustomColors.blackTextColor,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, '/ForgotPasswordPage');
+                            },
+                          ),
+                        )
                       ],
                     ),
                   ],
@@ -259,7 +273,15 @@ class _LoginPageState extends State<LoginPage> {
         );
         if (result != 'success') {
           showAlertMessage(
-              Icons.error, 'User not found', false, Colors.red, context);
+              Icons.error,
+              'User not found',
+              false,
+              Colors.red,
+              'Sign up',
+              'try again',
+              context,
+              null,
+              Navigator.pushNamed(context, '/SignUpPage'));
         } else {
           showSnackBar('Logged In Successfully', Colors.green, context);
           await Navigator.pushNamed(context, '/AvailableJobs');

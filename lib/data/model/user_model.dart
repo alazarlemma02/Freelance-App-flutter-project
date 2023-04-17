@@ -1,7 +1,9 @@
+import 'dart:math';
+
 class UserModel {
   final String? userId;
   final String? fullName;
-  final String email;
+  String email;
   final String? phoneNumber;
   final String password;
   final Enum? userType;
@@ -37,4 +39,12 @@ class UserModel {
         "password": password,
         "userId": userId
       };
+
+  void setUserEmail(String email) {
+    this.email = email;
+  }
+
+  String? getUserEmail() {
+    return email;
+  }
 }

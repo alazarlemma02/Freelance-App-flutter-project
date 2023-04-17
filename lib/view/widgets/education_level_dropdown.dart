@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/edit_profile_page.dart';
 
 class EducationLevelDropDown extends StatefulWidget {
   const EducationLevelDropDown({super.key});
@@ -12,6 +13,7 @@ class EducationLevelDropDown extends StatefulWidget {
 }
 
 class _CategoryDropDownState extends State<EducationLevelDropDown> {
+  EditProfilePage editProfilePage = new EditProfilePage();
   List category = [
     'high school diploma',
     'college degree',

@@ -41,6 +41,15 @@ class Validator {
     return null;
   }
 
+  static String? validateProfileField({required String fieldData}) {
+    if (fieldData == null) {
+      return null;
+    }
+    if (fieldData.isEmpty) {
+      return 'Please fill in the field!';
+    }
+  }
+
   static String? validateConfirmPassword(
       {required String confirmPassword, required String password}) {
     if (confirmPassword == null) {

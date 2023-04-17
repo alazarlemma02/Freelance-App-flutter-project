@@ -6,6 +6,7 @@ import 'package:sira/view/screens/applicant_profile_page.dart';
 import 'package:sira/view/screens/avilable_jobs_page.dart';
 import 'package:sira/view/screens/category_page.dart';
 import 'package:sira/view/screens/edit_profile_page.dart';
+import 'package:sira/view/screens/forgot_password_page.dart';
 import 'package:sira/view/screens/job_application_page.dart';
 import 'package:sira/view/screens/job_detail_page.dart';
 import 'package:sira/view/screens/login_page.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/EditProfilePage',
       routes: {
         '/': (context) => const LoginPage(),
         '/SignUpPage': (context) => const SignUpPage(),
@@ -56,7 +57,8 @@ class MyApp extends StatelessWidget {
         '/JobApplicationpage': (context) => const JobApplicationpage(),
         '/OngoingJobs': (context) => const OngoingJobs(),
         '/MyProfilePage': (context) => const My_profile(),
-        '/EditProfilePage': (context) => const EditProfilePage()
+        '/EditProfilePage': (context) => EditProfilePage(),
+        '/ForgotPasswordPage': (context) => const ForgotPasswordPage()
       },
       title: 'Flutter Demo',
       theme: ThemeData(

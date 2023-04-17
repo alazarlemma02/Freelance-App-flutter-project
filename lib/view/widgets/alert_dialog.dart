@@ -1,8 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 
-Future<void> showAlertMessage(final IconData dialogIcon, String textMessage,
-    bool isCorrect, Color iconColor, BuildContext context) async {
+Future<void> showAlertMessage(
+    final IconData dialogIcon,
+    String textMessage,
+    bool isCorrect,
+    Color iconColor,
+    String choice1,
+    String choice2,
+    BuildContext context,
+    Future<Object?>? logout,
+    Future<Object?> route) async {
   return showDialog<void>(
     context: context,
 
@@ -29,17 +38,18 @@ Future<void> showAlertMessage(final IconData dialogIcon, String textMessage,
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text(
-              'Sign up',
+            child: Text(
+              choice1,
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/SignUpPage');
+              route;
+              // await logout;
             },
           ),
           TextButton(
-            child: const Text(
-              'try again',
+            child: Text(
+              choice2,
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
