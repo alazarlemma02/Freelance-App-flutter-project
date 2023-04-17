@@ -48,7 +48,7 @@ class FireAuth {
       if (email.isNotEmpty || password.isNotEmpty) {
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
-        result = 'success';
+        result = 'true';
       }
     } catch (err) {
       result = err.toString();

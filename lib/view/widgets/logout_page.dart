@@ -21,15 +21,12 @@ class _LogoutState extends State<Logout> {
         IconButton(
             onPressed: () async {
               showAlertMessage(
-                  Icons.logout,
-                  'Do You want to logout',
-                  true,
-                  CustomColors.buttonBlueColor,
-                  'No',
-                  'Yes',
-                  context,
-                  FirebaseAuth.instance.signOut(),
-                  Navigator.pushNamed(context, '/'));
+                Icons.logout,
+                'Do You want to logout',
+                true,
+                CustomColors.buttonBlueColor,
+                context,
+              );
 
               // await FirebaseAuth.instance.signOut();
             },

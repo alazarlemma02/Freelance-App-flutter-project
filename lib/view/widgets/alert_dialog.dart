@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 
 Future<void> showAlertMessage(
-    final IconData dialogIcon,
-    String textMessage,
-    bool isCorrect,
-    Color iconColor,
-    String choice1,
-    String choice2,
-    BuildContext context,
-    Future<Object?>? logout,
-    Future<Object?> route) async {
+  final IconData dialogIcon,
+  String textMessage,
+  bool isCorrect,
+  Color iconColor,
+  BuildContext context,
+) async {
   return showDialog<void>(
     context: context,
 
@@ -39,17 +36,17 @@ Future<void> showAlertMessage(
         actions: <Widget>[
           TextButton(
             child: Text(
-              choice1,
+              'Sign up',
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
-              route;
+              Navigator.pushNamed(context, '/SignUpPage');
               // await logout;
             },
           ),
           TextButton(
             child: Text(
-              choice2,
+              'try again',
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {

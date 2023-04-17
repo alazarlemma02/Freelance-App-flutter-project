@@ -271,17 +271,14 @@ class _LoginPageState extends State<LoginPage> {
           email: _email.text,
           password: _pass.text,
         );
-        if (result != 'success') {
+        if (result != 'true') {
           showAlertMessage(
-              Icons.error,
-              'User not found',
-              false,
-              Colors.red,
-              'Sign up',
-              'try again',
-              context,
-              null,
-              Navigator.pushNamed(context, '/SignUpPage'));
+            Icons.error,
+            'User not found',
+            false,
+            Colors.red,
+            context,
+          );
         } else {
           showSnackBar('Logged In Successfully', Colors.green, context);
           await Navigator.pushNamed(context, '/AvailableJobs');
