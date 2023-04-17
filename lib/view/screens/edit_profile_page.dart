@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/main.dart';
+import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/category_dropdown.dart';
 import 'package:sira/view/widgets/education_level_dropdown.dart';
 import 'package:sira/view/widgets/experience_level_dropdown.dart';
@@ -12,22 +14,49 @@ import 'package:sira/view/widgets/text_fields.dart';
 import 'package:sira/view/widgets/upload_attachment.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  String? categoryTxt;
+  String? skillTxt;
+  String? exprTxt;
+  String? educationTxt;
+  EditProfilePage(
+      {Key? myKey,
+      this.categoryTxt,
+      this.educationTxt,
+      this.exprTxt,
+      this.skillTxt})
+      : super(key: myKey);
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  final _profile_tagcont = TextEditingController();
+  final _phoneNumberCont = TextEditingController();
+  final _socialMediaCont = TextEditingController();
+  final _aboutYourselfCont = TextEditingController();
+  String? expTxt;
+  String? _educationLevelCont;
+  String? _experienceLevelCont;
+
+  callBack(category) {
+    category = expTxt;
+  }
+
   @override
   Widget build(BuildContext context) {
-    // context.locale = const Locale('am', 'ETH');
+    context.locale = const Locale('en', 'US');
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: CustomColors.blackTextColor,
+        leading: IconButton(
+          onPressed: (() {
+            Navigator.pushNamed(context, '/MyProfilePage');
+          }),
+          icon: Icon(
+            Icons.arrow_back,
+            color: CustomColors.blackTextColor,
+          ),
         ),
         title: Text(
           'edit-profile'.tr().toString(),
@@ -126,26 +155,35 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     child: Container(
                       child: Column(
                         children: [
-                          const TextFieldPage(
+                          TextFieldPage(
                               hint_text: 'profile-tag',
                               field_icon: Icons.tag,
-                              field_height: 0.04),
+                              field_height: 0.03,
+                              editingController: _profile_tagcont,
+                              maximumLines: 1),
                           const CategoryDropDown(),
                           const SkillDropDown(),
-                          const TextFieldPage(
+                          TextFieldPage(
                               hint_text: 'phone-number',
                               field_icon: Icons.call,
-                              field_height: 0.04),
-                          const ExperienceLevelDropDown(),
+                              field_height: 0.03,
+                              editingController: _phoneNumberCont,
+                              maximumLines: 1),
+                          ExperienceLevelDropDown(
+                              expTxt: expTxt.toString(), onSelect: callBack),
                           const EducationLevelDropDown(),
-                          const TextFieldPage(
+                          TextFieldPage(
                               hint_text: 'social-media',
                               field_icon: Icons.link,
-                              field_height: 0.04),
-                          const TextFieldPage(
+                              field_height: 0.03,
+                              editingController: _socialMediaCont,
+                              maximumLines: 1),
+                          TextFieldPage(
                               hint_text: 'about-yourself',
                               field_icon: Icons.description,
-                              field_height: 0.08),
+                              field_height: 0.05,
+                              editingController: _aboutYourselfCont,
+                              maximumLines: 4),
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: const UploadAttachment(),
@@ -156,7 +194,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   Expanded(
                     child: Container(),
-                    flex: 5,
+                    flex: 1,
                   )
                 ]),
               ),
@@ -168,7 +206,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
         padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
         child: FloatingActionButton(
             backgroundColor: CustomColors.buttonBlueColor,
-            onPressed: () {},
+            onPressed: () {
+              try {
+                Map<String, dynamic> userData = {
+                  "Profile-tag-line": _profile_tagcont.text,
+                  "category": widget.categoryTxt,
+                  "skill-level": widget.skillTxt,
+                  "phone-number": _phoneNumberCont.text,
+                  "experience-level": widget.exprTxt,
+                  "education-level": widget.educationTxt,
+                  "social-media-link": _socialMediaCont.text,
+                  "about-yourself": _aboutYourselfCont.text
+                };
+                FirebaseFirestore.instance
+                    .collection('User Full Profile')
+                    .doc(_phoneNumberCont.text)
+                    .set(userData);
+              } catch (e) {
+                showSnackBar(e.toString(), Colors.red, context);
+              }
+            },
             child: Icon(
               Icons.done,
               color: CustomColors.backgroundColor,
