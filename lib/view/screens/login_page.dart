@@ -17,6 +17,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _passwordVisible = false;
+  final _pass = TextEditingController();
+  bool _isloading = false;
   @override
   void initState() {
     _passwordVisible = false;
@@ -99,6 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                         child: TextFormField(
+                          controller: _pass,
                           obscureText: !_passwordVisible,
                           decoration: InputDecoration(
                               enabledBorder: const UnderlineInputBorder(
@@ -139,16 +142,22 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             backgroundColor: CustomColors.buttonBlueColor),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/AvailableJobs');
+                          // Navigator.pushNamed(context, '/AvailableJobs');
                         },
-                        child: Text(
-                          'sign-in'.tr().toString(),
-                          style: const TextStyle(
-                            color: CustomColors.backgroundColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                        child: _isloading
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  color: CustomColors.backgroundColor,
+                                ),
+                              )
+                            : Text(
+                                'sign-in'.tr().toString(),
+                                style: const TextStyle(
+                                  color: CustomColors.backgroundColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                       ),
                       Container(
                         child: Center(
