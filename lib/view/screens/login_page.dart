@@ -40,6 +40,8 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   bool _isloading = false;
   bool _passwordVisible = false;
+  final _pass = TextEditingController();
+  bool _isloading = false;
   @override
   void initState() {
     _passwordVisible = false;
@@ -95,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
@@ -109,21 +112,10 @@ class _LoginPageState extends State<LoginPage> {
                               labelStyle: const TextStyle(
                                 color: CustomColors.fadedTextColor,
                               ),
-                              enabledBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  style: BorderStyle.solid,
-                                  color: CustomColors.blackTextColor,
-                                ),
-                              ),
-                            ),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: CustomColors.blackTextColor,
-                            ),
-                            validator: (value) =>
-                                Validator.validateEmail(email: _email.text),
-                          ),
-                        ),
+
+                      ),
+
+
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
@@ -179,9 +171,10 @@ class _LoginPageState extends State<LoginPage> {
                                     color: CustomColors.backgroundColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                        ),
+
+                      ),
+
+
                         Container(
                           child: Center(
                             child: Row(
@@ -214,7 +207,9 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ]),
                           ),
-                        ),
+
+                      ),
+
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             // fixedSize: const Size(350, 10),

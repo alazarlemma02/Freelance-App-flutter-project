@@ -20,6 +20,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _formkey = GlobalKey<FormState>();
   bool _passwordVisible = false;
   final _formKey = GlobalKey<FormState>();
   bool _isloading = false;
@@ -45,7 +46,9 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Form(
+
                 key: _formKey,
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -68,7 +71,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: CustomColors.blackTextColor,
                             ),
                           ),
+
                         ),
+
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
@@ -83,6 +88,34 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(
+                                size: 20,
+                                Icons.person,
+                                color: CustomColors.fadedTextColor,
+                              ),
+                              hintText: 'full-name'.tr().toString(),
+                              labelStyle: const TextStyle(
+                                color: CustomColors.fadedTextColor,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  style: BorderStyle.solid,
+                                  color: CustomColors.blackTextColor,
+                                ),
+                              ),
+                            ),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: CustomColors.fadedTextColor,
+
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+
                           child: TextFormField(
                             controller: _fullName,
                             decoration: InputDecoration(
@@ -95,10 +128,11 @@ class _SignUpPageState extends State<SignUpPage> {
                               labelStyle: const TextStyle(
                                 color: CustomColors.fadedTextColor,
                               ),
+
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   style: BorderStyle.solid,
-                                  color: Color.fromRGBO(28, 33, 37, 1),
+                                  color: CustomColors.blackTextColor,
                                 ),
                               ),
                             ),
@@ -108,10 +142,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             validator: (value) =>
                                 Validator.validateName(fullName: value!),
+
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+
                           child: TextFormField(
                             controller: _email,
                             decoration: InputDecoration(
@@ -121,10 +157,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: CustomColors.fadedTextColor,
                               ),
                               hintText: 'email'.tr().toString(),
+
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   style: BorderStyle.solid,
-                                  color: Color.fromRGBO(28, 33, 37, 1),
+                                  color: CustomColors.blackTextColor,
                                 ),
                               ),
                             ),
@@ -132,6 +169,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 12,
                               color: CustomColors.fadedTextColor,
                             ),
+
                             validator: (value) =>
                                 Validator.validateEmail(email: value!),
                           ),
@@ -169,6 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             validator: (value) =>
                                 Validator.validatePassword(password: value!),
+
                           ),
                         ),
                         Padding(
@@ -179,7 +218,48 @@ class _SignUpPageState extends State<SignUpPage> {
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     style: BorderStyle.solid,
+
                                     color: Color.fromRGBO(28, 33, 37, 1),
+                                  ),
+                                ),
+            
+                                hintText: 'password'.tr().toString(),
+
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _passwordVisible = !_passwordVisible;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: CustomColors.fadedTextColor,
+                                    size: 20,
+                                  ),
+                                )),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: CustomColors.fadedTextColor,
+                            ),
+
+                            validator: (value) =>
+                                Validator.validateConfirmPassword(
+                                    confirmPassword: value!,
+                                    password: _pass.text),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          child: TextFormField(
+                            obscureText: !_passwordVisible,
+                            decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    style: BorderStyle.solid,
+                                    color: CustomColors.blackTextColor,
                                   ),
                                 ),
                                 hintText: 'C-password'.tr().toString(),
@@ -201,29 +281,28 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 12,
                               color: CustomColors.fadedTextColor,
                             ),
-                            validator: (value) =>
-                                Validator.validateConfirmPassword(
-                                    confirmPassword: value!,
-                                    password: _pass.text),
                           ),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(350, 10),
-                              backgroundColor: Color.fromRGBO(72, 165, 193, 1)),
-                          onPressed: _signUp,
-                          child: _isloading
-                              ? CircularProgressIndicator(
-                                  color: CustomColors.backgroundColor,
-                                )
-                              : Text(
-                                  'sign-up'.tr().toString(),
-                                  style: TextStyle(
-                                    color: CustomColors.backgroundColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
+                            minimumSize: Size(
+                              MediaQuery.of(context).size.width,
+                              40,
+                            ),
+                            backgroundColor: CustomColors.buttonBlueColor,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/PathPage');
+                          },
+                          child: Text(
+                            'sign-up'.tr().toString(),
+                            style: TextStyle(
+                              color: CustomColors.backgroundColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+
                         ),
                         Container(
                           child: Center(
@@ -260,8 +339,16 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(350, 10),
+
                               backgroundColor: CustomColors.blackTextColor),
+
+                            minimumSize: Size(
+                              MediaQuery.of(context).size.width,
+                              40,
+                            ),
+                            backgroundColor: CustomColors.blackTextColor,
+                          ),
+
                           onPressed: () {
                             Navigator.pushNamed(context, '/');
                           },

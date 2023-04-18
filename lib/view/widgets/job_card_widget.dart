@@ -10,7 +10,12 @@ class JobCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
       child: Container(
-        color: CustomColors.cardColor,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5),
+          ),
+          color: CustomColors.cardColor,
+        ),
         padding: EdgeInsets.all(12),
         child: Column(
           children: [
