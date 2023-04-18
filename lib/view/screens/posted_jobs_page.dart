@@ -91,7 +91,7 @@ class _PostedJobsState extends State<PostedJobs> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-          Navigator.pushNamed(context, '/AddJob'),
+          Navigator.pushNamed(context, '/AddJobPage'),
         },
         child: const Icon(Icons.add),
         tooltip: "Post a new job.",

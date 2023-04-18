@@ -11,6 +11,7 @@ class FireAuth {
   Future<String> registerUsingEmailPassword(
       {required String? fullName,
       required String? email,
+      required String? phoneNumber,
       required String? password,
       required BuildContext context}) async {
     String result = 'some error ocurred';
@@ -25,11 +26,12 @@ class FireAuth {
           email: email,
           fullName: fullName ?? '',
           password: password,
+          phoneNumber: phoneNumber ?? '',
           userId: user.user!.uid,
         );
 
         result = 'true';
-        await _firestore.collection('users').doc(email).set(
+        await _firestore.collection('users').doc(phoneNumber).set(
               newUser.toJson(),
             );
       }

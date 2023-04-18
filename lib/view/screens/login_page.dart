@@ -40,8 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   bool _isloading = false;
   bool _passwordVisible = false;
-  final _pass = TextEditingController();
-  bool _isloading = false;
+
   @override
   void initState() {
     _passwordVisible = false;
@@ -49,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    context.locale = const Locale('en', 'US');
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
@@ -97,7 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
@@ -112,10 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                               labelStyle: const TextStyle(
                                 color: CustomColors.fadedTextColor,
                               ),
-
-                      ),
-
-
+                            ),
+                            validator: (value) =>
+                                Validator.validateEmail(email: _email.text),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
@@ -156,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               // fixedSize: const Size(350, 10),
-                              maximumSize:
+                              minimumSize:
                                   Size(MediaQuery.of(context).size.width, 40),
                               backgroundColor: CustomColors.buttonBlueColor),
                           onPressed: _signInUser,
@@ -171,10 +171,9 @@ class _LoginPageState extends State<LoginPage> {
                                     color: CustomColors.backgroundColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
-
-                      ),
-
-
+                                  ),
+                                ),
+                        ),
                         Container(
                           child: Center(
                             child: Row(
@@ -207,9 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ]),
                           ),
-
-                      ),
-
+                        ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             // fixedSize: const Size(350, 10),

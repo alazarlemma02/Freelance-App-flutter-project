@@ -41,6 +41,16 @@ class Validator {
     return null;
   }
 
+  static String? validatePhoneNumber({required String phoneNumber}) {
+    if (phoneNumber == null) {
+      return null;
+    }
+    if (phoneNumber.isEmpty) {
+      return 'Phone Number can\'t be empty';
+    }
+    return null;
+  }
+
   static String? validateProfileField({required String fieldData}) {
     if (fieldData == null) {
       return null;
