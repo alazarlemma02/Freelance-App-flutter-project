@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           decoration: InputDecoration(
                             suffixIcon: Icon(
                               size: 20,
-                              Icons.person_outline,
+                              Icons.person,
                               color: CustomColors.fadedTextColor,
                             ),
                             hintText: 'full-name'.tr().toString(),
@@ -85,7 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 style: BorderStyle.solid,
-                                color: Color.fromRGBO(28, 33, 37, 1),
+                                color: CustomColors.blackTextColor,
                               ),
                             ),
                           ),
@@ -108,7 +108,30 @@ class _SignUpPageState extends State<SignUpPage> {
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 style: BorderStyle.solid,
-                                color: Color.fromRGBO(28, 33, 37, 1),
+                                color: CustomColors.blackTextColor,
+                              ),
+                            ),
+                          ),
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: CustomColors.fadedTextColor,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(
+                              size: 20,
+                              Icons.phone,
+                              color: CustomColors.fadedTextColor,
+                            ),
+                            hintText: 'phone-number'.tr().toString(),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                style: BorderStyle.solid,
+                                color: CustomColors.blackTextColor,
                               ),
                             ),
                           ),
@@ -126,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   style: BorderStyle.solid,
-                                  color: Color.fromRGBO(28, 33, 37, 1),
+                                  color: CustomColors.blackTextColor,
                                 ),
                               ),
                               hintText: 'password'.tr().toString(),
@@ -158,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   style: BorderStyle.solid,
-                                  color: Color.fromRGBO(28, 33, 37, 1),
+                                  color: CustomColors.blackTextColor,
                                 ),
                               ),
                               hintText: 'C-password'.tr().toString(),
@@ -184,10 +207,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(350, 10),
-                            backgroundColor: Color.fromRGBO(72, 165, 193, 1)),
+                          minimumSize: Size(
+                            MediaQuery.of(context).size.width,
+                            40,
+                          ),
+                          backgroundColor: CustomColors.buttonBlueColor,
+                        ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/AvailableJobs');
+                          Navigator.pushNamed(context, '/PathPage');
                         },
                         child: Text(
                           'sign-up'.tr().toString(),
@@ -233,8 +260,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(350, 10),
-                            backgroundColor: CustomColors.blackTextColor),
+                          minimumSize: Size(
+                            MediaQuery.of(context).size.width,
+                            40,
+                          ),
+                          backgroundColor: CustomColors.blackTextColor,
+                        ),
                         onPressed: () {
                           Navigator.pushNamed(context, '/');
                         },

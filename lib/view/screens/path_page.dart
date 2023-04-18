@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'package:flutter/material.dart';
+import 'package:sira/constants/colors.dart';
+import 'package:sira/view/widgets/sira_logo.dart';
 
 class PathPage extends StatefulWidget {
   const PathPage({super.key});
@@ -16,173 +19,181 @@ class _PathPageState extends State<PathPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 50.0),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Center(
-                child: Image(
-                  width: 150,
-                  image: AssetImage('asset/images/Logo(1X).png'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 100),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        width: 300,
-                        child: Text(
-                          'I am...',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30),
-                        ),
-                      ),
-                      Text(
-                        'Please pick one',
-                        style: TextStyle(fontSize: 15),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30, 0, 35, 50),
-                child: Container(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 80),
-                                        child: Radio(
-                                            value: "Freelancer",
-                                            groupValue: pathGroup,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                pathGroup = value.toString();
-                                              });
-                                            }),
-                                      ),
-                                      Image(
-                                        height: 125,
-                                        width: 125,
-                                        fit: BoxFit.contain,
-                                        image: AssetImage(
-                                            'asset/images/suitcase.png'),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'A Freelancer',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15),
-                                      ),
-                                      Text(
-                                        'Looking for a job',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(40.0),
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 80),
-                                          child: Radio(
-                                              value: "Employer",
-                                              groupValue: pathGroup,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  pathGroup = value.toString();
-                                                });
-                                              }),
-                                        ),
-                                        Image(
-                                          height: 125,
-                                          width: 125,
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              'asset/images/Tie.png'),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'An Employer',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15),
-                                        ),
-                                        Text(
-                                          'Looking to hire',
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(30, 30, 40, 100),
-                width: 400,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/category_page');
-                  },
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+              child: const SiraLogo(),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                   child: Text(
-                    'Continue',
-                    style: TextStyle(fontSize: 15.7),
+                    'I-am'.tr().toString(),
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      color: CustomColors.blackTextColor,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                  child: Text(
+                    'Pick-one'.tr().toString(),
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: CustomColors.fadedTextColor,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        PathCard(
+                          iconName: Icons.person,
+                          title: "freelancer",
+                          subTitle: "looking-for-work",
+                        ),
+                        Radio(
+                            value: "Freelancer",
+                            groupValue: pathGroup,
+                            onChanged: (value) {
+                              setState(() {
+                                pathGroup = value.toString();
+                              });
+                            }),
+                      ],
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      PathCard(
+                        iconName: Icons.apartment,
+                        title: "employer",
+                        subTitle: "looking-to-hire",
+                      ),
+                      Radio(
+                          value: "Employer",
+                          groupValue: pathGroup,
+                          onChanged: (value) {
+                            setState(() {
+                              pathGroup = value.toString();
+                            });
+                          }),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(
+                    MediaQuery.of(context).size.width,
+                    40,
+                  ),
+                  backgroundColor: CustomColors.buttonBlueColor),
+              onPressed: () {
+                Navigator.pushNamed(context, '/CategoryPage');
+              },
+              child: Text(
+                'continue'.tr().toString(),
+                style: const TextStyle(
+                  color: CustomColors.backgroundColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PathCard extends StatelessWidget {
+  IconData iconName;
+  String title;
+  String subTitle;
+
+  PathCard({
+    super.key,
+    required this.iconName,
+    required this.title,
+    required this.subTitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              border: Border.all(color: CustomColors.blackTextColor),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5),
+              ),
+            ),
+            child: Icon(
+              iconName,
+              size: 50,
+              color: CustomColors.blackTextColor,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: Text(
+                  '$title'.tr().toString(),
+                  textAlign: TextAlign.end,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    color: CustomColors.blackTextColor,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                child: Text(
+                  '$subTitle'.tr().toString(),
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: CustomColors.fadedTextColor,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

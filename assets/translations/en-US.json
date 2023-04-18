@@ -21,7 +21,15 @@
     "edit-profile":"Edit Profile",
     "profile-tag":"Profile tag line",
     "social-media":"Social media link",
-    "upload-document":"Upload attachment"
+    "upload-document":"Upload attachment",
 
-
+    "I-am":"I am...",
+    "Pick-one":"Please pick one.",
+    "continue":"Continue",
+    "freelancer":"A Freelancer",
+    "looking-for-work":"Looking for work.",
+    "employer":"An Employer",
+    "looking-to-hire":"Looking to hire.",
+    "I-specialize-in":"I specialize in...",
+    "search":"Search..."
 }
