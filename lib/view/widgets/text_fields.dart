@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/widgets/field_validator.dart';
 
 class TextFieldPage extends StatefulWidget {
   const TextFieldPage(
       {super.key,
       required this.hint_text,
       required this.field_icon,
-      required this.field_height});
+      required this.field_height,
+      required this.editingController,
+      required this.maximumLines});
   final String hint_text;
   final IconData field_icon;
   final double field_height;
+  final int maximumLines;
+  final TextEditingController editingController;
   String getHintText() {
     return hint_text;
   }
@@ -28,9 +33,9 @@ class TextFieldPage extends StatefulWidget {
 class _TextFieldPageState extends State<TextFieldPage> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      minLines: 1,
-      maxLines: 6,
+    return TextFormField(
+      controller: widget.editingController,
+      maxLines: widget.maximumLines,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).size.height * widget.field_height),
@@ -50,6 +55,8 @@ class _TextFieldPageState extends State<TextFieldPage> {
         fontSize: 12,
         color: CustomColors.fadedTextColor,
       ),
+      validator: (value) => Validator.validateProfileField(
+          fieldData: widget.editingController.text),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sira/constants/colors.dart';
@@ -15,6 +16,23 @@ class My_profile extends StatefulWidget {
 }
 
 class _My_profileState extends State<My_profile> {
+  String? fullName;
+  String? phoneNumber;
+  Future<void> getNameOfUser() async {
+    DocumentSnapshot profileName = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('nahom@gmail.com')
+        .get();
+
+    fullName = profileName['fullName'];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getNameOfUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +44,7 @@ class _My_profileState extends State<My_profile> {
           Icons.arrow_back,
           color: CustomColors.blackTextColor,
         ),
-        title: Text('Abebe Kebede',
+        title: Text(fullName.toString(),
             style: TextStyle(color: CustomColors.blackTextColor)),
         actions: [
           IconButton(
@@ -54,70 +72,77 @@ class _My_profileState extends State<My_profile> {
           ),
         ],
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: CustomColors.backgroundColor,
-        child: Column(
-          children: [
-            Stack(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
-                      ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          Container(
+            color: CustomColors.backgroundColor,
+            child: Column(
+              children: [
+                Stack(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height * 0.1,
+                          ),
 
-                      ///here we create space for the circle avatar to get ut of the box
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: CustomColors.cardColor,
-                        ),
-                        width: MediaQuery.of(context).size.height * 0.4,
-                        child: Column(
-                          children: [
-                            const UserTypeAndSkill(),
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              width: MediaQuery.of(context).size.height * 0.4,
-                              child: Text(
-                                "Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. ",
-                                style: TextStyle(
-                                    color: CustomColors.blackTextColor),
-                              ),
+                          ///here we create space for the circle avatar to get ut of the box
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.45,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              color: CustomColors.cardColor,
                             ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              width: MediaQuery.of(context).size.height * 0.4,
-                              child: AttachmentFile(),
+                            width: MediaQuery.of(context).size.height * 0.6,
+                            child: Column(
+                              children: [
+                                const UserTypeAndSkill(),
+                                Container(
+                                  padding: EdgeInsets.all(5.0),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.2,
+                                  width:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  child: Text(
+                                    "Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. ",
+                                    style: TextStyle(
+                                        color: CustomColors.blackTextColor),
+                                  ),
+                                ),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.15,
+                                  width:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  child: AttachmentFile(),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        const UserProfilePicture(),
+
+                        ///Image Avatar
+                      ],
                     ),
-                    const UserProfilePicture(),
-
-                    ///Image Avatar
-                  ],
+                  ),
+                ]),
+                Container(
+                  padding: EdgeInsets.only(right: 220),
+                  child: Text(
+                    'Contact Details',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-            ]),
-            Container(
-              padding: EdgeInsets.only(right:220),
-              child: Text(
-                'Contact Details',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+                const ContactDetail(),
+              ],
             ),
-            const ContactDetail(),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},

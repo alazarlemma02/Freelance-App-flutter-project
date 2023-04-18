@@ -14,7 +14,7 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 40.0),
+      padding: const EdgeInsets.only(left: 20.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: CircleAvatar(

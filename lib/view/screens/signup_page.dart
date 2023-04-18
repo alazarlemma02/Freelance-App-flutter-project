@@ -1,9 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sira/firebase_authentication.dart';
+import 'package:sira/view/widgets/alert_dialog.dart';
+import 'package:sira/view/widgets/field_validator.dart';
 import 'package:sira/view/widgets/sira_logo.dart';
 
 import '../../constants/colors.dart';
@@ -18,6 +22,12 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _formkey = GlobalKey<FormState>();
   bool _passwordVisible = false;
+  final _formKey = GlobalKey<FormState>();
+  bool _isloading = false;
+  final _fullName = TextEditingController();
+  final _pass = TextEditingController();
+  final _email = TextEditingController();
+
   @override
   void initState() {
     _passwordVisible = false;
@@ -36,7 +46,9 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Form(
-                key: _formkey,
+
+                key: _formKey,
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -59,7 +71,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: CustomColors.blackTextColor,
                             ),
                           ),
+
                         ),
+
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
@@ -95,12 +109,47 @@ class _SignUpPageState extends State<SignUpPage> {
                             style: TextStyle(
                               fontSize: 12,
                               color: CustomColors.fadedTextColor,
+
                             ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                          child: TextField(
+
+                          child: TextFormField(
+                            controller: _fullName,
+                            decoration: InputDecoration(
+                              suffixIcon: Icon(
+                                size: 20,
+                                Icons.person_outline,
+                                color: CustomColors.fadedTextColor,
+                              ),
+                              hintText: 'full-name'.tr().toString(),
+                              labelStyle: const TextStyle(
+                                color: CustomColors.fadedTextColor,
+                              ),
+
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  style: BorderStyle.solid,
+                                  color: CustomColors.blackTextColor,
+                                ),
+                              ),
+                            ),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: CustomColors.fadedTextColor,
+                            ),
+                            validator: (value) =>
+                                Validator.validateName(fullName: value!),
+
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+
+                          child: TextFormField(
+                            controller: _email,
                             decoration: InputDecoration(
                               suffixIcon: Icon(
                                 size: 20,
@@ -108,6 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: CustomColors.fadedTextColor,
                               ),
                               hintText: 'email'.tr().toString(),
+
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   style: BorderStyle.solid,
@@ -119,40 +169,21 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 12,
                               color: CustomColors.fadedTextColor,
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              suffixIcon: Icon(
-                                size: 20,
-                                Icons.phone,
-                                color: CustomColors.fadedTextColor,
-                              ),
-                              hintText: 'phone-number'.tr().toString(),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  style: BorderStyle.solid,
-                                  color: CustomColors.blackTextColor,
-                                ),
-                              ),
-                            ),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: CustomColors.fadedTextColor,
-                            ),
+
+                            validator: (value) =>
+                                Validator.validateEmail(email: value!),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
+                            controller: _pass,
                             obscureText: !_passwordVisible,
                             decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                     style: BorderStyle.solid,
-                                    color: CustomColors.blackTextColor,
+                                    color: Color.fromRGBO(28, 33, 37, 1),
                                   ),
                                 ),
                                 hintText: 'password'.tr().toString(),
@@ -174,8 +205,52 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 12,
                               color: CustomColors.fadedTextColor,
                             ),
+                            validator: (value) =>
+                                Validator.validatePassword(password: value!),
+
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          child: TextFormField(
+                            obscureText: !_passwordVisible,
+                            decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    style: BorderStyle.solid,
+
+                                    color: Color.fromRGBO(28, 33, 37, 1),
+                                  ),
+                                ),
+            
+                                hintText: 'password'.tr().toString(),
+
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _passwordVisible = !_passwordVisible;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: CustomColors.fadedTextColor,
+                                    size: 20,
+                                  ),
+                                )),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: CustomColors.fadedTextColor,
+                            ),
+
+                            validator: (value) =>
+                                Validator.validateConfirmPassword(
+                                    confirmPassword: value!,
+                                    password: _pass.text),
+                          ),
+                        ),
+
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
@@ -227,6 +302,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
+
                         ),
                         Container(
                           child: Center(
@@ -263,12 +339,16 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+
+                              backgroundColor: CustomColors.blackTextColor),
+
                             minimumSize: Size(
                               MediaQuery.of(context).size.width,
                               40,
                             ),
                             backgroundColor: CustomColors.blackTextColor,
                           ),
+
                           onPressed: () {
                             Navigator.pushNamed(context, '/');
                           },
@@ -291,5 +371,30 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+  }
+
+  void _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      setState(() {
+        _isloading = true;
+      });
+      // Logging in the user w/ Firebase
+      String result = await FireAuth().registerUsingEmailPassword(
+          fullName: _fullName.text,
+          email: _email.text,
+          password: _pass.text,
+          context: context);
+      if (result != 'true') {
+        showSnackBar('Some error ocurred Try again', Colors.red, context);
+      } else {
+        showSnackBar('Registered Successfully', Colors.green, context);
+        await Navigator.pushNamed(context, '/AvailableJobs');
+        showSnackBar('Welcome', CustomColors.buttonBlueColor, context);
+      }
+      setState(() {
+        _isloading = false;
+      });
+    }
   }
 }

@@ -2,10 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/edit_profile_page.dart';
 
 class ExperienceLevelDropDown extends StatefulWidget {
-  const ExperienceLevelDropDown({super.key});
+  final String expTxt;
+  final Function onSelect;
+  const ExperienceLevelDropDown(
+      {super.key, required this.expTxt, required this.onSelect});
 
   @override
   State<ExperienceLevelDropDown> createState() => _CategoryDropDownState();
@@ -14,6 +19,8 @@ class ExperienceLevelDropDown extends StatefulWidget {
 class _CategoryDropDownState extends State<ExperienceLevelDropDown> {
   List category = ['Beginner', 'Intermidiate', 'Expert'];
   String? selectedItem;
+  // EditProfilePage editProfilePage = new EditProfilePage();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,6 +51,11 @@ class _CategoryDropDownState extends State<ExperienceLevelDropDown> {
           setState(() {
             selectedItem = cat;
           });
+          // editProfilePage.setExp(selectedItem.toString());
+          // widget.onSelect;
+        },
+        onTap: () {
+          widget.onSelect(selectedItem);
         },
       ),
     );

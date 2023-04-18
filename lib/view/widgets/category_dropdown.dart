@@ -3,21 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/edit_profile_page.dart';
 
-class CategoryDropDown extends StatefulWidget {
-  const CategoryDropDown({super.key});
+class CategoryDropDown extends StatelessWidget {
+  final String item;
+  final void Function(String?) callback;
+  CategoryDropDown({Key? key, required this.item, required this.callback})
+      : super(key: key);
 
-  @override
-  State<CategoryDropDown> createState() => _CategoryDropDownState();
-}
-
-class _CategoryDropDownState extends State<CategoryDropDown> {
+  // EditProfilePage editProfilePage = new EditProfilePage();
   List category = [
     'category-1',
     'category-2',
     'category-3',
     'category-4',
     'category-5',
+    'Other'
   ];
   String? selectedItem;
   @override
@@ -46,11 +47,7 @@ class _CategoryDropDownState extends State<CategoryDropDown> {
                       color: CustomColors.blackTextColor, fontSize: 12),
                 )))
             .toList(),
-        onChanged: (cat) async {
-          setState(() {
-            selectedItem = cat;
-          });
-        },
+        onChanged: callback,
       ),
     );
   }

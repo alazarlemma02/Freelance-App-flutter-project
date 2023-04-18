@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -12,6 +13,30 @@ class ContactDetail extends StatefulWidget {
 }
 
 class _ContactDetailState extends State<ContactDetail> {
+  String? email;
+  String? socialMedia;
+  String? phoneNumber;
+  Future<void> getNameOfUser() async {
+    DocumentSnapshot profileName = await FirebaseFirestore.instance
+        .collection('users')
+        .doc('nahom@gmail.com')
+        .get();
+    DocumentSnapshot userFullProfile = await FirebaseFirestore.instance
+        .collection('User Full Profile')
+        .doc('0911111111')
+        .get();
+
+    email = profileName['email'];
+    phoneNumber = userFullProfile['phone-number'];
+    socialMedia = userFullProfile['social-media-link'];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getNameOfUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +61,7 @@ class _ContactDetailState extends State<ContactDetail> {
               Icons.call_outlined,
               color: CustomColors.blackTextColor,
             ),
-            Text('+251 933 452 323'),
+            Text(phoneNumber.toString()),
           ],
         ),
         Row(
@@ -47,7 +72,7 @@ class _ContactDetailState extends State<ContactDetail> {
               Icons.mail,
               color: CustomColors.blackTextColor,
             ),
-            Text('person@gmail.com'),
+            Text(email.toString()),
           ],
         ),
         Row(
@@ -58,7 +83,7 @@ class _ContactDetailState extends State<ContactDetail> {
               Icons.link,
               color: CustomColors.blackTextColor,
             ),
-            Text('www.person-site.com'),
+            Text(socialMedia.toString()),
           ],
         ),
       ]),

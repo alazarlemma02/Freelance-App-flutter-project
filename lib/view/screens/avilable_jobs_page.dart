@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/login_page.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
+import 'package:sira/view/widgets/logout_page.dart';
 
 class AvailableJobs extends StatefulWidget {
   const AvailableJobs({super.key});
@@ -13,7 +16,9 @@ class _AvailableJobsState extends State<AvailableJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: const Logout(),
+      ),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -33,7 +38,9 @@ class _AvailableJobsState extends State<AvailableJobs> {
             ),
           ),
           IconButton(
-            onPressed: () => {},
+            onPressed: () => {
+              Navigator.pushNamed(context, '/EditProfilePage'),
+            },
             icon: Icon(
               Icons.person_outline,
               color: CustomColors.blackTextColor,
