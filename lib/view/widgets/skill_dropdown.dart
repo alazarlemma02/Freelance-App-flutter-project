@@ -13,7 +13,7 @@ class SkillDropDown extends StatefulWidget {
 }
 
 class _SkillDropDownState extends State<SkillDropDown> {
-  EditProfilePage editProfilePage = new EditProfilePage();
+  // EditProfilePage editProfilePage = new EditProfilePage();
   List category = [
     'Skill-1',
     'Skill-2',

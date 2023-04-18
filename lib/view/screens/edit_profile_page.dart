@@ -14,6 +14,7 @@ import 'package:sira/view/widgets/text_fields.dart';
 import 'package:sira/view/widgets/upload_attachment.dart';
 
 class EditProfilePage extends StatefulWidget {
+  void Function(String?)? callback;
   String? categoryTxt;
   String? skillTxt;
   String? exprTxt;
@@ -23,7 +24,8 @@ class EditProfilePage extends StatefulWidget {
       this.categoryTxt,
       this.educationTxt,
       this.exprTxt,
-      this.skillTxt})
+      this.skillTxt,
+      this.callback})
       : super(key: myKey);
 
   @override
@@ -45,7 +47,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    context.locale = const Locale('en', 'US');
+    context.locale = const Locale('am', 'ETH');
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
@@ -161,7 +163,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               field_height: 0.03,
                               editingController: _profile_tagcont,
                               maximumLines: 1),
-                          const CategoryDropDown(),
+                          CategoryDropDown(
+                            callback: callBack,
+                            item: widget.categoryTxt.toString(),
+                          ),
                           const SkillDropDown(),
                           TextFieldPage(
                               hint_text: 'phone-number',

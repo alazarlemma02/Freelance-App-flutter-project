@@ -19,7 +19,7 @@ class ExperienceLevelDropDown extends StatefulWidget {
 class _CategoryDropDownState extends State<ExperienceLevelDropDown> {
   List category = ['Beginner', 'Intermidiate', 'Expert'];
   String? selectedItem;
-  EditProfilePage editProfilePage = new EditProfilePage();
+  // EditProfilePage editProfilePage = new EditProfilePage();
 
   @override
   Widget build(BuildContext context) {

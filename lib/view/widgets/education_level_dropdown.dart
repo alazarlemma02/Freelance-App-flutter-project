@@ -13,7 +13,7 @@ class EducationLevelDropDown extends StatefulWidget {
 }
 
 class _CategoryDropDownState extends State<EducationLevelDropDown> {
-  EditProfilePage editProfilePage = new EditProfilePage();
+  // EditProfilePage editProfilePage = new EditProfilePage();
   List category = [
     'high school diploma',
     'college degree',
