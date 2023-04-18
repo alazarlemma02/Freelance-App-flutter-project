@@ -163,7 +163,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(350, 10),
+                              // fixedSize: const Size(350, 10),
+                              maximumSize:
+                                  Size(MediaQuery.of(context).size.width, 40),
                               backgroundColor: CustomColors.buttonBlueColor),
                           onPressed: _signInUser,
                           child: _isloading
@@ -215,7 +217,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(350, 10),
+                            // fixedSize: const Size(350, 10),
+                            minimumSize:
+                                Size(MediaQuery.of(context).size.width, 40),
                             backgroundColor: CustomColors.blackTextColor,
                           ),
                           onPressed: () {
