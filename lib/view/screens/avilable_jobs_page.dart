@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/view/screens/login_page.dart';
+import 'package:sira/view/widgets/drawer.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
 import 'package:sira/view/widgets/logout_page.dart';
 
@@ -16,9 +17,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: const Logout(),
-      ),
+      drawer:const DrawerPage(),
       appBar: AppBar(
         actions: [
           IconButton(
