@@ -64,9 +64,9 @@ class _OngoingJobsState extends State<OngoingJobs> {
             child: ListView(
               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
               children: [
-                JobCard(
-                  parentPage: "ongoing jobs",
-                ),
+                // JobCard(
+                //   parentPage: "ongoing jobs",
+                // ),
               ],
             ),
           ),

@@ -50,6 +50,8 @@ dependencies:
   cloud_firestore: ^4.5.1
   mobile_number: ^2.1.1
   bloc: ^8.1.1
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.2
 
 dev_dependencies:
   flutter_test:

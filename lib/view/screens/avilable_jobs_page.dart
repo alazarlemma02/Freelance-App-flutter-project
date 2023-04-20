@@ -18,9 +18,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerPage(
-        
-      ),
+      drawer: DrawerPage(),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -81,9 +79,9 @@ class _AvailableJobsState extends State<AvailableJobs> {
             child: ListView(
               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
               children: [
-                JobCard(
-                  parentPage: "available jobs",
-                ),
+                // JobCard(
+                //   parentPage: "available jobs",
+                // ),
               ],
             ),
           ),
