@@ -36,7 +36,7 @@ class _PostedJobsState extends State<PostedJobs> {
             ),
           ),
         ],
-        title: Text("Posted Jobs"),
+        title: Text("posted-jobs".tr().toString()),
       ),
       body: Column(
         children: [
@@ -94,7 +94,7 @@ class _PostedJobsState extends State<PostedJobs> {
           Navigator.pushNamed(context, '/AddJobPage'),
         },
         child: const Icon(Icons.add),
-        tooltip: "Post a new job.",
+        tooltip: "post-a-new-job".tr().toString()
       ),
     );
   }
