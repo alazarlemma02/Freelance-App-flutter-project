@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/widgets/alert_dialog.dart';
+import 'package:uuid/uuid.dart';
 
 class AddJob extends StatefulWidget {
   const AddJob({super.key});
@@ -11,10 +14,17 @@ class AddJob extends StatefulWidget {
 }
 
 class _AddJobState extends State<AddJob> {
+  final _formKey = GlobalKey<FormState>();
+  final _jobTitle = TextEditingController();
+  final _category = TextEditingController();
+  final _applicationDeadline = TextEditingController();
+  final _priceRange = TextEditingController();
+  final _description = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: Drawer(),
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         actions: [
           IconButton(
@@ -34,74 +44,162 @@ class _AddJobState extends State<AddJob> {
         ],
         title: Text("Add a New Job"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Please be as concise and brief as possible.",
-                style: TextStyle(
-                  fontWeight: FontWeight.w200,
-                  fontSize: 14,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                child: Text(
+                  "Please be  as concise and brief as posssible.",
+                  textAlign: TextAlign.end,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    color: CustomColors.blackTextColor,
+                  ),
                 ),
               ),
-            ),
-            TextField(
-              style: TextStyle(
-                color: CustomColors.fadedTextColor,
-                // fontSize: 16,
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: TextFormField(
+                      controller: _jobTitle,
+                      decoration: InputDecoration(
+                        hintText: "Job Title",
+                        labelStyle: const TextStyle(
+                          color: CustomColors.fadedTextColor,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: CustomColors.fadedTextColor,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: TextFormField(
+                      controller: _category,
+                      decoration: InputDecoration(
+                        hintText: "Category",
+                        labelStyle: const TextStyle(
+                          color: CustomColors.fadedTextColor,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: CustomColors.fadedTextColor,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: TextFormField(
+                      controller: _applicationDeadline,
+                      decoration: InputDecoration(
+                        hintText: "Applicatiion Deadline (dd/mm/yyyy)",
+                        labelStyle: const TextStyle(
+                          color: CustomColors.fadedTextColor,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: CustomColors.fadedTextColor,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: TextFormField(
+                      controller: _priceRange,
+                      decoration: InputDecoration(
+                        hintText: "Price Limit",
+                        labelStyle: const TextStyle(
+                          color: CustomColors.fadedTextColor,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: CustomColors.fadedTextColor,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: TextFormField(
+                      controller: _description,
+                      decoration: InputDecoration(
+                        hintText: "Description",
+                        labelStyle: const TextStyle(
+                          color: CustomColors.fadedTextColor,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            style: BorderStyle.solid,
+                            color: CustomColors.blackTextColor,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: CustomColors.fadedTextColor,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: "Job Title",
-              ),
-            ),
-            DropdownButton(
-              items: const [
-                DropdownMenuItem<String>(child: Text("One"), value: "1"),
-                DropdownMenuItem<String>(child: Text("Two"), value: "2"),
-              ],
-              onChanged: (value) {},
-              isExpanded: true,
-            ),
-            TextField(
-              style: TextStyle(
-                color: CustomColors.fadedTextColor,
-                // fontSize: 16,
-              ),
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: "Application Deadline Date",
-              ),
-            ),
-            TextField(
-              style: TextStyle(
-                color: CustomColors.fadedTextColor,
-                // fontSize: 16,
-              ),
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: "Price Range",
-              ),
-            ),
-            TextField(
-              style: TextStyle(
-                color: CustomColors.fadedTextColor,
-                // fontSize: 16,
-              ),
-              decoration: InputDecoration(
-                isDense: true,
-                hintText: "Description",
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          Navigator.pushNamed(context, '/'),
+        onPressed: () {
+          var uuid = Uuid();
+          try {
+            Map<String, dynamic> jobData = {
+              "job-title": _jobTitle.text,
+              "category": _category.text,
+              "application-deadline": _applicationDeadline.text,
+              "price-limit": _priceRange.text,
+              "description": _description.text
+            };
+            FirebaseFirestore.instance
+                .collection('Jobs')
+                .doc(uuid.v4().toString())
+                .set(jobData);
+            Navigator.pushNamed(context, '/PostedJobs');
+          } catch (e) {
+            showSnackBar(e.toString(), Colors.red, context);
+          }
         },
         child: const Icon(Icons.check),
         tooltip: "Confirm.",
