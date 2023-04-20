@@ -73,8 +73,8 @@ class _PathPageState extends State<PathPage> {
                       children: [
                         PathCard(
                           iconName: Icons.person,
-                          title: "freelancer",
-                          subTitle: "looking-for-work",
+                          title: "freelancer".tr().toString(),
+                          subTitle: "looking-for-work".tr().toString(),
                         ),
                         Radio(
                             value: "Freelancer",
@@ -92,8 +92,8 @@ class _PathPageState extends State<PathPage> {
                     children: [
                       PathCard(
                         iconName: Icons.apartment,
-                        title: "employer",
-                        subTitle: "looking-to-hire",
+                        title: "employer".tr().toString(),
+                        subTitle:  "looking-to-hire".tr().toString(),
                       ),
                       Radio(
                           value: "Employer",

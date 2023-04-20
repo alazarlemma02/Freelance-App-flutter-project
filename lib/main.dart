@@ -17,6 +17,7 @@ import 'package:sira/view/screens/posted_jobs_page.dart';
 import 'package:sira/view/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sira/firebase_options.dart';
+import 'package:sira/view/widgets/logout_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +60,9 @@ class MyApp extends StatelessWidget {
         '/OngoingJobs': (context) => const OngoingJobs(),
         '/MyProfilePage': (context) => const My_profile(),
         '/EditProfilePage': (context) => EditProfilePage(),
-        '/ForgotPasswordPage': (context) => const ForgotPasswordPage()
+        '/ForgotPasswordPage': (context) => const ForgotPasswordPage(),
+
+
       },
       title: 'Flutter Demo',
       theme: ThemeData(

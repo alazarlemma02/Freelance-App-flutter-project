@@ -54,6 +54,7 @@ class FireAuth {
         result = 'true';
       }
     } catch (err) {
+      
       result = err.toString();
     }
     return result;
