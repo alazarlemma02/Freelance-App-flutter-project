@@ -19,6 +19,7 @@ import 'package:sira/view/screens/posted_jobs_page.dart';
 import 'package:sira/view/screens/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sira/firebase_options.dart';
+import 'package:sira/view/widgets/logout_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

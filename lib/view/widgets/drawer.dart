@@ -32,33 +32,47 @@ class _DrawerPageState extends State<DrawerPage> {
                 child: Column(
                   children: [
                     Container(
+                      padding:EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
                         child: Row(
                       children: [
                         Icon(Icons.person),
-                        TextButton(onPressed: () {
-                          Navigator.pushNamed(context, '/ApplicantProfilePage');
-                        }, child: Text('Profile')),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, '/ApplicantProfilePage');
+                            },
+                            child: Text('Profile', style: TextStyle(color: CustomColors.blackTextColor))),
                       ],
                     )),
                     Container(
+                      padding:EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.02),
                         child: Row(
                       children: [
                         Icon(Icons.edit),
-                        TextButton(onPressed: () {
-                          Navigator.pushNamed(context, '/EditProfilePage');
-                        }, child:Text('Edit Profile'))
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/EditProfilePage');
+                            },
+                            child: Text('Edit Profile', style: TextStyle(color: CustomColors.blackTextColor)))
                       ],
                     )),
                     Container(
-                        child: Row(
-                      children: [
-                        Icon(Icons.logout),
-                        TextButton(onPressed: () {
-                            const Logout();
-                        
-                        }, child: Text('Logout'))
-                      ],
-                    )),
+                      child: Row(children: [
+                        Expanded(flex: 40, child: Logout()),
+                        Expanded(
+                          flex: 40,
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                top:
+                                    MediaQuery.of(context).size.height * 0.055),
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            child: Text(
+                              'Logout',style: TextStyle(color: CustomColors.blackTextColor),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    )
                   ],
                 ),
               ),

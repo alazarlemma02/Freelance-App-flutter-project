@@ -1,20 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/signup_page.dart';
+import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/sira_logo.dart';
 
 class PathPage extends StatefulWidget {
-  const PathPage({super.key});
+  PathPage({super.key});
 
   @override
   State<PathPage> createState() => _PathPageState();
 }
 
 class _PathPageState extends State<PathPage> {
-  String? pathGroup;
+  String pathGroup = 'Freelancer';
+  String? userType;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +81,7 @@ class _PathPageState extends State<PathPage> {
                             groupValue: pathGroup,
                             onChanged: (value) {
                               setState(() {
+                                userType = value;
                                 pathGroup = value.toString();
                               });
                             }),
@@ -94,6 +100,7 @@ class _PathPageState extends State<PathPage> {
                           groupValue: pathGroup,
                           onChanged: (value) {
                             setState(() {
+                              userType = value;
                               pathGroup = value.toString();
                             });
                           }),
@@ -110,7 +117,11 @@ class _PathPageState extends State<PathPage> {
                   ),
                   backgroundColor: CustomColors.buttonBlueColor),
               onPressed: () {
-                Navigator.pushNamed(context, '/CategoryPage');
+                userType = pathGroup;
+                Navigator.pushNamed(context, '/SignUpPage',
+                    arguments: SignUpPage(
+                      userType: userType,
+                    ));
               },
               child: Text(
                 'continue'.tr().toString(),

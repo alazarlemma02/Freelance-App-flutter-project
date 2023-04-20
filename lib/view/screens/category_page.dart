@@ -151,7 +151,7 @@ class _Category_pageState extends State<Category_page> {
                   ),
                   backgroundColor: CustomColors.buttonBlueColor),
               onPressed: () {
-                Navigator.pushNamed(context, '/PostedJobs');
+                Navigator.pushNamed(context, '/SignUpPage');
               },
               child: Text(
                 'continue'.tr().toString(),
@@ -202,14 +202,6 @@ class _CategoryCardState extends State<CategoryCard> {
             Container(
               width: MediaQuery.of(context).size.width * 0.1,
             ),
-            Radio(
-                value: widget.categoryName,
-                groupValue: categoryGroup,
-                onChanged: (value) {
-                  setState(() {
-                    categoryGroup = value.toString();
-                  });
-                }),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
               child: Text(

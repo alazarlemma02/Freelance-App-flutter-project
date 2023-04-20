@@ -81,6 +81,7 @@ class _LogoutState extends State<Logout> {
               textDirection: TextDirection.ltr,
               Icons.logout,
               color: CustomColors.buttonBlueColor,
+              size: MediaQuery.of(context).size.height*0.03,
             ))
       ]),
     );
