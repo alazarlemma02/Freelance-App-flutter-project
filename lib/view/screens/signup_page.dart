@@ -50,6 +50,15 @@ class _SignUpPageState extends State<SignUpPage> {
     context.locale = const Locale('en', 'US');
     print(userKind.userType);
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          color: CustomColors.blackTextColor,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamed(context, '/PathPage');
+          },
+        ),
+      ),
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
       body: Container(

@@ -82,6 +82,7 @@ class MyApp extends StatelessWidget {
         ),
         primaryColor: CustomColors.buttonBlueColor,
         fontFamily: 'OpenSans',
+        
       ),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
