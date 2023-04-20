@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -32,7 +33,7 @@ class _AddJobState extends State<AddJob> {
             ),
           ),
         ],
-        title: Text("Add a New Job"),
+        title: Text('Add-a-job'.tr().toString()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
