@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -49,7 +50,7 @@ class _JobDetailPageState extends State<JobApplicationpage> {
                     child: Container(child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                      Text('Price Range',style: TextStyle(fontSize: 15),),
+                      Text("price-range".tr().toString(),style: TextStyle(fontSize: 15),),
                       Text('Br 2500-400',style: TextStyle(fontSize: 15, color: CustomColors.goldenColor),),
                     ]),),
                   ),
