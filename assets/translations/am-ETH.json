@@ -21,8 +21,32 @@
     "edit-profile":"መረጃዎን ያስተካክሉ",
     "profile-tag":"የእርስዎ መገለጫ",
     "social-media":"ማህበራዊ ሚዲያ ገፅ",
-    "upload-document":"ፋይል ያስገቡ"
+    "upload-document":"ፋይል ያስገቡ",
     
+    "I-am":"እኔ...",
+    "Pick-one":"እባክዎ አንዱን ይምረጡ",
+    "continue":"ቀጥል",
+    "freelancer":"ሥራ ፈላጊ",
+    "looking-for-work":"ሥራ በመፈለግ ላይ",
+    "employer":"አሰሪ",
+    "looking-to-hire":"መቅጠር በመፈለግ ላይ",
+    "I-specialize-in":"የእኔ ልዩ ሙያ...",
+    "search":"ፈልግ...",
+    "Add-a-new-job":"አዲስ ሥራ ጨምር",
+    "skills":"ችሎታዎች",
+    "contact-details":"የእውቂያ ዝርዝሮች",
+    "available-jobs":"የሚገኙ ስራዎች",
+    "job-title":"የስራ መደቡ መጠሪያ",
+    "category":"ምድብ",
+    "application-deadline":"የማመልከቻ ገደብ:",
+    "price-range":"የዋጋ ክልል",
+    "ongoing-jobs":"ቀጣይነት ያላቸው ስራዎች",
+    "posted-jobs":"የተለጠፈ ስራዎች",
+    "post-a-new-job":"አዲስ ሥራ ",
+    "try again" :"እንደገና ይሞክሩ",
+    "agreed-price":"የተስማማ ዋጋ",
+    "do-you-want-to-logout":"መውጣት ይፈልጋሉ?"
+
     
 
 }
