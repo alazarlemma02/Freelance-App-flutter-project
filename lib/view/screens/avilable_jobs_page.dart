@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
@@ -46,7 +47,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
             ),
           ),
         ],
-        title: Text("Available Jobs"),
+        title: Text('available-jobs'.tr().toString()),
       ),
       body: Column(
         children: [
@@ -63,7 +64,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
                   ),
                   decoration: InputDecoration(
                     isDense: true,
-                    hintText: "Search",
+                    hintText: 'search'.tr().toString(),
                     icon: Icon(
                       Icons.search_outlined,
                       size: 24,
