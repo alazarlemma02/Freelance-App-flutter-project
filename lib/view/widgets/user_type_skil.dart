@@ -1,5 +1,6 @@
 // TODO Implement this library.
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -80,7 +81,7 @@ class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'Skills',
+                  "skills".tr().toString(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(

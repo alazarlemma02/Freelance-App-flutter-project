@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 
@@ -23,7 +24,7 @@ class JobCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "Job Title",
+                    'job-title'.tr().toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -34,7 +35,7 @@ class JobCard extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   color: CustomColors.backgroundColor,
                   child: Text(
-                    "Category",
+                    "category".tr().toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w100,
                       fontSize: 12,
@@ -47,7 +48,7 @@ class JobCard extends StatelessWidget {
                 ? Row(
                     children: [
                       Text(
-                        "Application Deadline: ",
+                        "application-deadline".tr().toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 12,
@@ -80,7 +81,7 @@ class JobCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Price Range"),
+                            Text("price-range".tr().toString()),
                             Text(
                               "2000 - 3500",
                               style: TextStyle(
@@ -98,7 +99,7 @@ class JobCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Agreed Price"),
+                            Text( "agreed-price".tr().toString()),
                             Text(
                               "3500",
                               style: TextStyle(
