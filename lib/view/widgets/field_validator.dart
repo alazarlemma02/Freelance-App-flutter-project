@@ -47,6 +47,8 @@ class Validator {
     }
     if (phoneNumber.isEmpty) {
       return 'Phone Number can\'t be empty';
+    } else if (!phoneNumber.startsWith('09')) {
+      return 'Incorrect phone number format';
     }
     return null;
   }

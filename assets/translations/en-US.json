@@ -12,7 +12,7 @@
     "full-name":"Full Name",
     "or":"or",
     "choose-category":"Choose Category",
-    "phone-number":"Phone Number",
+    "phone-number":"Phone Number(09 -- -- -- --)",
     "web-page":"Web Page",
     "about-yourself":"A little bit about yourself:",
     "choose-skill":"Choose Skill",
@@ -22,6 +22,7 @@
     "profile-tag":"Profile tag line",
     "social-media":"Social media link",
     "upload-document":"Upload attachment",
+    "forgot-password":"Forgot Password",
 
     "I-am":"I am...",
     "Pick-one":"Please pick one.",

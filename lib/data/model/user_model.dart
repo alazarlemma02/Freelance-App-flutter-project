@@ -6,7 +6,7 @@ class UserModel {
   String email;
   final String? phoneNumber;
   final String password;
-  final Enum? userType;
+  final String? userType;
   final String? socialMediaLink;
   final String? aboutYourself;
 
@@ -37,7 +37,8 @@ class UserModel {
         "fullName": fullName,
         "email": email,
         "password": password,
-        "userId": userId
+        "userId": userId,
+        "userType": userType,
       };
 
   void setUserEmail(String email) {

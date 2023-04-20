@@ -13,6 +13,7 @@ class FireAuth {
       required String? email,
       required String? phoneNumber,
       required String? password,
+      required String? userType,
       required BuildContext context}) async {
     String result = 'some error ocurred';
     try {
@@ -23,12 +24,12 @@ class FireAuth {
         );
 
         UserModel newUser = UserModel(
-          email: email,
-          fullName: fullName ?? '',
-          password: password,
-          phoneNumber: phoneNumber ?? '',
-          userId: user.user!.uid,
-        );
+            email: email,
+            fullName: fullName ?? '',
+            password: password,
+            phoneNumber: phoneNumber ?? '',
+            userId: user.user!.uid,
+            userType: userType);
 
         result = 'true';
         await _firestore.collection('users').doc(phoneNumber).set(

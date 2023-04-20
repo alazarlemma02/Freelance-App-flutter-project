@@ -6,7 +6,9 @@ import 'package:sira/constants/colors.dart';
 import 'package:sira/view/screens/edit_profile_page.dart';
 
 class SkillDropDown extends StatefulWidget {
-  const SkillDropDown({super.key});
+  String? item;
+  final Function callbackFunction;
+  SkillDropDown({super.key, this.item, required this.callbackFunction});
 
   @override
   State<SkillDropDown> createState() => _SkillDropDownState();
@@ -25,36 +27,42 @@ class _SkillDropDownState extends State<SkillDropDown> {
   String? selectedItem;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.1,
-      child: DropdownButton<String>(
-        dropdownColor: CustomColors.backgroundColor,
-        menuMaxHeight: MediaQuery.of(context).size.height * 0.5,
-        isExpanded: true,
-        hint: Text("choose-skill".tr().toString()),
-        value: selectedItem,
-        iconSize: 45,
-        elevation: 16,
-        style: TextStyle(color: CustomColors.blackTextColor),
-        underline: Container(
-          height: 1,
-          color: CustomColors.blackTextColor,
+    return GestureDetector(
+      onTap: () {
+        widget.item = selectedItem;
+        widget.callbackFunction(widget.item);
+      },
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.1,
+        child: DropdownButton<String>(
+          dropdownColor: CustomColors.backgroundColor,
+          menuMaxHeight: MediaQuery.of(context).size.height * 0.5,
+          isExpanded: true,
+          hint: Text("choose-skill".tr().toString()),
+          value: selectedItem,
+          iconSize: 45,
+          elevation: 16,
+          style: TextStyle(color: CustomColors.blackTextColor),
+          underline: Container(
+            height: 1,
+            color: CustomColors.blackTextColor,
+          ),
+          items: category
+              .map((cat) => DropdownMenuItem<String>(
+                  value: cat,
+                  child: Text(
+                    cat,
+                    style: TextStyle(
+                        color: CustomColors.blackTextColor, fontSize: 12),
+                  )))
+              .toList(),
+          onChanged: (cat) {
+            widget.callbackFunction(cat);
+            setState(() {
+              selectedItem = cat;
+            });
+          },
         ),
-        items: category
-            .map((cat) => DropdownMenuItem<String>(
-                value: cat,
-                child: Text(
-                  cat,
-                  style: TextStyle(
-                      color: CustomColors.blackTextColor, fontSize: 12),
-                )))
-            .toList(),
-        onChanged: (cat) async {
-          setState(() {
-            selectedItem = cat;
-          });
-          print(selectedItem);
-        },
       ),
     );
   }

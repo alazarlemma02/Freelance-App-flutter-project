@@ -215,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: CustomColors.blackTextColor,
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/SignUpPage');
+                            Navigator.pushNamed(context, '/PathPage');
                           },
                           child: Text(
                             'new-user'.tr().toString(),

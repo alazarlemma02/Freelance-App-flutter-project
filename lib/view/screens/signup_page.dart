@@ -3,20 +3,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/firebase_authentication.dart';
+import 'package:sira/view/screens/path_page.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/field_validator.dart';
 import 'package:sira/view/widgets/sira_logo.dart';
+import 'package:mobile_number/mobile_number.dart';
 
 import '../../constants/colors.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+  String? userType;
+  SignUpPage({super.key, this.userType});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState(userType);
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -28,6 +32,11 @@ class _SignUpPageState extends State<SignUpPage> {
   final _pass = TextEditingController();
   final _email = TextEditingController();
   final _phoneNumber = TextEditingController();
+  String? userType;
+  _SignUpPageState(this.userType);
+  void setUserType(userType) {
+    widget.userType = userType;
+  }
 
   @override
   void initState() {
@@ -36,7 +45,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userKind = ModalRoute.of(context)!.settings.arguments as SignUpPage;
+    setUserType(userKind.userType);
     context.locale = const Locale('en', 'US');
+    print(userKind.userType);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
@@ -330,12 +342,13 @@ class _SignUpPageState extends State<SignUpPage> {
           email: _email.text,
           phoneNumber: _phoneNumber.text,
           password: _pass.text,
+          userType: widget.userType.toString(),
           context: context);
       if (result != 'true') {
         showSnackBar('Some error ocurred Try again', Colors.red, context);
       } else {
         showSnackBar('Registered Successfully', Colors.green, context);
-        await Navigator.pushNamed(context, '/AvailableJobs');
+        await Navigator.pushNamed(context, '/');
         showSnackBar('Welcome', CustomColors.buttonBlueColor, context);
       }
       setState(() {
