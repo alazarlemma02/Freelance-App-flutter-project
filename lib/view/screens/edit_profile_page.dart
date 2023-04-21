@@ -1,8 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/main.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
@@ -29,6 +35,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? expTxt;
   String? skillTxt;
   String? educationLevelTxt;
+  File? imageFile;
 
   callbackCategory(categoryChoice) {
     setState(() {
@@ -52,6 +59,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
     setState(() {
       educationLevelTxt = categoryChoice;
     });
+  }
+
+  void _getFromCamera() async {
+    XFile? pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    _cropImage(PickedFile);
+    Navigator.pop(context);
+  }
+
+void _getFromGallery() async{
+    XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    _cropImage(PickedFile);
+    Navigator.pop(context);
+  }
+
+  void _cropImage(filePath) async {
+    CroppedFile? croppedImage = await ImageCropper()
+        .cropImage(sourcePath: filePath, maxHeight: 1080, maxWidth: 1080);
+
+    if (croppedImage != null) {
+      setState(() {
+        imageFile = File(croppedImage.path);
+      });
+    }
   }
 
   @override
@@ -124,6 +155,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               child: Stack(
                                 children: [
                                   CircleAvatar(
+                                    // backgroundImage: ,
                                     child: Icon(
                                       Icons.person_outline,
                                       color: CustomColors.blackTextColor,
@@ -146,7 +178,65 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                             MediaQuery.of(context).size.height *
                                                 0.05,
                                         icon: Icon(Icons.camera_alt_outlined),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          // _getFromCamera();
+
+                                          
+                                            showDialog<void>(
+                                              context: context,
+
+                                              // barrierDismissible: false, // user must tap button!
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  backgroundColor: CustomColors
+                                                      .backgroundColor,
+                                                  elevation: 1,
+                                                  // title: const Text('AlertDialog Title'),
+                                                  content: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                        'Please choose an option',
+                                                        style: TextStyle(
+                                                            color: CustomColors
+                                                                .blackTextColor),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      child: Text(
+                                                        "Camera",
+                                                        style: TextStyle(
+                                                            color: CustomColors
+                                                                .buttonBlueColor),
+                                                      ),
+                                                      onPressed: () {
+                                                        _getFromCamera();
+                                                      },
+                                                    ),
+                                                    TextButton(
+                                                      child: Text(
+                                                        "Gallery",
+                                                        style: TextStyle(
+                                                            color: CustomColors
+                                                                .buttonBlueColor),
+                                                      ),
+                                                      onPressed: () {
+                                                        _getFromGallery();
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          
+                                        },
                                       ))
                                 ],
                               ),
