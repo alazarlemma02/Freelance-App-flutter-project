@@ -12,7 +12,7 @@
     "full-name":"Full Name",
     "or":"or",
     "choose-category":"Choose Category",
-    "phone-number":"Phone Number",
+    "phone-number":"Phone Number(09 -- -- -- --)",
     "web-page":"Web Page",
     "about-yourself":"A little bit about yourself:",
     "choose-skill":"Choose Skill",
@@ -22,6 +22,7 @@
     "profile-tag":"Profile tag line",
     "social-media":"Social media link",
     "upload-document":"Upload attachment",
+    "forgot-password":"Forgot Password",
 
     "I-am":"I am...",
     "Pick-one":"Please pick one.",
@@ -31,5 +32,21 @@
     "employer":"An Employer",
     "looking-to-hire":"Looking to hire.",
     "I-specialize-in":"I specialize in...",
-    "search":"Search..."
+    "search":"Search...",
+    "Add-a-new-job":"Add a New Job",
+    "skills":"Skills",
+    "contact_details":"Contact Details",
+    "available-jobs":"Available Jobs",
+    "job-title":"Job Title",
+    "category":"Category",
+    "application-deadline: ":"Application Deadline",
+    "price-range":"Price Range",
+    "ongoing-jobs":"Ongoing Jobs",
+    "posted-jobs":"Posted Jobs",
+    "post-a-new-job":"Post a new job",
+    "try-again" :"Try again",
+    "agreed-price":"Agreed price",
+    "do-you-want-to-logout":"Do you want to logout"
+
+
 }

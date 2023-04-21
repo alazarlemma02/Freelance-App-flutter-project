@@ -21,25 +21,7 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _email = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final bool _isloading = false;
-
-  void _forgetPasswordSendEmail() async {
-    try {
-      await _auth.sendPasswordResetEmail(
-        email: _email.text,
-      );
-
-      await Navigator.pushNamed(context, '/');
-      showSnackBar(
-          'Check your Email box', CustomColors.buttonBlueColor, context);
-    } catch (e) {
-      if (_email.text.isEmpty) {
-        showSnackBar('Please enter you email!', Colors.red, context);
-      } else {
-        showSnackBar('Incorrect Email Address Provided.', Colors.red, context);
-      }
-    }
-  }
+  bool _isloading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +52,7 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
-                            'Forgot Password'.tr().toString(),
+                            'forgot-password'.tr().toString(),
                             textAlign: TextAlign.end,
                             style: const TextStyle(
                               fontWeight: FontWeight.w700,
@@ -137,5 +119,28 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
         ),
       ),
     );
+  }
+
+  void _forgetPasswordSendEmail() async {
+    setState(() {
+      _isloading = true;
+    });
+    try {
+      await _auth.sendPasswordResetEmail(
+        email: _email.text,
+      );
+
+      showSnackBar('Check your Email box', Colors.green, context);
+      await Navigator.pushNamed(context, '/');
+    } catch (e) {
+      if (_email.text.isEmpty) {
+        showSnackBar('Please enter you email!', Colors.red, context);
+      } else {
+        showSnackBar('Incorrect Email Address Provided.', Colors.red, context);
+      }
+    }
+    setState(() {
+      _isloading = false;
+    });
   }
 }

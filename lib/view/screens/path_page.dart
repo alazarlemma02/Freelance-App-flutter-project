@@ -1,23 +1,38 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/signup_page.dart';
+import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/sira_logo.dart';
 
 class PathPage extends StatefulWidget {
-  const PathPage({super.key});
+  PathPage({super.key});
 
   @override
   State<PathPage> createState() => _PathPageState();
 }
 
 class _PathPageState extends State<PathPage> {
-  String? pathGroup;
+  String pathGroup = 'Freelancer';
+  String? userType;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: CustomColors.blackTextColor,
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/');
+        },
+      )),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -68,14 +83,16 @@ class _PathPageState extends State<PathPage> {
                       children: [
                         PathCard(
                           iconName: Icons.person,
-                          title: "freelancer",
-                          subTitle: "looking-for-work",
+                          title: "freelancer".tr().toString(),
+                          subTitle: "looking-for-work".tr().toString(),
                         ),
                         Radio(
+                            activeColor: CustomColors.buttonBlueColor,
                             value: "Freelancer",
                             groupValue: pathGroup,
                             onChanged: (value) {
                               setState(() {
+                                userType = value;
                                 pathGroup = value.toString();
                               });
                             }),
@@ -86,14 +103,16 @@ class _PathPageState extends State<PathPage> {
                     children: [
                       PathCard(
                         iconName: Icons.apartment,
-                        title: "employer",
-                        subTitle: "looking-to-hire",
+                        title: "employer".tr().toString(),
+                        subTitle: "looking-to-hire".tr().toString(),
                       ),
                       Radio(
+                          activeColor: CustomColors.buttonBlueColor,
                           value: "Employer",
                           groupValue: pathGroup,
                           onChanged: (value) {
                             setState(() {
+                              userType = value;
                               pathGroup = value.toString();
                             });
                           }),
@@ -110,7 +129,11 @@ class _PathPageState extends State<PathPage> {
                   ),
                   backgroundColor: CustomColors.buttonBlueColor),
               onPressed: () {
-                Navigator.pushNamed(context, '/CategoryPage');
+                userType = pathGroup;
+                Navigator.pushNamed(context, '/SignUpPage',
+                    arguments: SignUpPage(
+                      userType: userType,
+                    ));
               },
               child: Text(
                 'continue'.tr().toString(),

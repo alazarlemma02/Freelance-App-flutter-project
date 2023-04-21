@@ -23,4 +23,14 @@ class Job {
         dueDate: json["dueDate"],
         postedDate: json["postedDate"]);
   }
+
+  static List jobsList(List jobs) {
+    List parsedJobs = [];
+
+    for (var i = 0; i < jobs.length; i++) {
+      parsedJobs.add(Job.fromJson(jobs[i]));
+    }
+
+    return parsedJobs;
+  }
 }

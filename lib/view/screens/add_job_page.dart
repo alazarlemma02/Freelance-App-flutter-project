@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -42,7 +43,7 @@ class _AddJobState extends State<AddJob> {
             ),
           ),
         ],
-        title: Text("Add a New Job"),
+        title: Text('Add-a-job'.tr().toString()),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -184,8 +185,10 @@ class _AddJobState extends State<AddJob> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           var uuid = Uuid();
+          var jobId = uuid.v4().toString();
           try {
             Map<String, dynamic> jobData = {
+              "job-id": jobId,
               "job-title": _jobTitle.text,
               "category": _category.text,
               "application-deadline": _applicationDeadline.text,
@@ -194,7 +197,7 @@ class _AddJobState extends State<AddJob> {
             };
             FirebaseFirestore.instance
                 .collection('Jobs')
-                .doc(uuid.v4().toString())
+                .doc(jobId)
                 .set(jobData);
             Navigator.pushNamed(context, '/PostedJobs');
           } catch (e) {

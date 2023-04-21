@@ -32,33 +32,47 @@ class _DrawerPageState extends State<DrawerPage> {
                 child: Column(
                   children: [
                     Container(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.height * 0.02),
                         child: Row(
-                      children: [
-                        Icon(Icons.person),
-                        TextButton(onPressed: () {
-                          Navigator.pushNamed(context, '/ApplicantProfilePage');
-                        }, child: Text('Profile')),
-                      ],
-                    )),
+                          children: [
+                            Icon(Icons.person),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/ApplicantProfilePage');
+                                },
+                                child: Text('Profile',
+                                    style: TextStyle(
+                                        color: CustomColors.blackTextColor))),
+                          ],
+                        )),
                     Container(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.height * 0.02),
                         child: Row(
-                      children: [
-                        Icon(Icons.edit),
-                        TextButton(onPressed: () {
-                          Navigator.pushNamed(context, '/EditProfilePage');
-                        }, child:Text('Edit Profile'))
-                      ],
-                    )),
+                          children: [
+                            Icon(Icons.edit),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/EditProfilePage');
+                                },
+                                child: Text('Edit Profile',
+                                    style: TextStyle(
+                                        color: CustomColors.blackTextColor)))
+                          ],
+                        )),
                     Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
                         child: Row(
-                      children: [
-                        Icon(Icons.logout),
-                        TextButton(onPressed: () {
-                            const Logout();
-                        
-                        }, child: Text('Logout'))
-                      ],
-                    )),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Logout(),
+                            ]),
+                      ),
+                    )
                   ],
                 ),
               ),

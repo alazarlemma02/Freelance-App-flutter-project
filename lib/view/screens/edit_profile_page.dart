@@ -14,19 +14,7 @@ import 'package:sira/view/widgets/text_fields.dart';
 import 'package:sira/view/widgets/upload_attachment.dart';
 
 class EditProfilePage extends StatefulWidget {
-  void Function(String?)? callback;
-  String? categoryTxt;
-  String? skillTxt;
-  String? exprTxt;
-  String? educationTxt;
-  EditProfilePage(
-      {Key? myKey,
-      this.categoryTxt,
-      this.educationTxt,
-      this.exprTxt,
-      this.skillTxt,
-      this.callback})
-      : super(key: myKey);
+  EditProfilePage({super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -37,17 +25,39 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _phoneNumberCont = TextEditingController();
   final _socialMediaCont = TextEditingController();
   final _aboutYourselfCont = TextEditingController();
+  String? categroyTxt;
   String? expTxt;
-  String? _educationLevelCont;
-  String? _experienceLevelCont;
+  String? skillTxt;
+  String? educationLevelTxt;
 
-  callBack(category) {
-    category = expTxt;
+  callbackCategory(categoryChoice) {
+    setState(() {
+      categroyTxt = categoryChoice;
+    });
+  }
+
+  callbackExperience(categoryChoice) {
+    setState(() {
+      expTxt = categoryChoice;
+    });
+  }
+
+  callbackSkill(categoryChoice) {
+    setState(() {
+      skillTxt = categoryChoice;
+    });
+  }
+
+  callbackEducationLevel(categoryChoice) {
+    setState(() {
+      educationLevelTxt = categoryChoice;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    context.locale = const Locale('am', 'ETH');
+    context.locale = const Locale('en', 'US');
+
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
@@ -164,10 +174,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               editingController: _profile_tagcont,
                               maximumLines: 1),
                           CategoryDropDown(
-                            callback: callBack,
-                            item: widget.categoryTxt.toString(),
+                              item: categroyTxt.toString(),
+                              callbackFunction: callbackCategory),
+                          SkillDropDown(
+                            item: skillTxt.toString(),
+                            callbackFunction: callbackSkill,
                           ),
-                          const SkillDropDown(),
                           TextFieldPage(
                               hint_text: 'phone-number',
                               field_icon: Icons.call,
@@ -175,8 +187,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               editingController: _phoneNumberCont,
                               maximumLines: 1),
                           ExperienceLevelDropDown(
-                              expTxt: expTxt.toString(), onSelect: callBack),
-                          const EducationLevelDropDown(),
+                              item: expTxt.toString(),
+                              callbackFunction: callbackExperience),
+                          EducationLevelDropDown(
+                            item: educationLevelTxt,
+                            callbackFunction: callbackEducationLevel,
+                          ),
                           TextFieldPage(
                               hint_text: 'social-media',
                               field_icon: Icons.link,
@@ -215,11 +231,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
               try {
                 Map<String, dynamic> userData = {
                   "Profile-tag-line": _profile_tagcont.text,
-                  "category": widget.categoryTxt,
-                  "skill-level": widget.skillTxt,
+                  "category": categroyTxt,
+                  "skill-level": skillTxt,
                   "phone-number": _phoneNumberCont.text,
-                  "experience-level": widget.exprTxt,
-                  "education-level": widget.educationTxt,
+                  "experience-level": expTxt,
+                  "education-level": educationLevelTxt,
                   "social-media-link": _socialMediaCont.text,
                   "about-yourself": _aboutYourselfCont.text
                 };

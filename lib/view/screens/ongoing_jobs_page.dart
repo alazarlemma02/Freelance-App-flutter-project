@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
@@ -31,7 +32,7 @@ class _OngoingJobsState extends State<OngoingJobs> {
             ),
           ),
         ],
-        title: Text("Ongoing Jobs"),
+        title: Text("ongoing-jobs".tr().toString()),
       ),
       body: Column(
         children: [
@@ -48,7 +49,7 @@ class _OngoingJobsState extends State<OngoingJobs> {
                   ),
                   decoration: InputDecoration(
                     isDense: true,
-                    hintText: "Search",
+                    hintText: "search".tr().toString(),
                     icon: Icon(
                       Icons.search_outlined,
                       size: 24,
@@ -63,9 +64,9 @@ class _OngoingJobsState extends State<OngoingJobs> {
             child: ListView(
               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
               children: [
-                JobCard(
-                  parentPage: "ongoing jobs",
-                ),
+                // JobCard(
+                //   parentPage: "ongoing jobs",
+                // ),
               ],
             ),
           ),

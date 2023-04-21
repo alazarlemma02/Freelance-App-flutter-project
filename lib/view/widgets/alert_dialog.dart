@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
@@ -10,6 +11,7 @@ Future<void> showAlertMessage(
   BuildContext context,
 ) async {
   return showDialog<void>(
+    barrierColor: CustomColors.backgroundColor.withOpacity(0.3),
     context: context,
 
     // barrierDismissible: false, // user must tap button!
@@ -36,7 +38,7 @@ Future<void> showAlertMessage(
         actions: <Widget>[
           TextButton(
             child: Text(
-              'Sign up',
+              "sign-up".tr().toString(),
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
@@ -46,7 +48,7 @@ Future<void> showAlertMessage(
           ),
           TextButton(
             child: Text(
-              'try again',
+              "try-again".tr().toString(),
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {

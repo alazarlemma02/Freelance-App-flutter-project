@@ -151,7 +151,7 @@ class _Category_pageState extends State<Category_page> {
                   ),
                   backgroundColor: CustomColors.buttonBlueColor),
               onPressed: () {
-                Navigator.pushNamed(context, '/PostedJobs');
+                Navigator.pushNamed(context, '/SignUpPage');
               },
               child: Text(
                 'continue'.tr().toString(),
