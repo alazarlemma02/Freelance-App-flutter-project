@@ -19,6 +19,8 @@ import 'package:sira/view/widgets/skill_dropdown.dart';
 import 'package:sira/view/widgets/text_fields.dart';
 import 'package:sira/view/widgets/upload_attachment.dart';
 
+import '../widgets/crop_image.dart';
+
 class EditProfilePage extends StatefulWidget {
   EditProfilePage({super.key});
 
@@ -35,7 +37,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? expTxt;
   String? skillTxt;
   String? educationLevelTxt;
-  File? imageFile;
+  List<File> imageFileList = [];
 
   callbackCategory(categoryChoice) {
     setState(() {
@@ -61,33 +63,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
     });
   }
 
-  void _getFromCamera() async {
-    XFile? pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    _cropImage(PickedFile);
-    Navigator.pop(context);
-  }
-
-void _getFromGallery() async{
-    XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    _cropImage(PickedFile);
-    Navigator.pop(context);
-  }
-
-  void _cropImage(filePath) async {
-    CroppedFile? croppedImage = await ImageCropper()
-        .cropImage(sourcePath: filePath, maxHeight: 1080, maxWidth: 1080);
-
-    if (croppedImage != null) {
-      setState(() {
-        imageFile = File(croppedImage.path);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     context.locale = const Locale('en', 'US');
+
+    ImageProvider image = const AssetImage(
+      "assets/images/Tie.png",
+    );
+
+    if (imageFileList.isNotEmpty) {
+      image = FileImage(imageFileList[imageFileList.length - 1]);
+    }
 
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
@@ -96,26 +82,26 @@ void _getFromGallery() async{
           onPressed: (() {
             Navigator.pushNamed(context, '/MyProfilePage');
           }),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: CustomColors.blackTextColor,
           ),
         ),
         title: Text(
           'edit-profile'.tr().toString(),
-          style: TextStyle(color: CustomColors.blackTextColor),
+          style: const TextStyle(color: CustomColors.blackTextColor),
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.access_time_outlined,
               color: CustomColors.blackTextColor,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_outlined,
               color: CustomColors.blackTextColor,
             ),
@@ -124,7 +110,7 @@ void _getFromGallery() async{
             padding: EdgeInsets.only(
                 right: MediaQuery.of(context).size.width * 0.05),
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.person_outline,
               color: CustomColors.blackTextColor,
             ),
@@ -155,13 +141,7 @@ void _getFromGallery() async{
                               child: Stack(
                                 children: [
                                   CircleAvatar(
-                                    // backgroundImage: ,
-                                    child: Icon(
-                                      Icons.person_outline,
-                                      color: CustomColors.blackTextColor,
-                                      size: MediaQuery.of(context).size.height *
-                                          0.08,
-                                    ),
+                                    backgroundImage: image,
                                     radius: MediaQuery.of(context).size.height *
                                         0.089,
                                     backgroundColor:
@@ -179,63 +159,7 @@ void _getFromGallery() async{
                                                 0.05,
                                         icon: Icon(Icons.camera_alt_outlined),
                                         onPressed: () {
-                                          // _getFromCamera();
-
-                                          
-                                            showDialog<void>(
-                                              context: context,
-
-                                              // barrierDismissible: false, // user must tap button!
-                                              builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  backgroundColor: CustomColors
-                                                      .backgroundColor,
-                                                  elevation: 1,
-                                                  // title: const Text('AlertDialog Title'),
-                                                  content: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Text(
-                                                        'Please choose an option',
-                                                        style: TextStyle(
-                                                            color: CustomColors
-                                                                .blackTextColor),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  actions: <Widget>[
-                                                    TextButton(
-                                                      child: Text(
-                                                        "Camera",
-                                                        style: TextStyle(
-                                                            color: CustomColors
-                                                                .buttonBlueColor),
-                                                      ),
-                                                      onPressed: () {
-                                                        _getFromCamera();
-                                                      },
-                                                    ),
-                                                    TextButton(
-                                                      child: Text(
-                                                        "Gallery",
-                                                        style: TextStyle(
-                                                            color: CustomColors
-                                                                .buttonBlueColor),
-                                                      ),
-                                                      onPressed: () {
-                                                        _getFromGallery();
-                                                        Navigator.pop(context);
-                                                      },
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          
+                                          _showSelectionDialog(context);
                                         },
                                       ))
                                 ],
@@ -343,5 +267,70 @@ void _getFromGallery() async{
             )),
       ),
     );
+  }
+
+  /// Selection dialog that prompts the user to select an existing photo or take a new one
+  Future _showSelectionDialog(BuildContext context) async {
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: Text('Select photo'),
+          children: <Widget>[
+            SimpleDialogOption(
+              child: Text('From gallery'),
+              onPressed: () {
+                selectImages();
+                Navigator.pop(context);
+              },
+            ),
+            SimpleDialogOption(
+              child: Text('Take a photo'),
+              onPressed: () {
+                takeImages();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // a method to pick photos from a gallery.
+  final ImagePicker imagePicker = ImagePicker();
+  Future selectImages() async {
+    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages!.isNotEmpty) {
+      File file = File(selectedImages[0].path);
+      // crop image starts here.
+      var croppedImage = await CropTheImage.cropImage(file);
+      if (croppedImage == null) {
+        return;
+      }
+      File imageFile = File(croppedImage.path);
+      imageFileList.add(imageFile);
+      // crop image ends here.
+    }
+    setState(() {});
+  }
+
+  // a method to pick photos from a camera
+  Future takeImages() async {
+    final XFile? selectedImages = await imagePicker.pickImage(
+      source: ImageSource.camera,
+    );
+    if (selectedImages != null) {
+      File file = File(selectedImages.path);
+      // crop image starts here.
+      var croppedImage = await CropTheImage.cropImage(file);
+      if (croppedImage == null) {
+        return;
+      }
+      File imageFile = File(croppedImage.path);
+      imageFileList.add(imageFile);
+      // crop image ends here.
+    }
+    setState(() {});
   }
 }
