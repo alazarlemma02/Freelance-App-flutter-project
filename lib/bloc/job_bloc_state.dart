@@ -1,6 +1,6 @@
-part of 'job_bloc_bloc.dart';
+// part of 'job_bloc_bloc.dart';
 
-@immutable
-abstract class JobBlocState {}
+// @immutable
+// abstract class JobBlocState {}
 
-class JobBlocInitial extends JobBlocState {}
+// class JobBlocInitial extends JobBlocState {}
