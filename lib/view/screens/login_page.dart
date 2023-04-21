@@ -277,7 +277,7 @@ class _LoginPageState extends State<LoginPage> {
           );
         } else {
           showSnackBar('Logged In Successfully', Colors.green, context);
-          await Navigator.pushNamed(context, '/AvailableJobs');
+          await Navigator.pushNamed(context, '/PostedJobs');
         }
         setState(() {
           _isloading = false;
