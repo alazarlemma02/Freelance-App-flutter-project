@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/widgets/drawer.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
 
 class PostedJobs extends StatefulWidget {
@@ -14,7 +15,7 @@ class _PostedJobsState extends State<PostedJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
+      drawer: DrawerPage(
           // child: ,
           ),
       appBar: AppBar(
@@ -90,12 +91,11 @@ class _PostedJobsState extends State<PostedJobs> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          Navigator.pushNamed(context, '/AddJobPage'),
-        },
-        child: const Icon(Icons.add),
-        tooltip: "post-a-new-job".tr().toString()
-      ),
+          onPressed: () => {
+                Navigator.pushNamed(context, '/AddJobPage'),
+              },
+          child: const Icon(Icons.add),
+          tooltip: "post-a-new-job".tr().toString()),
     );
   }
 }

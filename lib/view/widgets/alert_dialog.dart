@@ -11,6 +11,7 @@ Future<void> showAlertMessage(
   BuildContext context,
 ) async {
   return showDialog<void>(
+    barrierColor: CustomColors.backgroundColor.withOpacity(0.3),
     context: context,
 
     // barrierDismissible: false, // user must tap button!
@@ -37,7 +38,7 @@ Future<void> showAlertMessage(
         actions: <Widget>[
           TextButton(
             child: Text(
-               "sign-up".tr().toString(),
+              "sign-up".tr().toString(),
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
