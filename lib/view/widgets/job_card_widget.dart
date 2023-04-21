@@ -3,8 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 
 class JobCard extends StatelessWidget {
-  final parentPage;
-  const JobCard({super.key, required this.parentPage});
+  final String jobTitle;
+  final String category;
+  final String applicationDeadline;
+  final String description;
+  final String priceRange;
+
+  final String parentPage;
+
+  const JobCard({
+    super.key,
+    required this.parentPage,
+    required this.jobTitle,
+    required this.category,
+    required this.applicationDeadline,
+    required this.description,
+     required this.priceRange
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +114,7 @@ class JobCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text( "agreed-price".tr().toString()),
+                            Text("agreed-price".tr().toString()),
                             Text(
                               "3500",
                               style: TextStyle(

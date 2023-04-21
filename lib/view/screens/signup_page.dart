@@ -57,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
           color: CustomColors.blackTextColor,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/PathPage');
         },
       )),
       resizeToAvoidBottomInset: true,

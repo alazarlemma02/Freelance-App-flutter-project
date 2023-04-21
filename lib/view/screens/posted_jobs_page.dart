@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/view/widgets/drawer.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
@@ -82,9 +84,9 @@ class _PostedJobsState extends State<PostedJobs> {
             child: ListView(
               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
               children: [
-                JobCard(
-                  parentPage: "posted jobs",
-                ),
+                // JobCard(
+                //   parentPage: "posted jobs",
+                // ),
               ],
             ),
           ),
