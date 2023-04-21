@@ -3,7 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/data/services/firebase_api_services.dart';
 import 'package:sira/data/services/firebase_authentication.dart';
@@ -76,47 +78,54 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: isLoggedIn ? route : '/',
-      routes: {
-        '/': (context) => const LoginPage(),
-        '/SignUpPage': (context) => SignUpPage(),
-        '/PathPage': (context) => PathPage(),
-        '/CategoryPage': (context) => const Category_page(),
-        '/PostedJobs': (context) => const PostedJobs(),
-        '/AddJobPage': (context) => const AddJob(),
-        '/JobDetailPage': (context) => const JobDetailPage(),
-        '/ApplicantProfilePage': (context) => const Applicantprofile(),
-        '/AvailableJobs': (context) => const AvailableJobs(),
-        '/JobApplicationpage': (context) => const JobApplicationpage(),
-        '/OngoingJobs': (context) => const OngoingJobs(),
-        '/MyProfilePage': (context) => const My_profile(),
-        '/EditProfilePage': (context) => EditProfilePage(),
-        '/ForgotPasswordPage': (context) => const ForgotPasswordPage(),
-      },
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        iconTheme: IconThemeData(color: CustomColors.blackTextColor),
-        drawerTheme: DrawerThemeData(
-          backgroundColor: CustomColors.backgroundColor,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => JobBlocBloc(),
         ),
-        scaffoldBackgroundColor: CustomColors.backgroundColor,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: CustomColors.transparentColor,
-          elevation: 0,
-          foregroundColor: CustomColors.blackTextColor,
-          toolbarHeight: 70,
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: isLoggedIn ? route : '/',
+        routes: {
+          '/': (context) => const LoginPage(),
+          '/SignUpPage': (context) => SignUpPage(),
+          '/PathPage': (context) => PathPage(),
+          '/CategoryPage': (context) => const Category_page(),
+          '/PostedJobs': (context) => const PostedJobs(),
+          '/AddJobPage': (context) => const AddJob(),
+          '/JobDetailPage': (context) => const JobDetailPage(),
+          '/ApplicantProfilePage': (context) => const Applicantprofile(),
+          '/AvailableJobs': (context) => const AvailableJobs(),
+          '/JobApplicationpage': (context) => const JobApplicationpage(),
+          '/OngoingJobs': (context) => const OngoingJobs(),
+          '/MyProfilePage': (context) => const My_profile(),
+          '/EditProfilePage': (context) => EditProfilePage(),
+          '/ForgotPasswordPage': (context) => const ForgotPasswordPage(),
+        },
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          iconTheme: IconThemeData(color: CustomColors.blackTextColor),
+          drawerTheme: DrawerThemeData(
+            backgroundColor: CustomColors.backgroundColor,
+          ),
+          scaffoldBackgroundColor: CustomColors.backgroundColor,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: CustomColors.transparentColor,
+            elevation: 0,
+            foregroundColor: CustomColors.blackTextColor,
+            toolbarHeight: 70,
+          ),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: CustomColors.buttonBlueColor,
+          ),
+          primaryColor: CustomColors.buttonBlueColor,
+          fontFamily: 'OpenSans',
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: CustomColors.buttonBlueColor,
-        ),
-        primaryColor: CustomColors.buttonBlueColor,
-        fontFamily: 'OpenSans',
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
       ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
     );
   }
 }

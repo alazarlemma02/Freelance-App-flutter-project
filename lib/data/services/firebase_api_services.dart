@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sira/data/model/job.dart';
 import 'package:sira/data/model/user_model.dart';
 import 'package:sira/data/services/firebase_authentication.dart';
 
 class FirebaseApiServices {
   String? userType;
+
   void setUserType(String? user) {
     userType = user;
   }
@@ -23,5 +25,12 @@ class FirebaseApiServices {
 
   String? getUserType() {
     return userType;
+  }
+
+  Future getJobs() async {
+    var jobs = await FirebaseFirestore.instance.collection('Jobs').get();
+    // return jobs;
+
+    return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
 }

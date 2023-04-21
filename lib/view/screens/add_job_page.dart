@@ -193,7 +193,9 @@ class _AddJobState extends State<AddJob> {
               "category": _category.text,
               "application-deadline": _applicationDeadline.text,
               "price-limit": _priceRange.text,
-              "description": _description.text
+              "description": _description.text,
+              "due-date": "-",
+              "deadline-date": "-"
             };
             FirebaseFirestore.instance
                 .collection('Jobs')
