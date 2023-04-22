@@ -14,7 +14,6 @@ class JobBlocBloc extends Bloc<JobBlocEvent, JobBlocState> {
     on<JobsFetchEvent>((event, emit) async {
       emit(JobListBlocLoadingState());
       jobsList = await _firebaseApiServices.getJobs();
-      print(jobsList);
       emit(JobListBlocSuccessState(jobs: jobsList));
     });
   }
