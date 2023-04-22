@@ -25,14 +25,17 @@ class _PathPageState extends State<PathPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+
+          leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
           color: CustomColors.blackTextColor,
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushNamed(context, '/');
-          },
         ),
-      ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/');
+        },
+      )),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

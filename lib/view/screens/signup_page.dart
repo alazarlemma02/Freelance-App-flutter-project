@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:sira/firebase_authentication.dart';
+import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/view/screens/path_page.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/field_validator.dart';
@@ -51,14 +51,17 @@ class _SignUpPageState extends State<SignUpPage> {
     print(userKind.userType);
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+
+          leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
           color: CustomColors.blackTextColor,
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushNamed(context, '/PathPage');
-          },
         ),
-      ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/PathPage');
+        },
+      )),
+
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
       body: Container(

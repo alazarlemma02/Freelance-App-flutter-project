@@ -3,4 +3,14 @@
 // @immutable
 // abstract class JobBlocState {}
 
-// class JobBlocInitial extends JobBlocState {}
+
+class JobBlocInitial extends JobBlocState {}
+
+class JobListBlocLoadingState extends JobBlocState {}
+
+class JobListBlocSuccessState extends JobBlocState {
+  final List jobs;
+
+  JobListBlocSuccessState({required this.jobs});
+}
+

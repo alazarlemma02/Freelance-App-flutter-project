@@ -3,8 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
 
 class JobCard extends StatelessWidget {
-  final parentPage;
-  const JobCard({super.key, required this.parentPage});
+  final String jobTitle;
+  final String category;
+  final String applicationDeadline;
+  final String description;
+  final String priceRange;
+
+  final String parentPage;
+
+  const JobCard(
+      {super.key,
+      required this.parentPage,
+      required this.jobTitle,
+      required this.category,
+      required this.applicationDeadline,
+      required this.description,
+      required this.priceRange});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +38,7 @@ class JobCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'job-title'.tr().toString(),
+                    '${this.jobTitle}',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -35,7 +49,7 @@ class JobCard extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   color: CustomColors.backgroundColor,
                   child: Text(
-                    "category".tr().toString(),
+                    '${this.category}',
                     style: TextStyle(
                       fontWeight: FontWeight.w100,
                       fontSize: 12,
@@ -55,7 +69,7 @@ class JobCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "June 20, 2023",
+                        '${this.applicationDeadline}',
                         style: TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 12,
@@ -70,7 +84,7 @@ class JobCard extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
                 child: Text(
-                  "This is where the short description of the job goes.",
+                  '${this.description}',
                 ),
               ),
             ),
@@ -83,7 +97,7 @@ class JobCard extends StatelessWidget {
                           children: [
                             Text("price-range".tr().toString()),
                             Text(
-                              "2000 - 3500",
+                              '${this.priceRange}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w100,
                                 fontSize: 12,
@@ -99,7 +113,7 @@ class JobCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text( "agreed-price".tr().toString()),
+                            Text("agreed-price".tr().toString()),
                             Text(
                               "3500",
                               style: TextStyle(

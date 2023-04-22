@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:sira/firebase_authentication.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sira/data/services/firebase_api_services.dart';
+import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/main.dart';
 import 'package:sira/view/screens/avilable_jobs_page.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
@@ -40,7 +43,9 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   bool _isloading = false;
   bool _passwordVisible = false;
+  String? userType;
 
+  FirebaseApiServices firebaseApiServices = FirebaseApiServices();
   @override
   void initState() {
     _passwordVisible = false;
@@ -49,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     context.locale = const Locale('en', 'US');
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
@@ -156,26 +162,35 @@ class _LoginPageState extends State<LoginPage> {
                                 password: _pass.text),
                           ),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              // fixedSize: const Size(350, 10),
-                              minimumSize:
-                                  Size(MediaQuery.of(context).size.width, 40),
-                              backgroundColor: CustomColors.buttonBlueColor),
-                          onPressed: _signInUser,
-                          child: _isloading
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                  color: CustomColors.backgroundColor,
-                                ))
-                              : Text(
-                                  'sign-in'.tr().toString(),
-                                  style: const TextStyle(
-                                    color: CustomColors.backgroundColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
+                        GestureDetector(
+                          onTap: () {
+                            firebaseApiServices.initUserType();
+                          },
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                // fixedSize: const Size(350, 10),
+                                minimumSize:
+                                    Size(MediaQuery.of(context).size.width, 40),
+                                backgroundColor: CustomColors.buttonBlueColor),
+                            onPressed: _signInUser,
+                            child: _isloading
+                                ? Stack(
+                                    children: [
+                                      Center(
+                                          child: CircularProgressIndicator(
+                                        color: CustomColors.backgroundColor,
+                                      )),
+                                    ],
+                                  )
+                                : Text(
+                                    'sign-in'.tr().toString(),
+                                    style: const TextStyle(
+                                      color: CustomColors.backgroundColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
-                                ),
+                          ),
                         ),
                         Container(
                           child: Center(
@@ -266,10 +281,15 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           _isloading = true;
         });
+        String? type = await FireAuth().checkUserTypeWhileSignin(
+          email: _email.text,
+          password: _pass.text,
+        );
         String result = await FireAuth().signInUsingEmialPassword(
           email: _email.text,
           password: _pass.text,
         );
+
         if (result != 'true') {
           showAlertMessage(
             Icons.error,
@@ -279,8 +299,16 @@ class _LoginPageState extends State<LoginPage> {
             context,
           );
         } else {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+
           showSnackBar('Logged In Successfully', Colors.green, context);
-          await Navigator.pushNamed(context, '/AvailableJobs');
+          if (type == 'Freelancer') {
+            prefs.setString('userRoute', '/AvailableJobs');
+            await Navigator.pushNamed(context, '/AvailableJobs');
+          } else if (type == 'Employer') {
+            prefs.setString('userRoute', '/PostedJobs');
+            await Navigator.pushNamed(context, '/PostedJobs');
+          }
         }
         setState(() {
           _isloading = false;

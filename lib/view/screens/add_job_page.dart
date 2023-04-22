@@ -185,17 +185,21 @@ class _AddJobState extends State<AddJob> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           var uuid = Uuid();
+          var jobId = uuid.v4().toString();
           try {
             Map<String, dynamic> jobData = {
+              "job-id": jobId,
               "job-title": _jobTitle.text,
               "category": _category.text,
               "application-deadline": _applicationDeadline.text,
               "price-limit": _priceRange.text,
-              "description": _description.text
+              "description": _description.text,
+              "due-date": "-",
+              "deadline-date": "-"
             };
             FirebaseFirestore.instance
                 .collection('Jobs')
-                .doc(uuid.v4().toString())
+                .doc(jobId)
                 .set(jobData);
             Navigator.pushNamed(context, '/PostedJobs');
           } catch (e) {

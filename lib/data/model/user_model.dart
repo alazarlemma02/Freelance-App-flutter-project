@@ -1,11 +1,14 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class UserModel {
   final String? userId;
   final String? fullName;
-  String email;
+  String? email;
   final String? phoneNumber;
-  final String password;
+  final String? password;
   final String? userType;
   final String? socialMediaLink;
   final String? aboutYourself;
@@ -13,9 +16,9 @@ class UserModel {
   UserModel({
     this.userId,
     this.fullName,
-    required this.email,
+    this.email,
     this.phoneNumber,
-    required this.password,
+    this.password,
     this.userType,
     this.socialMediaLink,
     this.aboutYourself,
@@ -47,5 +50,12 @@ class UserModel {
 
   String? getUserEmail() {
     return email;
+  }
+
+  factory UserModel.fromDocument(DocumentSnapshot doc) {
+    return UserModel(
+        userType: doc.data().toString().contains('userType')
+            ? doc.get('userType')
+            : 'user not found');
   }
 }
