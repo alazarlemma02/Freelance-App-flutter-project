@@ -138,7 +138,9 @@ class _ApplicantprofileState extends State<Applicantprofile> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/EditProfilePage');
+        },
         child: Center(
             child: Icon(
           Icons.done,

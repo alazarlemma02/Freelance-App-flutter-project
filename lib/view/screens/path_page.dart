@@ -19,11 +19,13 @@ class PathPage extends StatefulWidget {
 class _PathPageState extends State<PathPage> {
   String pathGroup = 'Freelancer';
   String? userType;
+  Color borderColors = CustomColors.buttonBlueColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
           leading: IconButton(
         icon: Icon(
           Icons.arrow_back,
@@ -33,6 +35,7 @@ class _PathPageState extends State<PathPage> {
           Navigator.pushNamed(context, '/');
         },
       )),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

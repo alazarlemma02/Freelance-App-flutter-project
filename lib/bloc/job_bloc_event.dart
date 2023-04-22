@@ -1,4 +1,5 @@
-part of 'job_bloc_bloc.dart';
+// part of 'job_bloc_bloc.dart';
+
 
 @immutable
 abstract class JobBlocEvent extends Equatable {
@@ -15,3 +16,4 @@ class JobsFetchEvent extends JobBlocEvent {
   List<Object> get props => [];
   
 }
+
