@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                               hintText: 'email'.tr().toString(),
                               labelStyle: const TextStyle(
                                 color: CustomColors.fadedTextColor,
-                                fontSize:12,
+                                fontSize: 12,
                               ),
                             ),
                             style: const TextStyle(
@@ -132,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: TextFormField(
-                            
                             controller: _pass,
                             obscureText: !_passwordVisible,
                             decoration: InputDecoration(
@@ -144,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 hintText: 'password'.tr().toString(),
                                 labelStyle: const TextStyle(
-                                  fontSize: 12,
+                                    fontSize: 12,
                                     color: CustomColors.fadedTextColor),
                                 suffixIcon: IconButton(
                                   onPressed: () {
