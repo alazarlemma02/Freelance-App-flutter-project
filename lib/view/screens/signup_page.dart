@@ -51,6 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
     print(userKind.userType);
     return Scaffold(
       appBar: AppBar(
+
           leading: IconButton(
         icon: Icon(
           Icons.arrow_back,
@@ -60,6 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Navigator.pushNamed(context, '/PathPage');
         },
       )),
+
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
       body: Container(
