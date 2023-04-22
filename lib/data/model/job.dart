@@ -7,6 +7,7 @@ class Job {
   final String category;
   final String postedDate;
   final String applicationDeadline;
+  final String postedBy;
 
   const Job({
     required this.jobId,
@@ -17,6 +18,7 @@ class Job {
     required this.category,
     required this.postedDate,
     required this.applicationDeadline,
+    required this.postedBy,
   });
 
   factory Job.fromJson(Map<dynamic, dynamic> json) {
@@ -29,6 +31,7 @@ class Job {
       postedDate: json["postedDate"],
       applicationDeadline: json["applicationDeadline"],
       category: json["category"],
+      postedBy: json["postedBy"],
     );
   }
 
@@ -40,5 +43,6 @@ class Job {
         dueDate = snapshot.data()['due-date'],
         postedDate = snapshot.data()['job-id'],
         applicationDeadline = snapshot.data()['application-deadline'],
-        category = snapshot.data()['category'];
+        category = snapshot.data()['category'],
+        postedBy = snapshot.data()['postedBy'];
 }
