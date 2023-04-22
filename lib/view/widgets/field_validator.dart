@@ -37,7 +37,7 @@ class Validator {
       return 'Password can\'t be empty';
     } else if (password.length < 6) {
       return 'Enter a password with length at least 6';
-    } 
+    }
     return null;
   }
 
