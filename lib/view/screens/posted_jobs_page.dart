@@ -107,6 +107,7 @@ class _PostedJobsState extends State<PostedJobs> {
                       category: state.jobs[index].category,
                       description: state.jobs[index].jobDescription,
                       priceRange: state.jobs[index].priceLimit,
+                      applicantCount: state.jobs[index].applicantCount,
                     );
                   },
                 );

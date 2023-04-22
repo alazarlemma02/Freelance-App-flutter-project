@@ -221,7 +221,8 @@ class _AddJobState extends State<AddJob> {
                 "description": _description.text,
                 "due-date": "-",
                 "deadline-date": "-",
-                "posted-by": userId
+                "posted-by": userId,
+                "applicant-count": 0,
               };
               FirebaseFirestore.instance
                   .collection('Jobs')

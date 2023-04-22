@@ -8,17 +8,20 @@ class JobCard extends StatelessWidget {
   final String applicationDeadline;
   final String description;
   final String priceRange;
+  final int applicantCount;
 
   final String parentPage;
 
-  const JobCard(
-      {super.key,
-      required this.parentPage,
-      required this.jobTitle,
-      required this.category,
-      required this.applicationDeadline,
-      required this.description,
-      required this.priceRange});
+  const JobCard({
+    super.key,
+    required this.parentPage,
+    required this.jobTitle,
+    required this.category,
+    required this.applicationDeadline,
+    required this.description,
+    required this.priceRange,
+    required this.applicantCount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +44,19 @@ class JobCard extends StatelessWidget {
                     '${this.jobTitle}',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 18,
+                      fontSize: 14,
                     ),
                   ),
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: CustomColors.blackTextColor),
+                    color: CustomColors.backgroundColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
                   padding: EdgeInsets.all(5),
-                  color: CustomColors.backgroundColor,
                   child: Text(
                     '${this.category}',
                     style: TextStyle(
@@ -95,7 +104,13 @@ class JobCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("price-range".tr().toString()),
+                            Text(
+                              "price-range".tr().toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 12,
+                              ),
+                            ),
                             Text(
                               '${this.priceRange}',
                               style: TextStyle(
@@ -128,8 +143,13 @@ class JobCard extends StatelessWidget {
                     : Container(),
                 parentPage == "available jobs" || parentPage == "posted jobs"
                     ? Container(
+                        decoration: BoxDecoration(
+                          color: CustomColors.buttonBlueColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
                         padding: EdgeInsets.all(5),
-                        color: CustomColors.buttonBlueColor,
                         child: Row(
                           children: [
                             Icon(
@@ -138,7 +158,7 @@ class JobCard extends StatelessWidget {
                               size: 20,
                             ),
                             Text(
-                              "120",
+                              '$applicantCount',
                               style: TextStyle(
                                 fontWeight: FontWeight.w100,
                                 fontSize: 12,
@@ -166,7 +186,7 @@ class JobCard extends StatelessWidget {
                       )
                     : Container(),
               ],
-            )
+            ),
           ],
         ),
       ),
