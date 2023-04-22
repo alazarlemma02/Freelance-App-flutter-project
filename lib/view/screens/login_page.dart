@@ -5,7 +5,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/data/services/firebase_api_services.dart';
 import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/main.dart';
@@ -117,6 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                               labelStyle: const TextStyle(
                                 color: CustomColors.fadedTextColor,
                               ),
+                            ),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: CustomColors.blackTextColor,
                             ),
                             validator: (value) =>
                                 Validator.validateEmail(email: _email.text),
@@ -305,6 +311,7 @@ class _LoginPageState extends State<LoginPage> {
           } else if (type == 'Employer') {
             prefs.setString('userRoute', '/PostedJobs');
             await Navigator.pushNamed(context, '/PostedJobs');
+            BlocProvider.of<JobBlocBloc>(context).add(const JobsFetchEvent());
           }
         }
         setState(() {
