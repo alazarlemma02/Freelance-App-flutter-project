@@ -13,5 +13,4 @@ class JobsFetchEvent extends JobBlocEvent {
 
   @override
   List<Object> get props => [];
-  
 }

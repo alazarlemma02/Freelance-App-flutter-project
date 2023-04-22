@@ -1,21 +1,36 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sira/data/model/job.dart';
-
-CollectionReference jobCollectionReference =
-    FirebaseFirestore.instance.collection('Jobs');
+import 'package:sira/data/model/user_model.dart';
+import 'package:sira/data/services/firebase_authentication.dart';
 
 class FirebaseApiServices {
-  Future<List> getJobs() async {
-    QuerySnapshot querySnapshot = await jobCollectionReference
-        .orderBy(
-          'application-deadline',
-          descending: true,
-        )
-        .get();
-    final allJobs = querySnapshot.docs.map((doc) => doc.data()).toString();
-    return Job.jobsList(json.decode(allJobs));
+  String? userType;
+
+  void setUserType(String? user) {
+    userType = user;
+  }
+
+  void initUserType() async {
+    try {
+      final DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      setUserType(userDoc.get('userType').toString());
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  String? getUserType() {
+    return userType;
+  }
+
+  Future getJobs() async {
+    var jobs = await FirebaseFirestore.instance.collection('Jobs').get();
+    // return jobs;
+
+    return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
 }

@@ -26,7 +26,7 @@ class _ContactDetailState extends State<ContactDetail> {
         .doc('0911111111')
         .get();
 
-    email = profileName['email'];
+    // email = profileName['email'];
     phoneNumber = userFullProfile['phone-number'];
     socialMedia = userFullProfile['social-media-link'];
   }

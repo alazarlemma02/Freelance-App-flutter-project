@@ -1,8 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/data/services/firebase_api_services.dart';
+import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/view/screens/add_job_page.dart';
 import 'package:sira/view/screens/applicant_profile_page.dart';
 import 'package:sira/view/screens/avilable_jobs_page.dart';
@@ -40,8 +46,36 @@ Future<void> main() async {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+
+  State<MyApp> createState() => _MyAppState();
+}
+
+
+class _MyAppState extends State<MyApp> {
+  var auth = FirebaseAuth.instance;
+  String? route;
+  bool isLoggedIn = false;
+
+  checkIfLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    auth.authStateChanges().listen((User? user) {
+      if (user != null && mounted) {
+        setState(() {
+          isLoggedIn = true;
+          route = prefs.getString('userRoute');
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    checkIfLogin();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +87,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        initialRoute: isLoggedIn ? route : '/',
         routes: {
           '/': (context) => const LoginPage(),
           '/SignUpPage': (context) => SignUpPage(),
@@ -68,7 +102,7 @@ class MyApp extends StatelessWidget {
           '/OngoingJobs': (context) => const OngoingJobs(),
           '/MyProfilePage': (context) => const My_profile(),
           '/EditProfilePage': (context) => EditProfilePage(),
-          '/ForgotPasswordPage': (context) => const ForgotPasswordPage()
+          '/ForgotPasswordPage': (context) => const ForgotPasswordPage(),
         },
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -89,9 +123,11 @@ class MyApp extends StatelessWidget {
           primaryColor: CustomColors.buttonBlueColor,
           fontFamily: 'OpenSans',
         ),
+
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
+
       ),
     );
   }

@@ -19,10 +19,23 @@ class PathPage extends StatefulWidget {
 class _PathPageState extends State<PathPage> {
   String pathGroup = 'Freelancer';
   String? userType;
+  Color borderColors = CustomColors.buttonBlueColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+
+          leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: CustomColors.blackTextColor,
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/');
+        },
+      )),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -77,6 +90,7 @@ class _PathPageState extends State<PathPage> {
                           subTitle: "looking-for-work".tr().toString(),
                         ),
                         Radio(
+                            activeColor: CustomColors.buttonBlueColor,
                             value: "Freelancer",
                             groupValue: pathGroup,
                             onChanged: (value) {
@@ -93,9 +107,10 @@ class _PathPageState extends State<PathPage> {
                       PathCard(
                         iconName: Icons.apartment,
                         title: "employer".tr().toString(),
-                        subTitle:  "looking-to-hire".tr().toString(),
+                        subTitle: "looking-to-hire".tr().toString(),
                       ),
                       Radio(
+                          activeColor: CustomColors.buttonBlueColor,
                           value: "Employer",
                           groupValue: pathGroup,
                           onChanged: (value) {
