@@ -8,8 +8,16 @@ abstract class JobBlocEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class JobsFetchEvent extends JobBlocEvent {
-  const JobsFetchEvent();
+class PostedJobsFetchEvent extends JobBlocEvent {
+  const PostedJobsFetchEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class SearchedJobsFetchEvent extends JobBlocEvent {
+  final String searchVal;
+  const SearchedJobsFetchEvent({required this.searchVal});
 
   @override
   List<Object> get props => [];
