@@ -27,9 +27,37 @@ class FirebaseApiServices {
     return userType;
   }
 
+  Future getJobsByPoster() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    final User? user = auth.currentUser;
+    final userId = user!.uid;
+
+    var jobs = await FirebaseFirestore.instance
+        .collection('Jobs')
+        .where("posted-by", isEqualTo: userId)
+        .get();
+
+    return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
+  }
+
+  Future getFilteredJobs(String searchVal) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    final User? user = auth.currentUser;
+    final userId = user!.uid;
+
+    var jobs = await FirebaseFirestore.instance
+        .collection('Jobs')
+        .where('job-title', isGreaterThanOrEqualTo: searchVal)
+        .where("posted-by", isEqualTo: userId)
+        .get();
+
+    return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
+  }
+
   Future getJobs() async {
     var jobs = await FirebaseFirestore.instance.collection('Jobs').get();
-    // return jobs;
 
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
