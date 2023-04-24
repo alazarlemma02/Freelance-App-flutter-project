@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sira/bloc/job_bloc_bloc.dart';
@@ -15,6 +16,8 @@ class PostedJobs extends StatefulWidget {
 }
 
 class _PostedJobsState extends State<PostedJobs> {
+  final TextEditingController _searchtextCont = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +59,17 @@ class _PostedJobsState extends State<PostedJobs> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 child: TextField(
+                  onChanged: (value) {
+                    if (_searchtextCont.text.isEmpty) {
+                      BlocProvider.of<JobBlocBloc>(context)
+                          .add(const PostedJobsFetchEvent());
+                    } else {
+                      BlocProvider.of<JobBlocBloc>(context).add(
+                          SearchedJobsFetchEvent(
+                              searchVal: _searchtextCont.text));
+                    }
+                  },
+                  controller: _searchtextCont,
                   decoration: InputDecoration(
                     suffixIcon: Icon(
                       size: 20,
@@ -85,7 +99,7 @@ class _PostedJobsState extends State<PostedJobs> {
             builder: (context, state) {
               if (state is JobBlocInitial) {
                 BlocProvider.of<JobBlocBloc>(context)
-                    .add(const JobsFetchEvent());
+                    .add(PostedJobsFetchEvent());
               }
               if (state is JobListBlocLoadingState) {
                 return Center(
@@ -93,7 +107,7 @@ class _PostedJobsState extends State<PostedJobs> {
                   color: CustomColors.buttonBlueColor,
                 ));
               }
-              if (state is JobListBlocSuccessState) {
+              if (state is EmployerJobListBlocSuccessState) {
                 return ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: state.jobs.length,
@@ -112,6 +126,26 @@ class _PostedJobsState extends State<PostedJobs> {
                   },
                 );
               }
+              if (state is EmployerJobSearchListBlocSuccessState) {
+                return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: state.jobs.length,
+                  padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  itemBuilder: (context, index) {
+                    return JobCard(
+                      parentPage: "posted jobs",
+                      jobTitle: state.jobs[index].jobTitle,
+                      applicationDeadline:
+                          state.jobs[index].applicationDeadline,
+                      category: state.jobs[index].category,
+                      description: state.jobs[index].jobDescription,
+                      priceRange: state.jobs[index].priceLimit,
+                      applicantCount: state.jobs[index].applicantCount,
+                    );
+                  },
+                );
+              }
+
               return Center(child: Text("error"));
             },
           )),

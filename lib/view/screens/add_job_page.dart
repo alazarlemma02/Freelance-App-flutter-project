@@ -226,9 +226,11 @@ class _AddJobState extends State<AddJob> {
               };
               FirebaseFirestore.instance
                   .collection('Jobs')
-                  .doc(jobId)
+                  .doc(_jobTitle.text)
                   .set(jobData);
-              BlocProvider.of<JobBlocBloc>(context).add(const JobsFetchEvent());
+
+              BlocProvider.of<JobBlocBloc>(context)
+                  .add(PostedJobsFetchEvent());
               Navigator.pushNamed(context, '/PostedJobs');
               showSnackBar('Job Added Successfully', Colors.green, context);
             } catch (e) {
