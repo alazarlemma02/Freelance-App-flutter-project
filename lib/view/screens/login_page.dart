@@ -313,7 +313,8 @@ class _LoginPageState extends State<LoginPage> {
           } else if (type == 'Employer') {
             prefs.setString('userRoute', '/PostedJobs');
             await Navigator.pushNamed(context, '/PostedJobs');
-            BlocProvider.of<JobBlocBloc>(context).add(const JobsFetchEvent());
+
+            BlocProvider.of<JobBlocBloc>(context).add(PostedJobsFetchEvent());
           }
         }
         setState(() {
