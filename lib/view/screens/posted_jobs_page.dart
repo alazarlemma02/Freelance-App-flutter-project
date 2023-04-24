@@ -22,8 +22,8 @@ class _PostedJobsState extends State<PostedJobs> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerPage(
-          // child: ,
-          ),
+        context: context,
+      ),
       appBar: AppBar(
         actions: [
           IconButton(

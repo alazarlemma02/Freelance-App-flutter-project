@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
 class Validator {
@@ -7,7 +8,7 @@ class Validator {
       return null;
     }
     if (fullName.isEmpty) {
-      return 'Name can\'t be empty';
+      return "empty-name".tr();
     }
 
     return null;
@@ -21,9 +22,9 @@ class Validator {
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
     if (email.isEmpty) {
-      return 'Email can\'t be empty';
+      return "empty-email".tr();
     } else if (!emailRegExp.hasMatch(email)) {
-      return 'Enter a correct email';
+      return "incorrect-email".tr();
     }
 
     return null;
@@ -34,9 +35,9 @@ class Validator {
       return null;
     }
     if (password.isEmpty) {
-      return 'Password can\'t be empty';
+      return "empty-password".tr();
     } else if (password.length < 6) {
-      return 'Enter a password with length at least 6';
+      return "password-length".tr();
     }
     return null;
   }
@@ -46,9 +47,9 @@ class Validator {
       return null;
     }
     if (phoneNumber.isEmpty) {
-      return 'Phone Number can\'t be empty';
+      return "phonenumber-empty".tr();
     } else if (!phoneNumber.startsWith('09')) {
-      return 'Incorrect phone number format';
+      return "phonenumber-format".tr();
     }
     return null;
   }
@@ -58,7 +59,7 @@ class Validator {
       return null;
     }
     if (fieldData.isEmpty) {
-      return 'Please fill in the field!';
+      return "empty-field".tr();
     }
   }
 
@@ -68,9 +69,9 @@ class Validator {
       return null;
     }
     if (confirmPassword.isEmpty) {
-      return 'Confirm Password can\'t be empty';
+      return "empty-password".tr();
     } else if (confirmPassword != password) {
-      return 'The password doesn\'t match.';
+      return "match-password".tr();
     }
     return null;
   }
