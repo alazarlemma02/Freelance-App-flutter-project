@@ -18,7 +18,9 @@ class _AvailableJobsState extends State<AvailableJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerPage(),
+      drawer: DrawerPage(
+        context: context,
+      ),
       appBar: AppBar(
         actions: [
           IconButton(

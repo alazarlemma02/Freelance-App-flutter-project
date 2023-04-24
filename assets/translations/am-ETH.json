@@ -22,10 +22,8 @@
     "profile-tag":"የእርስዎ መገለጫ",
     "social-media":"ማህበራዊ ሚዲያ ገፅ",
     "upload-document":"ፋይል ያስገቡ",
-<<<<<<< HEAD
-    "forgot-password":"መለያዎን ረስተዋል?"
-=======
->>>>>>> 2e7ec536c18dfa66db290f114e889d61ff8fa626
+    "forgot-password":"መለያዎን ረስተዋል?",
+    
     
     "I-am":"እኔ...",
     "Pick-one":"እባክዎ አንዱን ይምረጡ",
@@ -49,8 +47,16 @@
     "post-a-new-job":"አዲስ ሥራ ",
     "try again" :"እንደገና ይሞክሩ",
     "agreed-price":"የተስማማ ዋጋ",
-    "do-you-want-to-logout":"መውጣት ይፈልጋሉ?"
-
+    "do-you-want-to-logout":"መውጣት ይፈልጋሉ?",
+    "empty-email":"ኢሜል ማስገቢያዎ ባዶ ነው!",
+    "incorrect-email":"የተሳሳተ ኢመል አስገብተዋል!",
+    "empty-name":"ሙሉ ስምዎትን አላስገቡም!",
+    "empty-password":"መለያ ማስገቢያዎ ባዶ ነው!",
+    "password-length":"ያስገቡት መለያ ጠንካራ አይደለም!",
+    "phonenumber-empty":"ስልክ ቁጥር ማስገቢያዎ ባዶ ነው!",
+    "phonenumber-format":"ስልክ ቁጥር በ '09' መጀመር አለበት",
+    "empty-field":"እባኵኦ ቦታውን ይሙሉ!",
+    "match-password":"መለያዎ አይመሳሰልም"
     
 
 }
