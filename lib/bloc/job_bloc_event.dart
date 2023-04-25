@@ -9,6 +9,7 @@ abstract class JobBlocEvent extends Equatable {
 }
 
 class PostedJobsFetchEvent extends JobBlocEvent {
+  
   const PostedJobsFetchEvent();
 
   @override
@@ -18,6 +19,22 @@ class PostedJobsFetchEvent extends JobBlocEvent {
 class SearchedJobsFetchEvent extends JobBlocEvent {
   final String searchVal;
   const SearchedJobsFetchEvent({required this.searchVal});
+
+  @override
+  List<Object> get props => [];
+}
+
+class AvailableJobsFetchEvent extends JobBlocEvent {
+  
+  const AvailableJobsFetchEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AvailableSearchedJobsFetchEvent extends JobBlocEvent {
+  final String searchVal;
+  const AvailableSearchedJobsFetchEvent({required this.searchVal});
 
   @override
   List<Object> get props => [];
