@@ -33,4 +33,13 @@ class FirebaseApiServices {
 
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
+
+  Future getUser() async {
+    var currentUser = await FirebaseAuth.instance.currentUser!.uid;
+    var user = await FirebaseFirestore.instance.collection('users').doc(currentUser).get();
+    
+    return UserModel.fromSnapshot(user);
+  }
+
+
 }
