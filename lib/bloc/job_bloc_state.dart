@@ -12,3 +12,10 @@ class JobListBlocSuccessState extends JobBlocState {
 
   JobListBlocSuccessState({required this.jobs});
 }
+
+class JobSearchListBlocSuccessState extends JobBlocState {
+  final List jobs;
+
+  JobSearchListBlocSuccessState({required this.jobs});
+}
+

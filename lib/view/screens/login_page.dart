@@ -55,11 +55,18 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    context.locale = const Locale('en', 'US');
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
+      appBar: AppBar(
+        leading: null,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
+            child: SelectLanguage(context: context),
+          ),
+        ],
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -252,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
                         Center(
                           child: TextButton(
                             child: Text(
-                              'Forgot password?',
+                              "forgot-password".tr(),
                               style: TextStyle(
                                 color: CustomColors.blackTextColor,
                               ),
@@ -313,7 +320,8 @@ class _LoginPageState extends State<LoginPage> {
           } else if (type == 'Employer') {
             prefs.setString('userRoute', '/PostedJobs');
             await Navigator.pushNamed(context, '/PostedJobs');
-            BlocProvider.of<JobBlocBloc>(context).add(const JobsFetchEvent());
+
+            BlocProvider.of<JobBlocBloc>(context).add(PostedJobsFetchEvent());
           }
         }
         setState(() {

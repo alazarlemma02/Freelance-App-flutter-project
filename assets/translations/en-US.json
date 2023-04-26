@@ -22,7 +22,7 @@
     "profile-tag":"Profile tag line",
     "social-media":"Social media link",
     "upload-document":"Upload attachment",
-    "forgot-password":"Forgot Password",
+    "forgot-password":"Forgot Password?",
 
     "I-am":"I am...",
     "Pick-one":"Please pick one.",
@@ -46,7 +46,17 @@
     "post-a-new-job":"Post a new job",
     "try-again" :"Try again",
     "agreed-price":"Agreed price",
-    "do-you-want-to-logout":"Do you want to logout"
+    "do-you-want-to-logout":"Do you want to logout",
+    "empty-email":"Email can't be empty",
+    "incorrect-email":"Enter a correct email",
+    "empty-name":"Name can't be empty",
+    "empty-password":"Password can't be empty",
+    "password-length":"Enter a password with length at least 6",
+    "phonenumber-empty":"Phone Number can't be empty",
+    "phonenumber-format":"Incorrect phone number format",
+    "empty-field":"Please fill in the field!",
+    "match-password":"The password doesn't match."
+
 
 
 }

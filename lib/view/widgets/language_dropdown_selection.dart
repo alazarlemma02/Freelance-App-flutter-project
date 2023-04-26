@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/screens/login_page.dart';
 
 class SelectLanguage extends StatefulWidget {
-  const SelectLanguage({super.key});
+  BuildContext context;
+  SelectLanguage({super.key, required this.context});
 
   @override
   State<SelectLanguage> createState() => _SelectLanguageState();
@@ -19,6 +21,10 @@ class _SelectLanguageState extends State<SelectLanguage> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
+      onTap: () {
+        selectedLanguage = selectedLanguage;
+      },
+      icon: Icon(Icons.arrow_drop_down, size: 20),
       dropdownColor: CustomColors.backgroundColor,
       value: selectedLanguage,
       items: language
@@ -34,9 +40,9 @@ class _SelectLanguageState extends State<SelectLanguage> {
         setState(() {
           selectedLanguage = lan;
           if (selectedLanguage == language[0]) {
-            context.locale = const Locale('en', 'US');
+            widget.context.setLocale(const Locale('en', 'US'));
           } else if (selectedLanguage == language[1]) {
-            context.locale = const Locale('am', 'ETH');
+            widget.context.setLocale(const Locale('am', 'ETH'));
           }
         });
       },
