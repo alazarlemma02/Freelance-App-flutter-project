@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 
 class AttachmentFile extends StatefulWidget {
-  const AttachmentFile({super.key});
+  String? attachment;
+  AttachmentFile({super.key, required this.attachment});
 
   @override
   State<AttachmentFile> createState() => _AttachmentFileState();

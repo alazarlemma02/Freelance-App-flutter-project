@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 
 class UploadAttachment extends StatefulWidget {
-  const UploadAttachment({super.key});
+  final Function setAttachment;
+  const UploadAttachment({super.key, required this.setAttachment});
 
   @override
   State<UploadAttachment> createState() => _UploadAttachmentState();
@@ -21,7 +22,9 @@ class _UploadAttachmentState extends State<UploadAttachment> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: (){
+                widget.setAttachment();
+              },
               style: ElevatedButton.styleFrom(
                 shadowColor: CustomColors.blackTextColor,
                 fixedSize: const Size(100, 90),

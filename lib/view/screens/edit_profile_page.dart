@@ -4,13 +4,19 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sira/bloc/user_bloc/bloc/user_bloc.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/main.dart';
+import 'package:sira/view/screens/my_profile.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/category_dropdown.dart';
 import 'package:sira/view/widgets/education_level_dropdown.dart';
@@ -38,6 +44,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? skillTxt;
   String? educationLevelTxt;
   List<File> imageFileList = [];
+  File? attachment;
 
   callbackCategory(categoryChoice) {
     setState(() {
@@ -61,6 +68,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
     setState(() {
       educationLevelTxt = categoryChoice;
     });
+  }
+
+  Future<void> selectFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      setState(() {
+        attachment = File(result.files.single.path!);
+      });
+    }
   }
 
   @override
@@ -221,7 +237,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               maximumLines: 4),
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
-                            child: const UploadAttachment(),
+                            child: UploadAttachment(setAttachment: selectFile),
                           ),
                         ],
                       ),
@@ -241,8 +257,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
         padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
         child: FloatingActionButton(
             backgroundColor: CustomColors.buttonBlueColor,
-            onPressed: () {
+            onPressed: () async {
               try {
+                String imageUrl =
+                    await uploadImageToFirebaseStorage(imageFileList[0]);
+                String attachmentUrl =
+                    await uploadFileToFirebaseStorage(attachment!);
+
                 Map<String, dynamic> userData = {
                   "Profile-tag-line": _profile_tagcont.text,
                   "category": categroyTxt,
@@ -251,12 +272,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   "experience-level": expTxt,
                   "education-level": educationLevelTxt,
                   "social-media-link": _socialMediaCont.text,
-                  "about-yourself": _aboutYourselfCont.text
+                  "about-yourself": _aboutYourselfCont.text,
+                  "profile-image-url": imageUrl,
+                  "attachment-url": attachmentUrl
                 };
                 FirebaseFirestore.instance
-                    .collection('User Full Profile')
-                    .doc(_phoneNumberCont.text)
+                    .collection('users')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
                     .set(userData);
+                showSnackBar("Your profile is successfully updated",
+                    Colors.green, context);
+                // BlocProvider.of<UserBloc>(context).add(const UserFetchEvent());
+                //TODO: Navigate to the profile page
+                //  Navigator.pushNamed(context, '/MyProfilePage');
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => BlocProvider.value(
+                      value: BlocProvider.of<UserBloc>(context),
+                      child: const MyProfile()),
+                ),
+              );
               } catch (e) {
                 showSnackBar(e.toString(), Colors.red, context);
               }
@@ -332,5 +368,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
       // crop image ends here.
     }
     setState(() {});
+  }
+
+  // This function is used to upload an image to the firebase storage and get the url
+  Future<String> uploadImageToFirebaseStorage(File file) async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference storageReference =
+        storage.ref().child('user_profile/${file.path}');
+    UploadTask uploadTask = storageReference.putFile(file);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+    return downloadUrl;
+  }
+
+  // This function is used to upload a file to the firebase storage and get the url
+  Future<String> uploadFileToFirebaseStorage(File file) async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference storageReference = storage.ref().child('user_files/${file.path}');
+    UploadTask uploadTask = storageReference.putFile(file);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+    return downloadUrl;
   }
 }
