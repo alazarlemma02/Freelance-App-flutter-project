@@ -55,7 +55,8 @@
     "phonenumber-empty":"Phone Number can't be empty",
     "phonenumber-format":"Incorrect phone number format",
     "empty-field":"Please fill in the field!",
-    "match-password":"The password doesn't match."
+    "match-password":"The password doesn't match.",
+    "user-not-found":"User Not Found"
 
 
 

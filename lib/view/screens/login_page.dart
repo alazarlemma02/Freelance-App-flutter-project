@@ -59,7 +59,6 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: true,
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
-        leading: null,
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
@@ -305,7 +304,7 @@ class _LoginPageState extends State<LoginPage> {
         if (result != 'true') {
           showAlertMessage(
             Icons.error,
-            'User not found',
+            "user-not-found".tr(),
             false,
             Colors.red,
             context,

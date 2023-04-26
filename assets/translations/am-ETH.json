@@ -45,7 +45,7 @@
     "ongoing-jobs":"ቀጣይነት ያላቸው ስራዎች",
     "posted-jobs":"የተለጠፈ ስራዎች",
     "post-a-new-job":"አዲስ ሥራ ",
-    "try again" :"እንደገና ይሞክሩ",
+    "try-again" :"እንደገና ይሞክሩ",
     "agreed-price":"የተስማማ ዋጋ",
     "do-you-want-to-logout":"መውጣት ይፈልጋሉ?",
     "empty-email":"ኢሜል ማስገቢያዎ ባዶ ነው!",
@@ -56,7 +56,8 @@
     "phonenumber-empty":"ስልክ ቁጥር ማስገቢያዎ ባዶ ነው!",
     "phonenumber-format":"ስልክ ቁጥር በ '09' መጀመር አለበት",
     "empty-field":"እባኵኦ ቦታውን ይሙሉ!",
-    "match-password":"መለያዎ አይመሳሰልም"
+    "match-password":"መለያዎ አይመሳሰልም",
+    "user-not-found":"አካውንቱ አልተገኘም"
     
 
 }

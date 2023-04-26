@@ -33,6 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _email = TextEditingController();
   final _phoneNumber = TextEditingController();
   String? userType;
+  String? userToken;
   _SignUpPageState(this.userType);
   void setUserType(userType) {
     widget.userType = userType;
@@ -351,6 +352,7 @@ class _SignUpPageState extends State<SignUpPage> {
           phoneNumber: _phoneNumber.text,
           password: _pass.text,
           userType: widget.userType.toString(),
+          userToken: userToken,
           context: context);
       if (result != 'true') {
         showSnackBar('Some error ocurred Try again', Colors.red, context);

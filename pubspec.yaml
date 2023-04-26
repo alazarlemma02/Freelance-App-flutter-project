@@ -53,6 +53,12 @@ dependencies:
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
   bloc: ^8.1.1
+  flutter_native_splash: ^2.2.18
+  flutter_local_notifications: ^13.0.0
+  
+  http: ^0.13.5
+  firebase_messaging: ^14.4.1
+  
   
 
 
@@ -67,6 +73,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+flutter_native_splash:
+  # background_image: assets/images/splashScreenLogodesign.png
+  color: "#D6E2E2"
+  image: assets/images/screenSplashLogo.png
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

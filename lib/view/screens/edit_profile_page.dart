@@ -4,12 +4,15 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/data/model/user_model.dart';
+import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/main.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
 import 'package:sira/view/widgets/category_dropdown.dart';
@@ -243,20 +246,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
             backgroundColor: CustomColors.buttonBlueColor,
             onPressed: () {
               try {
-                Map<String, dynamic> userData = {
-                  "Profile-tag-line": _profile_tagcont.text,
-                  "category": categroyTxt,
-                  "skill-level": skillTxt,
-                  "phone-number": _phoneNumberCont.text,
-                  "experience-level": expTxt,
-                  "education-level": educationLevelTxt,
-                  "social-media-link": _socialMediaCont.text,
-                  "about-yourself": _aboutYourselfCont.text
-                };
+                UserModel userData = UserModel(
+                    profileTagLine: _profile_tagcont.text,
+                    category: categroyTxt ?? '',
+                    skillLevel: skillTxt ?? '',
+                    phoneNumber: _phoneNumberCont.text,
+                    experienceLevel: expTxt ?? '',
+                    educationLevel: educationLevelTxt ?? '',
+                    socialMediaLink: _socialMediaCont.text,
+                    aboutYourself: _aboutYourselfCont.text);
                 FirebaseFirestore.instance
-                    .collection('User Full Profile')
-                    .doc(_phoneNumberCont.text)
-                    .set(userData);
+                    .collection('users')
+                    .doc(FirebaseAuth.instance.currentUser!.email)
+                    .update(userData.toJson());
               } catch (e) {
                 showSnackBar(e.toString(), Colors.red, context);
               }

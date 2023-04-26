@@ -229,8 +229,7 @@ class _AddJobState extends State<AddJob> {
                   .doc(_jobTitle.text)
                   .set(jobData);
 
-              BlocProvider.of<JobBlocBloc>(context)
-                  .add(PostedJobsFetchEvent());
+              BlocProvider.of<JobBlocBloc>(context).add(PostedJobsFetchEvent());
               Navigator.pushNamed(context, '/PostedJobs');
               showSnackBar('Job Added Successfully', Colors.green, context);
             } catch (e) {

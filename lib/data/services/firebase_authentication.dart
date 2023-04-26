@@ -15,6 +15,7 @@ class FireAuth {
       required String? phoneNumber,
       required String? password,
       required String? userType,
+      required String? userToken,
       required BuildContext context}) async {
     String result = 'some error ocurred';
 
@@ -31,7 +32,8 @@ class FireAuth {
             password: password,
             phoneNumber: phoneNumber ?? '',
             userId: user.user!.uid,
-            userType: userType);
+            userType: userType,
+            userToken: userToken);
 
         result = 'true';
         await _firestore.collection('users').doc(email).set(
