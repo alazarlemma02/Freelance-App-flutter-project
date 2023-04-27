@@ -36,42 +36,40 @@ class _ContactDetailState extends State<ContactDetail> {
       ),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.call_outlined,
-              color: CustomColors.blackTextColor,
-            ),
-            Text(widget.phoneNumber.toString()),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 30.0),
-          child: Row(
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
             children: [
-              Icon(
-                Icons.mail,
-                color: CustomColors.blackTextColor,
-              ),
-              Text(widget.email.toString()),
+              Column(children: [
+                Icon(
+                  Icons.call_outlined,
+                  color: CustomColors.blackTextColor,
+                ),
+                Icon(
+                  Icons.mail,
+                  color: CustomColors.blackTextColor,
+                ),
+                Icon(
+                  Icons.link,
+                  color: CustomColors.blackTextColor,
+                ),
+              ]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(widget.phoneNumber.toString()),
+                      Text(widget.email.toString()),
+                      Text(widget.socialMedia.toString())
+                    ],
+                  ),
+                ],
+              )
             ],
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.link,
-              color: CustomColors.blackTextColor,
-            ),
-            Text(widget.socialMedia.toString()),
-          ],
-        ),
+        ]),
       ]),
     );
   }

@@ -276,7 +276,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     aboutYourself: _aboutYourselfCont.text,
                     profileImage: imageUrl,
                     attachmentUrl: attachmentUrl);
-                print(imageUrl);
+
                 FirebaseFirestore.instance
                     .collection('User Full Profile')
                     .doc(FirebaseAuth.instance.currentUser!.email)

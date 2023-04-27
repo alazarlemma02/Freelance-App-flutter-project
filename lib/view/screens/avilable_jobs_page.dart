@@ -30,7 +30,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
         actions: [
           IconButton(
             onPressed: () => {
-              Navigator.pushNamed(context, '/PostedJobs'),
+              Navigator.pushNamed(context, '/OngoingJobs'),
             },
             icon: Icon(
               Icons.notifications_outlined,
