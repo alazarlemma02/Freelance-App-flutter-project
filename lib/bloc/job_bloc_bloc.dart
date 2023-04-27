@@ -15,14 +15,27 @@ class JobBlocBloc extends Bloc<JobBlocEvent, JobBlocState> {
     on<PostedJobsFetchEvent>((event, emit) async {
       emit(JobListBlocLoadingState());
       jobsList = await _firebaseApiServices.getJobsByPoster();
-      emit(EmployerJobListBlocSuccessState(jobs: jobsList));
+      emit(JobListBlocSuccessState(jobs: jobsList));
     });
 
     on<SearchedJobsFetchEvent>((event, emit) async {
       emit(JobListBlocLoadingState());
       jobsList = await _firebaseApiServices.getFilteredJobs(event.searchVal);
       print(jobsList);
-      emit(EmployerJobSearchListBlocSuccessState(jobs: jobsList));
+      emit(JobSearchListBlocSuccessState(jobs: jobsList));
+    });
+
+    on<AvailableJobsFetchEvent>((event, emit) async {
+      emit(JobListBlocLoadingState());
+      jobsList = await _firebaseApiServices.getJobs();
+      emit(JobListBlocSuccessState(jobs: jobsList));
+    });
+
+    on<AvailableSearchedJobsFetchEvent>((event, emit) async {
+      emit(JobListBlocLoadingState());
+      jobsList = await _firebaseApiServices.getAllFilteredJobs(event.searchVal);
+      print(jobsList);
+      emit(JobSearchListBlocSuccessState(jobs: jobsList));
     });
   }
 }

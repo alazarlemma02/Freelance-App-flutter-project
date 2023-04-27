@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/view/screens/path_page.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
@@ -357,6 +358,8 @@ class _SignUpPageState extends State<SignUpPage> {
       if (result != 'true') {
         showSnackBar('Some error ocurred Try again', Colors.red, context);
       } else {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('userType', widget.userType.toString());
         showSnackBar('Registered Successfully', Colors.green, context);
         await Navigator.pushNamed(context, '/');
         showSnackBar('Welcome', CustomColors.buttonBlueColor, context);

@@ -315,10 +315,10 @@ class _LoginPageState extends State<LoginPage> {
           showSnackBar('Logged In Successfully', Colors.green, context);
           if (type == 'Freelancer') {
             prefs.setString('userRoute', '/AvailableJobs');
-            await Navigator.pushNamed(context, '/AvailableJobs');
+            Navigator.pushNamed(context, '/AvailableJobs');
           } else if (type == 'Employer') {
             prefs.setString('userRoute', '/PostedJobs');
-            await Navigator.pushNamed(context, '/PostedJobs');
+            Navigator.pushNamed(context, '/PostedJobs');
 
             BlocProvider.of<JobBlocBloc>(context).add(PostedJobsFetchEvent());
           }

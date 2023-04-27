@@ -22,3 +22,18 @@ class SearchedJobsFetchEvent extends JobBlocEvent {
   @override
   List<Object> get props => [];
 }
+
+class AvailableJobsFetchEvent extends JobBlocEvent {
+  const AvailableJobsFetchEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AvailableSearchedJobsFetchEvent extends JobBlocEvent {
+  final String searchVal;
+  const AvailableSearchedJobsFetchEvent({required this.searchVal});
+
+  @override
+  List<Object> get props => [];
+}

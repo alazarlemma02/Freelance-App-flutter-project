@@ -8,6 +8,8 @@ import 'package:sira/data/services/firebase_api_services.dart';
 import 'package:sira/view/widgets/drawer.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
 
+import '../../data/services/firebase_authentication.dart';
+
 class PostedJobs extends StatefulWidget {
   const PostedJobs({super.key});
 
@@ -98,6 +100,7 @@ class _PostedJobsState extends State<PostedJobs> {
           Expanded(child: BlocBuilder<JobBlocBloc, JobBlocState>(
             builder: (context, state) {
               if (state is JobBlocInitial) {
+           
                 BlocProvider.of<JobBlocBloc>(context)
                     .add(PostedJobsFetchEvent());
               }
@@ -107,7 +110,7 @@ class _PostedJobsState extends State<PostedJobs> {
                   color: CustomColors.buttonBlueColor,
                 ));
               }
-              if (state is EmployerJobListBlocSuccessState) {
+              if (state is JobListBlocSuccessState) {
                 return ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: state.jobs.length,
@@ -126,7 +129,7 @@ class _PostedJobsState extends State<PostedJobs> {
                   },
                 );
               }
-              if (state is EmployerJobSearchListBlocSuccessState) {
+              if (state is JobSearchListBlocSuccessState) {
                 return ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: state.jobs.length,

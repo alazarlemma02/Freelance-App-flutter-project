@@ -42,7 +42,7 @@ Future<void> showAlertMessage(
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/SignUpPage');
+              Navigator.pushNamed(context, '/PathPage');
               // await logout;
             },
           ),

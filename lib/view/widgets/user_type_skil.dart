@@ -7,37 +7,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 
 class UserTypeAndSkill extends StatefulWidget {
-  const UserTypeAndSkill({super.key});
+  String? fullName;
+  String? category;
+  String? skill;
+  UserTypeAndSkill(
+      {super.key,
+      required this.fullName,
+      required this.category,
+      required this.skill});
 
   @override
   State<UserTypeAndSkill> createState() => _UserTypeAndSkillState();
 }
 
 class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
-  String? fullName;
-  String? category;
-  String? skill;
-  Future<void> getNameOfUser() async {
-    DocumentSnapshot profileName = await FirebaseFirestore.instance
-        .collection('users')
-        .doc('nahom@gmail.com')
-        .get();
-    DocumentSnapshot fullProfile = await FirebaseFirestore.instance
-        .collection('User Full Profile')
-        .doc('0911111111')
-        .get();
-
-    fullName = profileName['fullName'];
-    category = fullProfile['category'];
-    skill = fullProfile['skill-level'];
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getNameOfUser();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,13 +37,13 @@ class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  fullName.toString(),
+                  widget.fullName.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(
                   child: Center(
                     child: Text(
-                      category.toString(),
+                      widget.category.toString(),
                       style: TextStyle(
                           fontSize: 12, color: CustomColors.blackTextColor),
                     ),
@@ -87,7 +70,7 @@ class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
                 Container(
                   child: Center(
                     child: Text(
-                      skill.toString(),
+                      widget.skill.toString(),
                       style: TextStyle(
                           fontSize: 12, color: CustomColors.blackTextColor),
                     ),

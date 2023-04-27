@@ -36,9 +36,7 @@ class FireAuth {
             userToken: userToken);
 
         result = 'true';
-        await _firestore.collection('users').doc(email).set(
-              newUser.toJson(),
-            );
+        await _firestore.collection('users').doc(email).set(newUser.toJson());
       }
     } catch (err) {
       result = 'false';
