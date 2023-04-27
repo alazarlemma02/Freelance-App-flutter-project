@@ -79,7 +79,7 @@ dev_dependencies:
 flutter_native_splash:
   # background_image: assets/images/splashScreenLogodesign.png
   color: "#D6E2E2"
-  image: assets/images/screenSplashLogo.png
+  image: assets/images/splashScreenLogo.png
   
 
 # For information on the generic Dart part of this file, see the
