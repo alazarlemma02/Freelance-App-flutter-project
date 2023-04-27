@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 
 class AttachmentFile extends StatefulWidget {
-  const AttachmentFile({super.key});
+  String? attachment;
+  AttachmentFile({super.key, required this.attachment});
 
   @override
   State<AttachmentFile> createState() => _AttachmentFileState();
@@ -29,10 +30,15 @@ class _AttachmentFileState extends State<AttachmentFile> {
                 onPressed: () {
                   print("pressed button 1");
                 },
-                icon: Icon(
-                  Icons.download,
+                icon: IconButton(
+                  onPressed: () {
+                    widget.attachment.toString();
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    size: MediaQuery.of(context).size.height * 0.03,
+                  ),
                   color: CustomColors.blackTextColor,
-                  size: MediaQuery.of(context).size.height * 0.03,
                 )),
           ),
           Padding(

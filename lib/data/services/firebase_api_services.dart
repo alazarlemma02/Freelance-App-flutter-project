@@ -62,6 +62,26 @@ class FirebaseApiServices {
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
 
+  Future getUser() async {
+    var currentUser = await FirebaseAuth.instance.currentUser!.email;
+    var user = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser)
+        .get();
+
+    return UserModel.fromSnapshot(user);
+  }
+
+  Future getUserFullProifle() async {
+    var currentUser = await FirebaseAuth.instance.currentUser!.email;
+    var user = await FirebaseFirestore.instance
+        .collection('User Full Profile')
+        .doc(currentUser)
+        .get();
+
+    return UserModel.fromSnapshot(user);
+  }
+
   Future getAllFilteredJobs(String searchVal) async {
     var jobs = await FirebaseFirestore.instance
         .collection('Jobs')

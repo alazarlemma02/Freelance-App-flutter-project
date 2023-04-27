@@ -24,8 +24,8 @@ class _PathPageState extends State<PathPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
-
           leading: IconButton(
         icon: Icon(
           Icons.arrow_back,
@@ -35,7 +35,6 @@ class _PathPageState extends State<PathPage> {
           Navigator.pushNamed(context, '/');
         },
       )),
-
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

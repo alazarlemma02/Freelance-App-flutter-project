@@ -1,1 +1,0 @@
-This is where we will design all the model classes needed.

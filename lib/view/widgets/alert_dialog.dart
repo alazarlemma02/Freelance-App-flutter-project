@@ -42,13 +42,13 @@ Future<void> showAlertMessage(
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/SignUpPage');
+              Navigator.pushNamed(context, '/PathPage');
               // await logout;
             },
           ),
           TextButton(
             child: Text(
-              "try-again".tr().toString(),
+              "try-again".tr(),
               style: TextStyle(color: CustomColors.buttonBlueColor),
             ),
             onPressed: () {

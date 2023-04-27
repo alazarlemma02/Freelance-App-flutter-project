@@ -38,7 +38,9 @@ class _AvailableJobsState extends State<AvailableJobs> {
             ),
           ),
           IconButton(
-            onPressed: () => {},
+            onPressed: () => {
+              Navigator.pushNamed(context, '/MyProfilePage'),
+            },
             icon: Icon(
               Icons.person_outline,
               color: CustomColors.blackTextColor,

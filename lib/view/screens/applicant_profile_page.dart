@@ -89,13 +89,13 @@ class _ApplicantprofileState extends State<Applicantprofile> {
                             Container(
                               height: MediaQuery.of(context).size.height * 0.15,
                               width: MediaQuery.of(context).size.height * 0.4,
-                              child: AttachmentFile(),
+                              // child: AttachmentFile(),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    const UserProfilePicture(),
+                    // UserProfilePicture(),
 
                     ///Image Avatar
                   ],
@@ -133,7 +133,7 @@ class _ApplicantprofileState extends State<Applicantprofile> {
               height: MediaQuery.of(context).size.height * 0.05,
               decoration: BoxDecoration(),
             ),
-            const ContactDetail(),
+            // ContactDetail(),
           ],
         ),
       ),
