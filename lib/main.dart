@@ -49,10 +49,8 @@ Future<void> main() async {
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-
   State<MyApp> createState() => _MyAppState();
 }
-
 
 class _MyAppState extends State<MyApp> {
   var auth = FirebaseAuth.instance;
@@ -123,11 +121,9 @@ class _MyAppState extends State<MyApp> {
           primaryColor: CustomColors.buttonBlueColor,
           fontFamily: 'OpenSans',
         ),
-
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-
       ),
     );
   }
