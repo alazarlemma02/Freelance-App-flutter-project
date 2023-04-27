@@ -7,6 +7,8 @@ class JobBlocInitial extends JobBlocState {}
 
 class JobListBlocLoadingState extends JobBlocState {}
 
+class JobDetailBlocLoadingState extends JobBlocState {}
+
 class JobListBlocSuccessState extends JobBlocState {
   final List jobs;
 
@@ -19,3 +21,8 @@ class JobSearchListBlocSuccessState extends JobBlocState {
   JobSearchListBlocSuccessState({required this.jobs});
 }
 
+class JobDetailSuccessState extends JobBlocState {
+  final Job job;
+
+  JobDetailSuccessState({required this.job});
+}
