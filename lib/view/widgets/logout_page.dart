@@ -80,15 +80,8 @@ class _LogoutState extends State<Logout> {
                             prefs.remove('userRoute');
                             _signOut();
                             // ignore: use_build_context_synchronously
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => BlocProvider.value(
-                                    value:
-                                        BlocProvider.of<JobBlocBloc>(context),
-                                    child: const LoginPage()),
-                              ),
-                            );
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
                           },
                         ),
                       ],
