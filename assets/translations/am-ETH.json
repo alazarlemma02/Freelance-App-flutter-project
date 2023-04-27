@@ -56,7 +56,30 @@
     "phonenumber-empty":"ስልክ ቁጥር ማስገቢያዎ ባዶ ነው!",
     "phonenumber-format":"ስልክ ቁጥር በ '09' መጀመር አለበት",
     "empty-field":"እባኵኦ ቦታውን ይሙሉ!",
-    "match-password":"መለያዎ አይመሳሰልም"
+    "match-password":"መለያዎ አይመሳሰልም",
+    "Please-be-as-concise-and-brief-as-posssible.": "እባክዎ ግልጽ ይሁኑ በተቻለ መጠን",
+    "price-limit" : "የዋጋ ገደብ",
+    "description" :"መግለጫ" ,
+    "job-added-Successfully" :"ሥራ በተሳካ ሁኔታ ታክሏል",
+    "confirm" : "አረጋግጥ",
+    "select-photo":"ፎቶ ይምረጡ",
+    "from-gallery":"ከስልክ",
+    "take-a-photo" :"ፎቶ አንሳ",
+    "finance" :"ፋይናንስ",
+    "design-&-creativity":"ንድፍ እና ፈጠራ",
+    "engineering-&-architecture":"ምህንድስና እና አርክቴክቸር",
+    "writing":"መጻፍ",
+    "web,mobile-&-software-development":"የድር፣ የሞባይል እና የሶፍትዌር ሥራ",
+    "beginner":"ጀማሪ",
+    "intermidiate": "መካከለኛ",
+    "expert" :"ባለሙያ",
+    "communication":"ግልጽ ንግግር",
+    "marketing":"ግብይት",
+    "creativity":"ፈጠራ",
+    "project-management":"የልዩ ስራ አመራር",
+    "writing-and-research-skills":"የመፃፍ እና የምርምር ችሎታዎች",
+    "others":"ሌላ",
+    "call-now":"ይደውሉ"
     
 
 }

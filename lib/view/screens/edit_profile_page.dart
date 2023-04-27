@@ -182,7 +182,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: Column(
                         children: [
                           TextFieldPage(
-                              hint_text: 'profile-tag',
+                              hint_text: "profile-tag".tr().toString(),
                               field_icon: Icons.tag,
                               field_height: 0.03,
                               editingController: _profile_tagcont,
@@ -195,7 +195,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             callbackFunction: callbackSkill,
                           ),
                           TextFieldPage(
-                              hint_text: 'phone-number',
+                              hint_text: "phone-number".tr().toString(),
                               field_icon: Icons.call,
                               field_height: 0.03,
                               editingController: _phoneNumberCont,
@@ -208,13 +208,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             callbackFunction: callbackEducationLevel,
                           ),
                           TextFieldPage(
-                              hint_text: 'social-media',
+                              hint_text: "social-media".tr().toString(),
                               field_icon: Icons.link,
                               field_height: 0.03,
                               editingController: _socialMediaCont,
                               maximumLines: 1),
                           TextFieldPage(
-                              hint_text: 'about-yourself',
+                              hint_text: "about-yourself".tr().toString(),
                               field_icon: Icons.description,
                               field_height: 0.05,
                               editingController: _aboutYourselfCont,
@@ -275,17 +275,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          title: Text('Select photo'),
+          title: Text("select-photo".tr().toString()),
           children: <Widget>[
             SimpleDialogOption(
-              child: Text('From gallery'),
+              child: Text("from-gallery".tr().toString()),
               onPressed: () {
                 selectImages();
                 Navigator.pop(context);
               },
             ),
             SimpleDialogOption(
-              child: Text('Take a photo'),
+              child: Text("take-a-photo".tr().toString()),
               onPressed: () {
                 takeImages();
                 Navigator.pop(context);

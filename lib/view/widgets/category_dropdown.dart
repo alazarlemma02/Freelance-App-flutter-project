@@ -15,11 +15,11 @@ class CategoryDropDown extends StatefulWidget {
 
 class _CategoryDropDownState extends State<CategoryDropDown> {
   List category = [
-    'category-1',
-    'category-2',
-    'category-3',
-    'category-4',
-    'category-5',
+    "finance".tr().toString(),
+    "design-&-creativity".tr().toString(),
+    "engineering-&-architecture".tr().toString(),
+    "writing".tr().toString(),
+    "web,mobile-&-software-development".tr().toString(),
   ];
   String? selectedItem;
 

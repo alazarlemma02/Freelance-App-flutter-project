@@ -120,7 +120,7 @@ class _ApplicantprofileState extends State<Applicantprofile> {
                       onPressed: () {},
                       child: Center(
                         child: Text(
-                          'Call now',
+                          "call-now".tr().toString(),
                           style: TextStyle(fontSize: 12),
                         ),
                       ),
