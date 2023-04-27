@@ -61,10 +61,8 @@ class FirebaseApiServices {
 
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
-  
 
-   Future getAllFilteredJobs(String searchVal) async {
-    
+  Future getAllFilteredJobs(String searchVal) async {
     var jobs = await FirebaseFirestore.instance
         .collection('Jobs')
         .where('job-title', isGreaterThanOrEqualTo: searchVal)
@@ -73,5 +71,10 @@ class FirebaseApiServices {
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
 
- 
+  Future<Job> getJobById(String jobId) async {
+    var job =
+        await FirebaseFirestore.instance.collection('Jobs').doc(jobId).get();
+
+    return Job.fromSnapshot(job);
+  }
 }
