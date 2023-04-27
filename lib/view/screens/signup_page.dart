@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sira/data/services/firebase_authentication.dart';
 import 'package:sira/view/screens/path_page.dart';
 import 'package:sira/view/widgets/alert_dialog.dart';
@@ -33,6 +34,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _email = TextEditingController();
   final _phoneNumber = TextEditingController();
   String? userType;
+  String? userToken;
   _SignUpPageState(this.userType);
   void setUserType(userType) {
     widget.userType = userType;
@@ -351,10 +353,13 @@ class _SignUpPageState extends State<SignUpPage> {
           phoneNumber: _phoneNumber.text,
           password: _pass.text,
           userType: widget.userType.toString(),
+          userToken: userToken,
           context: context);
       if (result != 'true') {
         showSnackBar('Some error ocurred Try again', Colors.red, context);
       } else {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        // prefs.setString('userType', widget.userType.toString());
         showSnackBar('Registered Successfully', Colors.green, context);
         await Navigator.pushNamed(context, '/');
         showSnackBar('Welcome', CustomColors.buttonBlueColor, context);

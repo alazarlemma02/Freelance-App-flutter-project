@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/view/screens/login_page.dart';
 import 'package:sira/view/screens/signup_page.dart';
@@ -77,7 +79,16 @@ class _LogoutState extends State<Logout> {
                                 await SharedPreferences.getInstance();
                             prefs.remove('userRoute');
                             _signOut();
-                            Navigator.pushNamed(context, '/');
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => BlocProvider.value(
+                                    value:
+                                        BlocProvider.of<JobBlocBloc>(context),
+                                    child: const LoginPage()),
+                              ),
+                            );
                           },
                         ),
                       ],

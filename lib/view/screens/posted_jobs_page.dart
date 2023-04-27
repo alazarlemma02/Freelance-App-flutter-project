@@ -100,7 +100,6 @@ class _PostedJobsState extends State<PostedJobs> {
           Expanded(child: BlocBuilder<JobBlocBloc, JobBlocState>(
             builder: (context, state) {
               if (state is JobBlocInitial) {
-           
                 BlocProvider.of<JobBlocBloc>(context)
                     .add(PostedJobsFetchEvent());
               }
@@ -117,6 +116,10 @@ class _PostedJobsState extends State<PostedJobs> {
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   itemBuilder: (context, index) {
                     return JobCard(
+                      dueDate: state.jobs[index].dueDate,
+                      postedBy: state.jobs[index].postedBy,
+                      postedDate: state.jobs[index].postedDate,
+                      jobId: state.jobs[index].jobId,
                       parentPage: "posted jobs",
                       jobTitle: state.jobs[index].jobTitle,
                       applicationDeadline:
@@ -136,6 +139,10 @@ class _PostedJobsState extends State<PostedJobs> {
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   itemBuilder: (context, index) {
                     return JobCard(
+                      dueDate: state.jobs[index].dueDate,
+                      postedBy: state.jobs[index].postedBy,
+                      postedDate: state.jobs[index].postedDate,
+                      jobId: state.jobs[index].jobId,
                       parentPage: "posted jobs",
                       jobTitle: state.jobs[index].jobTitle,
                       applicationDeadline:
@@ -147,9 +154,12 @@ class _PostedJobsState extends State<PostedJobs> {
                     );
                   },
                 );
+              } else {
+                // return Center(child: Text("error"));
+                BlocProvider.of<JobBlocBloc>(context)
+                    .add(const PostedJobsFetchEvent());
+                return Container();
               }
-
-              return Center(child: Text("error"));
             },
           )),
         ],

@@ -6,37 +6,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sira/constants/colors.dart';
 
 class ContactDetail extends StatefulWidget {
-  const ContactDetail({super.key});
+  String? email;
+  String? socialMedia;
+  String? phoneNumber;
+  ContactDetail(
+      {super.key,
+      required this.email,
+      required this.socialMedia,
+      required this.phoneNumber});
 
   @override
   State<ContactDetail> createState() => _ContactDetailState();
 }
 
 class _ContactDetailState extends State<ContactDetail> {
-  String? email;
-  String? socialMedia;
-  String? phoneNumber;
-  Future<void> getNameOfUser() async {
-    DocumentSnapshot profileName = await FirebaseFirestore.instance
-        .collection('users')
-        .doc('nahom@gmail.com')
-        .get();
-    DocumentSnapshot userFullProfile = await FirebaseFirestore.instance
-        .collection('User Full Profile')
-        .doc('0911111111')
-        .get();
-
-    // email = profileName['email'];
-    phoneNumber = userFullProfile['phone-number'];
-    socialMedia = userFullProfile['social-media-link'];
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getNameOfUser();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,19 +44,22 @@ class _ContactDetailState extends State<ContactDetail> {
               Icons.call_outlined,
               color: CustomColors.blackTextColor,
             ),
-            Text(phoneNumber.toString()),
+            Text(widget.phoneNumber.toString()),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.mail,
-              color: CustomColors.blackTextColor,
-            ),
-            Text(email.toString()),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(
+                Icons.mail,
+                color: CustomColors.blackTextColor,
+              ),
+              Text(widget.email.toString()),
+            ],
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -83,7 +69,7 @@ class _ContactDetailState extends State<ContactDetail> {
               Icons.link,
               color: CustomColors.blackTextColor,
             ),
-            Text(socialMedia.toString()),
+            Text(widget.socialMedia.toString()),
           ],
         ),
       ]),

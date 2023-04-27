@@ -61,10 +61,28 @@ class FirebaseApiServices {
 
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
-  
 
-   Future getAllFilteredJobs(String searchVal) async {
-    
+  Future getUser() async {
+    var currentUser = await FirebaseAuth.instance.currentUser!.email;
+    var user = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser)
+        .get();
+
+    return UserModel.fromSnapshot(user);
+  }
+
+  Future getUserFullProifle() async {
+    var currentUser = await FirebaseAuth.instance.currentUser!.email;
+    var user = await FirebaseFirestore.instance
+        .collection('User Full Profile')
+        .doc(currentUser)
+        .get();
+
+    return UserModel.fromSnapshot(user);
+  }
+
+  Future getAllFilteredJobs(String searchVal) async {
     var jobs = await FirebaseFirestore.instance
         .collection('Jobs')
         .where('job-title', isGreaterThanOrEqualTo: searchVal)
@@ -73,5 +91,10 @@ class FirebaseApiServices {
     return List.from(jobs.docs.map((doc) => Job.fromSnapshot(doc)));
   }
 
- 
+  Future<Job> getJobById(String jobId) async {
+    var job =
+        await FirebaseFirestore.instance.collection('Jobs').doc(jobId).get();
+
+    return Job.fromSnapshot(job);
+  }
 }

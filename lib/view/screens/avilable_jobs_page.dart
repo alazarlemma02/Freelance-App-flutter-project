@@ -18,7 +18,7 @@ class AvailableJobs extends StatefulWidget {
 }
 
 class _AvailableJobsState extends State<AvailableJobs> {
-    final TextEditingController _searchtextCont = TextEditingController();
+  final TextEditingController _searchtextCont = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,9 @@ class _AvailableJobsState extends State<AvailableJobs> {
             ),
           ),
           IconButton(
-            onPressed: () => {},
+            onPressed: () => {
+              Navigator.pushNamed(context, '/MyProfilePage'),
+            },
             icon: Icon(
               Icons.person_outline,
               color: CustomColors.blackTextColor,
@@ -116,6 +118,10 @@ class _AvailableJobsState extends State<AvailableJobs> {
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   itemBuilder: (context, index) {
                     return JobCard(
+                      dueDate: state.jobs[index].dueDate,
+                      postedBy: state.jobs[index].postedBy,
+                      postedDate: state.jobs[index].postedDate,
+                      jobId: state.jobs[index].jobId,
                       parentPage: "posted jobs",
                       jobTitle: state.jobs[index].jobTitle,
                       applicationDeadline:
@@ -135,6 +141,10 @@ class _AvailableJobsState extends State<AvailableJobs> {
                   padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   itemBuilder: (context, index) {
                     return JobCard(
+                      dueDate: state.jobs[index].dueDate,
+                      postedBy: state.jobs[index].postedBy,
+                      postedDate: state.jobs[index].postedDate,
+                      jobId: state.jobs[index].jobId,
                       parentPage: "posted jobs",
                       jobTitle: state.jobs[index].jobTitle,
                       applicationDeadline:
@@ -153,7 +163,6 @@ class _AvailableJobsState extends State<AvailableJobs> {
           )),
         ],
       ),
-      
     );
   }
 }
