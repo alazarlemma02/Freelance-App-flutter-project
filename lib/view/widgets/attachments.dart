@@ -30,10 +30,15 @@ class _AttachmentFileState extends State<AttachmentFile> {
                 onPressed: () {
                   print("pressed button 1");
                 },
-                icon: Icon(
-                  Icons.download,
+                icon: IconButton(
+                  onPressed: () {
+                    widget.attachment.toString();
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    size: MediaQuery.of(context).size.height * 0.03,
+                  ),
                   color: CustomColors.blackTextColor,
-                  size: MediaQuery.of(context).size.height * 0.03,
                 )),
           ),
           Padding(

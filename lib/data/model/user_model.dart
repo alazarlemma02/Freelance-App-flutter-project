@@ -84,7 +84,10 @@ class UserModel {
         attachmentUrl = snapshot.data()['attachment-url'],
         phoneNumber = snapshot.data()['phone-number'],
         email = snapshot.data()['email'],
+        profileImage = snapshot.data()['profile-image-url'],
+        profileTagLine = snapshot.data()['Profile-tag-line'],
         socialMediaLink = snapshot.data()['social-media-link'];
+
   void setUserEmail(String email) {
     this.email = email;
   }

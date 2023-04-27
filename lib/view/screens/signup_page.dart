@@ -359,7 +359,7 @@ class _SignUpPageState extends State<SignUpPage> {
         showSnackBar('Some error ocurred Try again', Colors.red, context);
       } else {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('userType', widget.userType.toString());
+        // prefs.setString('userType', widget.userType.toString());
         showSnackBar('Registered Successfully', Colors.green, context);
         await Navigator.pushNamed(context, '/');
         showSnackBar('Welcome', CustomColors.buttonBlueColor, context);

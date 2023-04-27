@@ -47,16 +47,19 @@ class _ContactDetailState extends State<ContactDetail> {
             Text(widget.phoneNumber.toString()),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Icon(
-              Icons.mail,
-              color: CustomColors.blackTextColor,
-            ),
-            Text(widget.email.toString()),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(
+                Icons.mail,
+                color: CustomColors.blackTextColor,
+              ),
+              Text(widget.email.toString()),
+            ],
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

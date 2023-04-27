@@ -41,8 +41,13 @@ class _My_profileState extends State<MyProfile> {
             appBar: AppBar(
               backgroundColor: CustomColors.transparentColor,
               elevation: 0,
-              leading: Icon(
-                Icons.arrow_back,
+              leading: IconButton(
+                onPressed: (() {
+                  Navigator.pushNamed(context, '/AvailableJobs');
+                }),
+                icon: Icon(
+                  Icons.arrow_back,
+                ),
                 color: CustomColors.blackTextColor,
               ),
               title: Text(state.user!.fullName.toString(),
