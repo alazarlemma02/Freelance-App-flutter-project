@@ -42,7 +42,7 @@ class _DrawerPageState extends State<DrawerPage> {
                             TextButton(
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, '/ApplicantProfilePage');
+                                      context, '/MyProfilePage');
                                 },
                                 child: Text('Profile',
                                     style: TextStyle(

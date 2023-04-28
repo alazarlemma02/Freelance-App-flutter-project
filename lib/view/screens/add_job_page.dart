@@ -66,7 +66,7 @@ class _AddJobState extends State<AddJob> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: Text(
-                  "Please be  as concise and brief as posssible.",
+                  "Please be  as concise and brief as posssible.".tr().toString(),
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -84,7 +84,7 @@ class _AddJobState extends State<AddJob> {
                       child: TextFormField(
                         controller: _jobTitle,
                         decoration: InputDecoration(
-                          hintText: "Job Title",
+                          hintText: "job-title".tr().toString(),
                           labelStyle: const TextStyle(
                             color: CustomColors.fadedTextColor,
                           ),
@@ -108,7 +108,7 @@ class _AddJobState extends State<AddJob> {
                       child: TextFormField(
                         controller: _category,
                         decoration: InputDecoration(
-                          hintText: "Category",
+                          hintText:  "category".tr().toString(),
                           labelStyle: const TextStyle(
                             color: CustomColors.fadedTextColor,
                           ),
@@ -132,7 +132,7 @@ class _AddJobState extends State<AddJob> {
                       child: TextFormField(
                         controller: _applicationDeadline,
                         decoration: InputDecoration(
-                          hintText: "Applicatiion Deadline (dd/mm/yyyy)",
+                          hintText: "application-deadline".tr().toString(),
                           labelStyle: const TextStyle(
                             color: CustomColors.fadedTextColor,
                           ),
@@ -156,7 +156,7 @@ class _AddJobState extends State<AddJob> {
                       child: TextFormField(
                         controller: _priceRange,
                         decoration: InputDecoration(
-                          hintText: "Price Limit",
+                          hintText: "price-limit".tr().toString(),
                           labelStyle: const TextStyle(
                             color: CustomColors.fadedTextColor,
                           ),
@@ -181,7 +181,7 @@ class _AddJobState extends State<AddJob> {
                         maxLines: 3,
                         controller: _description,
                         decoration: InputDecoration(
-                          hintText: "Description",
+                          hintText: "description".tr().toString(),
                           labelStyle: const TextStyle(
                             color: CustomColors.fadedTextColor,
                           ),
@@ -238,14 +238,14 @@ class _AddJobState extends State<AddJob> {
 
               BlocProvider.of<JobBlocBloc>(context).add(PostedJobsFetchEvent());
               Navigator.pushNamed(context, '/PostedJobs');
-              showSnackBar('Job Added Successfully', Colors.green, context);
+              showSnackBar( "job-added-Successfully".tr().toString(), Colors.green, context);
             } catch (e) {
               showSnackBar(e.toString(), Colors.red, context);
             }
           }
         },
         child: const Icon(Icons.check),
-        tooltip: "Confirm.",
+        tooltip: "confirm" .tr().toString(),
       ),
     );
   }

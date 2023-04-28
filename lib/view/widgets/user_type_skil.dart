@@ -24,40 +24,35 @@ class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.1,
+      height: MediaQuery.of(context).size.height * 0.15,
       // width: MediaQuery.of(context).size.width * 0.3,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.25,
+          width: MediaQuery.of(context).size.width * 0,
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.1,
           width: MediaQuery.of(context).size.width * 0.4,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  widget.fullName.toString(),
-                  style: TextStyle(fontWeight: FontWeight.bold),
+          child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: CustomColors.blackTextColor),
+                color: CustomColors.backgroundColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
                 ),
-                Container(
-                  child: Center(
-                    child: Text(
-                      widget.category.toString(),
-                      style: TextStyle(
-                          fontSize: 12, color: CustomColors.blackTextColor),
-                    ),
-                  ),
-                  margin: EdgeInsets.only(right: 20.0),
-                  height: MediaQuery.of(context).size.height * 0.026,
-                  width: MediaQuery.of(context).size.height * 0.08,
-                  decoration: BoxDecoration(
-                      color: CustomColors.backgroundColor,
-                      borderRadius: BorderRadius.all(Radius.circular(3)),
-                      border: Border.all(
-                          color: CustomColors.blackTextColor, width: 1)),
-                )
-              ]),
+              ),
+              margin: EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.all(5),
+              child: Text(
+                widget.category.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.w100,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ]),
         ),
         Container(
           child: Column(
@@ -68,22 +63,23 @@ class _UserTypeAndSkillState extends State<UserTypeAndSkill> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  child: Center(
-                    child: Text(
-                      widget.skill.toString(),
-                      style: TextStyle(
-                          fontSize: 12, color: CustomColors.blackTextColor),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: CustomColors.blackTextColor),
+                    color: CustomColors.backgroundColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
                     ),
                   ),
-                  margin: EdgeInsets.only(right: 10.0),
-                  height: MediaQuery.of(context).size.height * 0.026,
-                  width: MediaQuery.of(context).size.height * 0.08,
-                  decoration: BoxDecoration(
-                      color: CustomColors.backgroundColor,
-                      borderRadius: BorderRadius.all(Radius.circular(3)),
-                      border: Border.all(
-                          color: CustomColors.blackTextColor, width: 1)),
-                )
+                  margin: EdgeInsets.only(right: 5.0),
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    widget.skill.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w100,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
               ]),
         ),
       ]),

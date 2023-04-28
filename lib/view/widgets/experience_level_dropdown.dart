@@ -17,7 +17,11 @@ class ExperienceLevelDropDown extends StatefulWidget {
 }
 
 class _CategoryDropDownState extends State<ExperienceLevelDropDown> {
-  List category = ['Beginner', 'Intermidiate', 'Expert'];
+  List category = [
+    "beginner".tr().toString(),
+    "intermidiate".tr().toString(),
+    "expert".tr().toString()
+  ];
   String? selectedItem;
   // EditProfilePage editProfilePage = new EditProfilePage();
 

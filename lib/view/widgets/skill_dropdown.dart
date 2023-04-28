@@ -17,12 +17,12 @@ class SkillDropDown extends StatefulWidget {
 class _SkillDropDownState extends State<SkillDropDown> {
   // EditProfilePage editProfilePage = new EditProfilePage();
   List category = [
-    'Skill-1',
-    'Skill-2',
-    'Skill-3',
-    'Skill-4',
-    'Skill-5',
-    'Other'
+    "communication".tr().toString(),
+    "marketing".tr().toString(),
+    "creativity".tr().toString(),
+    "project-management".tr().toString(),
+    "writing-and-research-skills".tr().toString(),
+     "others".tr().toString()
   ];
   String? selectedItem;
   @override
