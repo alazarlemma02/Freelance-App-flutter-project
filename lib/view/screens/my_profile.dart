@@ -99,7 +99,7 @@ class _My_profileState extends State<MyProfile> {
                                 ///here we create space for the circle avatar to get ut of the box
                                 child: Container(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.45,
+                                      MediaQuery.of(context).size.height * 0.50,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15.0),
                                     color: CustomColors.cardColor,
@@ -125,12 +125,17 @@ class _My_profileState extends State<MyProfile> {
                                         width:
                                             MediaQuery.of(context).size.height *
                                                 0.4,
-                                        child: Text(
-                                          state.userFullProfile!.aboutYourself
-                                              .toString(),
-                                          style: TextStyle(
-                                              color:
-                                                  CustomColors.blackTextColor),
+                                        child: ListView(
+                                          children: [
+                                            Text(
+                                              state.userFullProfile!
+                                                  .aboutYourself
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  color: CustomColors
+                                                      .blackTextColor),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       Container(

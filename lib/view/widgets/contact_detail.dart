@@ -23,7 +23,7 @@ class _ContactDetailState extends State<ContactDetail> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.2),
+      // padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.2),
       margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.width * 0.04,
           left: MediaQuery.of(context).size.width * 0.085,
@@ -35,8 +35,8 @@ class _ContactDetailState extends State<ContactDetail> {
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -55,7 +55,7 @@ class _ContactDetailState extends State<ContactDetail> {
                 ),
               ]),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
