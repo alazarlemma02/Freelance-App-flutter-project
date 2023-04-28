@@ -66,7 +66,9 @@ class _AddJobState extends State<AddJob> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: Text(
-                  "Please be  as concise and brief as posssible.".tr().toString(),
+                  "Please be  as concise and brief as posssible."
+                      .tr()
+                      .toString(),
                   textAlign: TextAlign.end,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -108,7 +110,7 @@ class _AddJobState extends State<AddJob> {
                       child: TextFormField(
                         controller: _category,
                         decoration: InputDecoration(
-                          hintText:  "category".tr().toString(),
+                          hintText: "category".tr().toString(),
                           labelStyle: const TextStyle(
                             color: CustomColors.fadedTextColor,
                           ),
@@ -208,7 +210,7 @@ class _AddJobState extends State<AddJob> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             final uuid = Uuid();
             final jobId = uuid.v4().toString();
@@ -237,15 +239,16 @@ class _AddJobState extends State<AddJob> {
                   .set(jobData);
 
               BlocProvider.of<JobBlocBloc>(context).add(PostedJobsFetchEvent());
-              Navigator.pushNamed(context, '/PostedJobs');
-              showSnackBar( "job-added-Successfully".tr().toString(), Colors.green, context);
+              await Navigator.pushNamed(context, '/PostedJobs');
+              showSnackBar("job-added-Successfully".tr().toString(),
+                  Colors.green, context);
             } catch (e) {
               showSnackBar(e.toString(), Colors.red, context);
             }
           }
         },
         child: const Icon(Icons.check),
-        tooltip: "confirm" .tr().toString(),
+        tooltip: "confirm".tr().toString(),
       ),
     );
   }

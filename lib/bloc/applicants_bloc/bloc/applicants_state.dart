@@ -9,6 +9,7 @@ class ApplicantsLoading extends ApplicantsState {}
 
 class ApplicantsSuccess extends ApplicantsState {
   final List applicants;
+  final List applicantProfile;
 
-  ApplicantsSuccess({required this.applicants});
+  ApplicantsSuccess({required this.applicants, required this.applicantProfile});
 }

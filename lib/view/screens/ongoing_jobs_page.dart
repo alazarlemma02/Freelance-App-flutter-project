@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sira/constants/colors.dart';
+import 'package:sira/view/widgets/drawer.dart';
 import 'package:sira/view/widgets/job_card_widget.dart';
 
 class OngoingJobs extends StatefulWidget {
@@ -14,7 +15,9 @@ class _OngoingJobsState extends State<OngoingJobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: Drawer(),
+      drawer: DrawerPage(
+        context: context,
+      ),
       appBar: AppBar(
         actions: [
           IconButton(

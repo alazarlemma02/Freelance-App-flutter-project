@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sira/constants/colors.dart';
@@ -7,6 +9,8 @@ import 'package:sira/view/widgets/attachments.dart';
 import 'package:sira/view/widgets/contact_detail.dart';
 import 'package:sira/view/widgets/user_profile.dart';
 import 'package:sira/view/widgets/user_type_skill.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Applicantprofile extends StatefulWidget {
   const Applicantprofile({super.key});
@@ -16,11 +20,30 @@ class Applicantprofile extends StatefulWidget {
 }
 
 class _ApplicantprofileState extends State<Applicantprofile> {
+  String? imageUrl;
+
+  getApplicantImage(String email) async {
+    final DocumentSnapshot userDoc = await FirebaseFirestore.instance
+        .collection('User Full Profile')
+        .doc(email)
+        .get();
+    setState(() {
+      imageUrl = userDoc.get('profile-image-url').toString();
+    });
+  }
+
+  @override
+  void initState() {
+    getApplicantImage(imageUrl.toString());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
+    getApplicantImage(arguments['user'].email);
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
@@ -66,12 +89,11 @@ class _ApplicantprofileState extends State<Applicantprofile> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                        child: Image.asset(
-                          'assets/images/avatar.png',
-                          width: 100,
-                          height: 100,
-                        ),
-                      ),
+                          child: Image(
+                        image: NetworkImage(imageUrl.toString()),
+                        width: 100,
+                        height: 100,
+                      )),
                       Column(
                         children: [
                           Padding(
@@ -114,7 +136,9 @@ class _ApplicantprofileState extends State<Applicantprofile> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          launchUrlString('tel://${arguments['user'].phoneNumber}');
+        },
         child: Center(
             child: Icon(
           Icons.call,

@@ -12,11 +12,15 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
 
   ApplicantsBloc() : super(ApplicantsInitial()) {
     List applicantList = [];
+    List applicantProfile = [];
 
     on<FetchApplicants>((event, emit) async {
       emit(ApplicantsLoading());
       applicantList = await _firebaseApiServices.getJobApplicants(event.jobId);
-      emit(ApplicantsSuccess(applicants: applicantList));
+      applicantProfile =
+          await _firebaseApiServices.getJobApplicantsProfile(event.jobId);
+      emit(ApplicantsSuccess(
+          applicants: applicantList, applicantProfile: applicantProfile));
     });
   }
 }

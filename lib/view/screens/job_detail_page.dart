@@ -110,9 +110,13 @@ class _JobDetailPageState extends State<JobDetailPage> {
                         return ApplicantCard(
                           applicantName: state.applicants[index].fullName,
                           applicantCategory: "Empty",
-                          applicantBio: state.applicants[index].aboutYourself,
+                          applicantBio:
+                              state.applicants[index].aboutYourself.toString(),
                           applicantPhoneNumber:
                               state.applicants[index].phoneNumber,
+                          applicantEmail: state.applicants[index].email,
+                          profileImage:
+                              state.applicantProfile[index].profileImage,
                         );
                       },
                     );

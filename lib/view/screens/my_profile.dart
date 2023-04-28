@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/bloc/user_bloc/bloc/user_bloc.dart';
 
 import 'package:sira/constants/colors.dart';
@@ -42,8 +44,20 @@ class _My_profileState extends State<MyProfile> {
               backgroundColor: CustomColors.transparentColor,
               elevation: 0,
               leading: IconButton(
-                onPressed: (() {
-                  Navigator.pushNamed(context, '/AvailableJobs');
+                onPressed: (() async {
+                  String? userType;
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  userType = prefs.getString('userType');
+                  if (userType == "Freelancer") {
+                    BlocProvider.of<JobBlocBloc>(context)
+                        .add(const AvailableJobsFetchEvent());
+                    await Navigator.pushNamed(context, '/AvailableJobs');
+                  } else {
+                    BlocProvider.of<JobBlocBloc>(context)
+                        .add(const PostedJobsFetchEvent());
+                    await Navigator.pushNamed(context, '/PostedJobs');
+                  }
                 }),
                 icon: Icon(
                   Icons.arrow_back,

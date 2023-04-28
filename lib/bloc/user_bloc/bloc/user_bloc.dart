@@ -12,6 +12,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserInitial()) {
     UserModel user;
     UserModel userFullProfile;
+    String? profileImage;
     on<UserFetchEvent>((event, emit) async {
       emit(UserProfileFetchingState());
       user = await _firebaseApiServices.getUser();

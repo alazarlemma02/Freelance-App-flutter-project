@@ -63,17 +63,17 @@ class UserModel {
         "password": password,
         "userId": userId,
         "userType": userType,
-        "userToken": userToken,
-        "Profile-tag-line": profileTagLine,
-        "category": category,
-        "skill-level": skillLevel,
-        "phone-number": phoneNumber,
-        "experience-level": experienceLevel,
-        "education-level": educationLevel,
-        "social-media-link": socialMediaLink,
-        "about-yourself": aboutYourself,
-        "attachment-url": attachmentUrl,
-        "profile-image-url": profileImage
+        "userToken": userToken ?? '',
+        "Profile-tag-line": profileTagLine ?? '',
+        "category": category ?? '',
+        "skill-level": skillLevel ?? '',
+        "phone-number": phoneNumber ?? '',
+        "experience-level": experienceLevel ?? '',
+        "education-level": educationLevel ?? '',
+        "social-media-link": socialMediaLink ?? '',
+        "about-yourself": aboutYourself ?? '',
+        "attachment-url": attachmentUrl ?? '',
+        "profile-image-url": profileImage ?? ''
       };
 
   UserModel.fromSnapshot(snapshot)
