@@ -236,10 +236,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               field_height: 0.05,
                               editingController: _aboutYourselfCont,
                               maximumLines: 4),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: UploadAttachment(setAttachment: selectFile),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 8.0),
+                          //   child: UploadAttachment(setAttachment: selectFile),
+                          // ),
                         ],
                       ),
                     ),
@@ -262,8 +262,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               try {
                 String imageUrl =
                     await uploadImageToFirebaseStorage(imageFileList[0]);
-                String attachmentUrl =
-                    await uploadFileToFirebaseStorage(attachment!);
+                // String attachmentUrl =
+                //     await uploadFileToFirebaseStorage(attachment!);
 
                 UserModel userData = UserModel(
                     profileTagLine: _profile_tagcont.text,
@@ -275,7 +275,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     socialMediaLink: _socialMediaCont.text,
                     aboutYourself: _aboutYourselfCont.text,
                     profileImage: imageUrl,
-                    attachmentUrl: attachmentUrl);
+                    attachmentUrl: '');
 
                 FirebaseFirestore.instance
                     .collection('User Full Profile')
@@ -283,18 +283,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     .set(userData.toJson());
                 showSnackBar("Your profile is successfully updated",
                     Colors.green, context);
+                Navigator.pushNamed(context, '/MyProfilePage');
                 BlocProvider.of<UserBloc>(context).add(const UserFetchEvent());
                 //TODO: Navigate to the profile page
-                Navigator.pushNamed(context, '/MyProfilePage');
-                // print(userData.attachmentUrl.toString());
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (_) => BlocProvider.value(
-                //         value: BlocProvider.of<UserBloc>(context),
-                //         child: const MyProfile()),
-                // ),
-                // );
+
               } catch (e) {
                 showSnackBar(e.toString(), Colors.red, context);
               }
