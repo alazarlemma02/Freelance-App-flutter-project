@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sira/bloc/applicants_bloc/bloc/applicants_bloc.dart';
 import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/bloc/user_bloc/bloc/user_bloc.dart';
 import 'package:sira/constants/colors.dart';
@@ -90,6 +91,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => UserBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ApplicantsBloc(),
         ),
       ],
       child: MaterialApp(

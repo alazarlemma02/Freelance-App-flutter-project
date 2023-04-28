@@ -38,7 +38,7 @@ class JobDetailCard extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "Price Range",
+                      "Price Limit",
                       style: TextStyle(
                         fontWeight: FontWeight.w100,
                         fontSize: 12,

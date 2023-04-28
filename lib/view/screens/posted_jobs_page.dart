@@ -45,7 +45,14 @@ class _PostedJobsState extends State<PostedJobs> {
             ),
           ),
         ],
-        title: Text("posted-jobs".tr().toString()),
+        title: Text(
+          "posted-jobs".tr().toString(),
+          style: TextStyle(
+            color: CustomColors.blackTextColor,
+            // fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: Column(
         children: [

@@ -47,7 +47,14 @@ class _AddJobState extends State<AddJob> {
             ),
           ),
         ],
-        title: Text('Add-a-job'.tr().toString()),
+        title: Text(
+          'Add-a-job'.tr().toString(),
+          style: TextStyle(
+            color: CustomColors.blackTextColor,
+            // fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -29,9 +29,14 @@ class _AvailableJobsState extends State<AvailableJobs> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => {
-              Navigator.pushNamed(context, '/PostedJobs'),
-            },
+            onPressed: () {},
+            icon: Icon(
+              Icons.history,
+              color: CustomColors.blackTextColor,
+            ),
+          ),
+          IconButton(
+            onPressed: () => {},
             icon: Icon(
               Icons.notifications_outlined,
               color: CustomColors.blackTextColor,
@@ -47,7 +52,14 @@ class _AvailableJobsState extends State<AvailableJobs> {
             ),
           ),
         ],
-        title: Text("available-jobs".tr().toString()),
+        title: Text(
+          "available-jobs".tr().toString(),
+          style: TextStyle(
+            color: CustomColors.blackTextColor,
+            // fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -122,7 +134,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
                       postedBy: state.jobs[index].postedBy,
                       postedDate: state.jobs[index].postedDate,
                       jobId: state.jobs[index].jobId,
-                      parentPage: "posted jobs",
+                      parentPage: "available jobs",
                       jobTitle: state.jobs[index].jobTitle,
                       applicationDeadline:
                           state.jobs[index].applicationDeadline,
@@ -145,7 +157,7 @@ class _AvailableJobsState extends State<AvailableJobs> {
                       postedBy: state.jobs[index].postedBy,
                       postedDate: state.jobs[index].postedDate,
                       jobId: state.jobs[index].jobId,
-                      parentPage: "posted jobs",
+                      parentPage: "available jobs",
                       jobTitle: state.jobs[index].jobTitle,
                       applicationDeadline:
                           state.jobs[index].applicationDeadline,

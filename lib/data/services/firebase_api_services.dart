@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sira/data/model/job.dart';
+import 'package:sira/data/model/job_application.dart';
 import 'package:sira/data/model/user_model.dart';
 import 'package:sira/data/services/firebase_authentication.dart';
 
@@ -72,6 +73,15 @@ class FirebaseApiServices {
     return UserModel.fromSnapshot(user);
   }
 
+  Future<UserModel> getUserById(String userEmail) async {
+    var user = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEmail)
+        .get();
+
+    return UserModel.fromSnapshot(user);
+  }
+
   Future getUserFullProifle() async {
     var currentUser = await FirebaseAuth.instance.currentUser!.email;
     var user = await FirebaseFirestore.instance
@@ -96,5 +106,22 @@ class FirebaseApiServices {
         await FirebaseFirestore.instance.collection('Jobs').doc(jobId).get();
 
     return Job.fromSnapshot(job);
+  }
+
+  Future getJobApplicants(String jobId) async {
+    var applicants = [];
+
+    var applicantions = await FirebaseFirestore.instance
+        .collection('Job Applications')
+        .where('job-id', isEqualTo: jobId)
+        .get();
+
+    var applicantIds =
+        List.from(applicantions.docs.map((doc) => doc.data()['applicant-id']));
+
+    for (var a in applicantIds) {
+      applicants.add(await getUserById(a));
+    }
+    return applicants;
   }
 }

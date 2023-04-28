@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/data/model/job.dart';
+import 'package:sira/data/services/firebase_api_services.dart';
 import 'package:sira/view/screens/job_detail_page.dart';
 import 'package:sira/view/widgets/applicant_count.dart';
 
@@ -53,11 +54,17 @@ class JobCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           if (parentPage == 'posted jobs') {
             Navigator.pushNamed(
               context,
               '/JobDetailPage',
+              arguments: {'job': job},
+            );
+          } else if (parentPage == 'available jobs') {
+            Navigator.pushNamed(
+              context,
+              '/JobApplicationpage',
               arguments: {'job': job},
             );
           }

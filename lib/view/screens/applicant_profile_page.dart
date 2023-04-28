@@ -18,16 +18,15 @@ class Applicantprofile extends StatefulWidget {
 class _ApplicantprofileState extends State<Applicantprofile> {
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
     return Scaffold(
       backgroundColor: CustomColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: CustomColors.transparentColor,
         elevation: 0,
-        leading: Icon(
-          Icons.arrow_back,
-          color: CustomColors.blackTextColor,
-        ),
-        title: Text('Abebe Kebede',
+        title: Text(arguments['user'].fullName,
             style: TextStyle(color: CustomColors.blackTextColor)),
         actions: [
           IconButton(
@@ -48,102 +47,77 @@ class _ApplicantprofileState extends State<Applicantprofile> {
           ),
         ],
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: CustomColors.backgroundColor,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
         child: Column(
           children: [
-            Stack(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
-                      ),
-
-                      ///here we create space for the circle avatar to get ut of the box
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: CustomColors.cardColor,
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+                color: CustomColors.cardColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Image.asset(
+                          'assets/images/avatar.png',
+                          width: 100,
+                          height: 100,
                         ),
-                        width: MediaQuery.of(context).size.height * 0.4,
-                        child: Column(
-                          children: [
-                            const UserTypeAndSkill(),
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              width: MediaQuery.of(context).size.height * 0.4,
-                              child: Text(
-                                "Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. Placeholder text that is basically a short description of the person. ",
-                                style: TextStyle(
-                                    color: CustomColors.blackTextColor),
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: Text(
+                              "name",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
                               ),
                             ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              width: MediaQuery.of(context).size.height * 0.4,
-                              // child: AttachmentFile(),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: CustomColors.blackTextColor),
+                              color: CustomColors.backgroundColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5),
+                              ),
                             ),
-                          ],
-                        ),
+                            padding: EdgeInsets.all(5),
+                            child: Text(
+                              "Category",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w100,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    // UserProfilePicture(),
-
-                    ///Image Avatar
-                  ],
-                ),
+                    ],
+                  ),
+                  Text("desc"),
+                ],
               ),
-            ]),
-            Container(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'contact-details'.tr().toString(),
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: Size(
-                              MediaQuery.of(context).size.width * 0.25,
-                              MediaQuery.of(context).size.height * 0.009),
-                          backgroundColor: CustomColors.buttonBlueColor),
-                      onPressed: () {},
-                      child: Center(
-                        child: Text(
-                          'Call now',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ),
-                  ]),
-              margin: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.085,
-                  right: MediaQuery.of(context).size.width * 0.085),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.05,
-              decoration: BoxDecoration(),
             ),
-            // ContactDetail(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/EditProfilePage');
-        },
+        onPressed: () {},
         child: Center(
             child: Icon(
-          Icons.done,
+          Icons.call,
           color: CustomColors.backgroundColor,
         )),
         backgroundColor: CustomColors.buttonBlueColor,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sira/bloc/applicants_bloc/bloc/applicants_bloc.dart';
 import 'package:sira/bloc/job_bloc_bloc.dart';
 import 'package:sira/constants/colors.dart';
 import 'package:sira/view/screens/posted_jobs_page.dart';
@@ -23,20 +24,21 @@ class _JobDetailPageState extends State<JobDetailPage> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
+    final applicants = arguments['applicants'];
+    BlocProvider.of<ApplicantsBloc>(context)
+        .add(FetchApplicants(jobId: arguments['job'].jobId));
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: CustomColors.transparentColor,
         elevation: 0,
         title: Text(
-          'Job Details',
-          style: TextStyle(color: CustomColors.blackTextColor),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/PostedJobs');
-          },
-          icon: Icon(Icons.arrow_back),
+          arguments['job'].jobTitle,
+          style: TextStyle(
+            color: CustomColors.blackTextColor,
+            // fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         actions: [
           IconButton(
@@ -81,16 +83,44 @@ class _JobDetailPageState extends State<JobDetailPage> {
                       ),
                     ),
                   ),
-                  ApplicantCountWidget(applicantCount: 0)
+                  ApplicantCountWidget(
+                    applicantCount: arguments['job'].applicantCount,
+                  ),
                 ],
               ),
             ),
             Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  ApplicantCard(),
-                ],
+              child: BlocBuilder<ApplicantsBloc, ApplicantsState>(
+                builder: (context, state) {
+                  if (state is ApplicantsInitial) {
+                    BlocProvider.of<ApplicantsBloc>(context)
+                        .add(FetchApplicants(jobId: arguments['job'].jobId));
+                  }
+                  if (state is ApplicantsLoading) {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: CustomColors.buttonBlueColor,
+                    ));
+                  }
+                  if (state is ApplicantsSuccess) {
+                    return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: state.applicants.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ApplicantCard(
+                          applicantName: state.applicants[index].fullName,
+                          applicantCategory: "Empty",
+                          applicantBio: state.applicants[index].aboutYourself,
+                          applicantPhoneNumber:
+                              state.applicants[index].phoneNumber,
+                        );
+                      },
+                    );
+                  } else {
+                    // print(state.toString());
+                    return Container();
+                  }
+                },
               ),
             ),
           ],
