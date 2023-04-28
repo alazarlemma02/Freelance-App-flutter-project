@@ -1,0 +1,49 @@
+{
+  "project_info": {
+
+    "project_number": "809045701603",
+    "project_id": "sira-project-7685f",
+    "storage_bucket": "sira-project-7685f.appspot.com"
+
+  },
+  "client": [
+    {
+      "client_info": {
+
+        "mobilesdk_app_id": "1:809045701603:android:bd4fbb73dfe541f8de66d6",
+
+        "android_client_info": {
+          "package_name": "com.example.sira"
+        }
+      },
+      "oauth_client": [
+        {
+
+          "client_id": "809045701603-g3hv84k9civf02c6f406dn2mcl1cqj82.apps.googleusercontent.com",
+
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+
+          "current_key": "AIzaSyCEsFG6-sT9ZEcsZfdQa6Sk72IDmLgoBIA"
+
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+
+              "client_id": "809045701603-g3hv84k9civf02c6f406dn2mcl1cqj82.apps.googleusercontent.com",
+
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
